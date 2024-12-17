@@ -2,7 +2,13 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A powerful web service that automatically generates policy documents based on Adobe's Common Control Framework (CCF). This tool helps organizations streamline their compliance documentation process by generating standardized policy documents that align with various security frameworks.
+A powerful web service that automatically generates policy documents based on [Adobe's Common Control Framework (CCF)](https://www.adobe.com/trust/compliance/adobe-ccf.html). This tool helps organizations streamline their compliance documentation process by generating standardized policy documents that align with various security frameworks.
+
+<p align="center">
+  <img src="https://cc-prod.scene7.com/is/image/CCProdAuthor/CCF-Funnel?$png$&jpegSize=300&wid=1440" alt="Adobe CCF Framework" width="800"/>
+</p>
+
+> Adobe CCF is a security compliance framework that helps organizations meet various compliance requirements through a unified set of controls. It provides a streamlined approach to security compliance by mapping controls across multiple frameworks and standards.
 
 ## 🌟 Key Features
 
