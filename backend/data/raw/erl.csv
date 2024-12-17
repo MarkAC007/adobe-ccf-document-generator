@@ -1,0 +1,412 @@
+reference_id,evidence_domain,evidence_title
+E-AM-01,Asset Management,Asset Management Policy
+E-AM-02,Asset Management,Asset Inventory
+E-AM-03,Asset Management,Asset Reconciliation Records
+E-AM-04,Asset Management,Network Discovery Scan Records
+E-AM-05,Asset Management,Evidence of Media Snapshots
+E-AM-06,Asset Management,Asset Movement Records
+E-AM-07,Asset Management,Portable Media Configuration Evidence
+E-AM-08,Asset Management,Asset Maintenance Records
+E-AM-09,Asset Management,Payment Card Device Verification Records
+E-AM-10,Asset Management,Hardware Installation Records
+E-AM-11,Asset Management,Software Bill of Materials
+E-BC-01,Business Continuity,Business Continuity Policy
+E-BC-02,Business Continuity,Business Continuity Plan
+E-BC-03,Business Continuity,Business Continuity/Disaster Recovery Test Results
+E-BC-04,Business Continuity,Business Impact Analysis Documentation
+E-BC-05,Business Continuity,Capacity Planning Meeting Minutes
+E-BM-01,Backup Management,Backup Management Policy
+E-BM-02,Backup Management,Backup Restoration Test Results
+E-BM-03,Backup Management,Evidence of Failed Backup Review
+E-BM-04,Backup Management,Backup Configuration Evidence
+E-BM-05,Backup Management,Alternate Telecommunications Agreement
+E-BM-06,Backup Management,Sample Alerts for Backup Failure
+E-BM-07,Backup Management,Backup Configuration Evidence
+E-CFM-01,Configuration Management,Firewall standard
+E-CFM-02,Configuration Management,Configuration Management Standard
+E-CFM-03,Configuration Management,Periodic Rule review documentation
+E-CFM-04,Configuration Management,System generated Latest patch versioning documentation
+E-CFM-05,Configuration Management,Configuration deviation samples
+E-CFM-06,Configuration Management,Security hardening standard 
+E-CFM-07,Configuration Management,Authorized application/software listing
+E-CFM-08,Configuration Management,List of denied activities on information systems
+E-CFM-09,Configuration Management,Review history documentation
+E-CFM-10,Configuration Management,Information systems activity logs
+E-CFM-11,Configuration Management,Security hardening and configuration baselines checks review documentation
+E-CFM-12,Configuration Management,Sample of device log reconciliation with Asset register
+E-CFM-13,Configuration Management,NTP Server configuration
+E-CFM-14,Configuration Management,Sample server configuration
+E-CFM-15,Configuration Management,NTP server logs
+E-CFM-16,Configuration Management,Logical Access Management Standard
+E-CFM-17,Configuration Management,Access Review Records
+E-CFM-18,Configuration Management,Sample of server logs
+E-CFM-19,Configuration Management,Sample of collaborative computing device logs
+E-CFM-20,Configuration Management,Authorized approval matrix
+E-CFM-21,Configuration Management,Change Management Standard
+E-CFM-22,Configuration Management,Sample of change requests
+E-CFM-23,Configuration Management,Sample of documented approval on production job changes
+E-CFM-24,Configuration Management,Sample of documented change monitoring details
+E-CHM-01,Change Management,Change Management Policy
+E-CHM-02,Change Management,Change Management Tool Configuration
+E-CHM-03,Change Management,Change Records
+E-CHM-04,Change Management,Company Website Link
+E-CMS-01,Customer Managed Security,Customer capabilities in access management console
+E-CMS-02,Customer Managed Security,Customer Authentication Standard
+E-CMS-03,Customer Managed Security,Customer Admin Console
+E-CMS-04,Customer Managed Security,Customer contracts and agreements
+E-CMS-05,Customer Managed Security,Privileged User Roles capabilities
+E-CRY-01,Cryptography,List of approved key storage solutions
+E-CRY-02,Cryptography,Periodic Access Review documentation
+E-CRY-03,Cryptography,Sample of Key rotation evidence
+E-CRY-04,Cryptography,Key Management Standard
+E-CRY-05,Cryptography,Sample key custodian acknowledgement form
+E-CRY-06,Cryptography,Data Classification and Handling Standard
+E-CRY-07,Cryptography,Data Encryption Standard
+E-CRY-08,Cryptography,Latest TLS Version evidence
+E-CRY-09,Cryptography,Digital Certificates Validity
+E-CRY-10,Cryptography,Qualys SSL Labs Scan Results
+E-CRY-11,Cryptography,Load Balancer Configuration
+E-CRY-12,Cryptography,Security Group Configuration
+E-CRY-13,Cryptography,Remediation & Tracking of expired SSL
+E-CRY-14,Cryptography,Sample confirmation on databases/storage location list
+E-CRY-15,Cryptography,Evidence of encryption enabled
+E-CRY-16,Cryptography,List of cloud storage resources
+E-CRY-17,Cryptography,Access List of Key Repository
+E-CRY-18,Cryptography,Review history of authorized key stores list
+E-CRY-19,Cryptography,"Process documentation for Decryption key storage
+"
+E-CRY-20,Cryptography,Sample of signed Key Custodian Acknowledgements
+E-CRY-21,Cryptography,Sample of SSL Test results
+E-CRY-22,Cryptography,SSL Configuration Files
+E-CRY-23,Cryptography,"Software Development Lifecycle Policy
+"
+E-CRY-24,Cryptography,Configuration evidence for accessing software signing keys
+E-DM-01,Data Management,Data Management Policy
+E-DM-02,Data Management,Periodic Review Records
+E-DM-03,Data Management,Data Categorization Evidence
+E-DM-04,Data Management,Terms of Service
+E-DM-05,Data Management,Consent Records
+E-DM-06,Data Management,Terms of Service Update Process
+E-DM-07,Data Management,Data Access Request Records
+E-DM-08,Data Management,Data Deletion Request Records
+E-DM-09,Data Management,Privacy inquiry Records
+E-DM-10,Data Management,Sample Test Data
+E-DM-11,Data Management,Access or update process document
+E-DM-12,Data Management,Personal information access/update request records
+E-DM-13,Data Management,Database Screenshots
+E-DM-14,Data Management,PAN authorization records
+E-DM-15,Data Management,Personal Information Media Inventory
+E-DM-16,Data Management,Integrity Checks
+E-DM-17,Data Management,Media Erasure records
+E-DM-18,Data Management,Sanitization Procedures Testing Records
+E-DM-19,Data Management,Personal Information Deletion Records
+E-DM-20,Data Management,Temporary Files deletion configuration
+E-DM-21,Data Management,Sample Alerts showcasing restricted data via public websites is prohibited
+E-DM-22,Data Management,DLP Configuration
+E-DM-23,Data Management,Configuration for posting on Public Websites
+E-EM-01,Entity Management,Board of directors charter
+E-EM-02,Entity Management,Board of directors meetings minutes
+E-EM-03,Entity Management,List of members on the audit committee
+E-EM-04,Entity Management,Audit committee charter
+E-EM-05,Entity Management,Audit Committee meeting minutes
+E-EM-06,Entity Management,Evidence of follow up items or action plans
+E-EM-07,Entity Management,Documented corporate strategy in the Information Security policy
+E-EM-08,Entity Management,Operating plan procedure/process
+E-EM-09,Entity Management,Evidence showcasing the plans are communicated to the stakeholders (MOM)
+E-EM-10,Entity Management,Latest Cyber Security Insurance
+E-EM-11,Entity Management,Latest MOM of audit committee
+E-EM-12,Entity Management,Internal audit plan
+E-EM-13,Entity Management,Internal audit report
+E-EM-14,Entity Management,Minutes of meeting showcasing the Internal financial control assessment results
+E-EM-15,Entity Management,Minutes of meeting showcasing the security compliance status and issues identified
+E-EM-16,Entity Management,Minutes of meeting showcasing the security compliance results
+E-EM-17,Entity Management,Organization's control set
+E-EM-18,Entity Management,Customer service agreement
+E-IAM-01,Identity and Access Management,Logical Access Policy
+E-IAM-02,Identity and Access Management,Access Management Portal Workflow
+E-IAM-03,Identity and Access Management,Access Provisioning Logs
+E-IAM-04,Identity and Access Management,Access Modification Logs
+E-IAM-05,Identity and Access Management,Sample alert for Access Modification
+E-IAM-06,Identity and Access Management,Access Termination Logs
+E-IAM-07,Identity and Access Management,Access De-Provisioning Logs
+E-IAM-08,Identity and Access Management,Access Review Reconciliation
+E-IAM-09,Identity and Access Management,Corrective Action in Access Management Portal
+E-IAM-10,Identity and Access Management,Shared secret rotation evidence
+E-IAM-11,Identity and Access Management,Password Change evidence
+E-IAM-12,Identity and Access Management,List of User IDs
+E-IAM-13,Identity and Access Management,Access to IAM groups
+E-IAM-14,Identity and Access Management,Configuration showing 90 days termination
+E-IAM-15,Identity and Access Management,Configuration showing trigger is configured
+E-IAM-16,Identity and Access Management,Password Policy
+E-IAM-17,Identity and Access Management,Existing User listing
+E-IAM-18,Identity and Access Management,Password policy from console
+E-IAM-19,Identity and Access Management,Remote Access Standard
+E-IAM-20,Identity and Access Management,VPN Connection walkthrough
+E-IAM-21,Identity and Access Management,System config for Multi Factor Authentication
+E-IAM-22,Identity and Access Management,Access Reset process
+E-IAM-23,Identity and Access Management,Session timeout config for server
+E-IAM-24,Identity and Access Management,Access Management Policy
+E-IAM-25,Identity and Access Management,Active Directory Screenshot
+E-IAM-26,Identity and Access Management,Account lockout parameters
+E-IAM-27,Identity and Access Management,Sample configuration screenshot from Federal Systems
+E-IAM-28,Identity and Access Management,Sample error information
+E-IAM-29,Identity and Access Management,Authorized session manager evidence
+E-IAM-30,Identity and Access Management,List of privileged users
+E-IAM-31,Identity and Access Management,Access approval evidence
+E-IAM-32,Identity and Access Management,Tunneling restriction config evidence
+E-IAM-33,Identity and Access Management,Zero Trust Implementation Configuration
+E-IAM-34,Identity and Access Management,Access grant evidences
+E-IAM-35,Identity and Access Management,Production access authentication
+E-IAM-36,Identity and Access Management,Source Code access restrictions
+E-IAM-37,Identity and Access Management,Changes made to source code and logs
+E-IAM-38,Identity and Access Management,Service accounts listing
+E-IAM-39,Identity and Access Management,Shared credential management tool screenshots
+E-IAM-40,Identity and Access Management,Network Diagram 
+E-IAM-41,Identity and Access Management,Access approvals
+E-IAM-42,Identity and Access Management,Sample Access Configuration
+E-IAM-43,Identity and Access Management,VPN Configuration and process
+E-IAM-44,Identity and Access Management,Server configuration for idle session timeout
+E-IAM-45,Identity and Access Management,Credential expiry configuration
+E-IAM-46,Identity and Access Management,Session expiration enabled configuration
+E-IAM-47,Identity and Access Management,Remote access configuration
+E-IAM-48,Identity and Access Management,Remote Access credentials listing
+E-IAM-49,Identity and Access Management,Remote Vendor access listing and permissions granted
+E-IAM-50,Identity and Access Management,Credential Listing
+E-IAM-51,Identity and Access Management,Identifiers listing
+E-IAM-52,Identity and Access Management,password setting mechanism
+E-IAM-53,Identity and Access Management,password encryption evidence
+E-IAM-54,Identity and Access Management,Hardware Token Based Authentication Process document
+E-IAM-55,Identity and Access Management,Hardware token granting evidence
+E-IR-01,Incident Response,Incident Response Plan
+E-IR-02,Incident Response,Incident Management Policy
+E-IR-03,Incident Response,Review history
+E-IR-04,Incident Response,Incident Training Records
+E-IR-05,Incident Response,Incident Training Material 
+E-IR-06,Incident Response,Sample of incidents
+E-IR-07,Incident Response,Logs of Incident maintained
+E-IR-08,Incident Response,Link to public website
+E-IR-09,Incident Response,Incident Legal Communications Requirements Standard
+E-IR-10,Incident Response,Business Associates Agreement
+E-IR-11,Incident Response,Sample external communication of the incident
+E-IR-12,Incident Response,Sample of customer support inquiry
+E-MDM-01,Mobile Device Management,Mobile device management policy
+E-MDM-02,Mobile Device Management,List of all mobile devices registered with MDM tool
+E-MDM-03,Mobile Device Management,Sample mobile device configuration screenshots from the MDM tool
+E-MDM-04,Mobile Device Management,Sample mobile device screenshots showcasing the devices are encrypted in the MDM tool
+E-MDM-05,Mobile Device Management,Sample mobile device configuration screenshots showcasing the security features are enabled
+E-MDM-06,Mobile Device Management,List of high risk travel locations
+E-NO-01,Network Operations,Network Security Standard
+E-NO-02,Network Operations,Firewall Configuration
+E-NO-03,Network Operations,DMZ Configuration
+E-NO-04,Network Operations,Network security rules inventory
+E-NO-05,Network Operations,Security Rules Configuration
+E-NO-06,Network Operations,Dynamic packet filtering configuration
+E-NO-07,Network Operations,NAT Configuration
+E-NO-08,Network Operations,Network Infrastructure Rules Review Records
+E-NO-09,Network Operations,Sample of network configuration settings for applicable systems
+E-NO-10,Network Operations,Sample of network architecture for applicable systems
+E-NO-11,Network Operations,Configuration of DNS Servers
+E-NO-12,Network Operations,Email Configuration
+E-NO-13,Network Operations,Vendor Agreement
+E-NO-14,Network Operations,Network Architecture Diagram
+E-NO-15,Network Operations,Network Segmentation Testing Records
+E-NO-16,Network Operations,Configuration of Logical Segregation
+E-NO-17,Network Operations,Data Flow Diagrams
+E-NO-18,Network Operations,Approved Traffic Flow and configuration
+E-NO-19,Network Operations,Network Monitoring Software Configuration
+E-NO-20,Network Operations,Sample alerts sent showcasing unauthorized wireless access points
+E-NO-21,Network Operations,Wireless Access Point Configuration
+E-NO-22,Network Operations,Wireless Connections Configuration
+E-NO-23,Network Operations,Denial of Service Protection Plan Configuration on network devices
+E-PR-01,People Resources,Human Resource Policy
+E-PR-02,People Resources,Background Check Evidence for sample new hire employees
+E-PR-03,People Resources,Sample Quarterly Check In Reminders
+E-PR-04,People Resources,Career Portal Snapshot
+E-PR-05,People Resources,Hiring Process for a sample employee
+E-PR-06,People Resources,Termination Process Evidence for sample employees
+E-PR-07,People Resources,"For sample employees, evidence of an exit interview"
+E-PR-08,People Resources,"Evidence of action taken for employees violating policies, if any"
+E-PR-09,People Resources,Code of Ethics
+E-PR-10,People Resources,Evidence of annual certification
+E-PR-11,People Resources,Hotline Case Tracking Evidence
+E-PR-12,People Resources,Audit Committee Communication Evidence
+E-PR-13,People Resources,List of roles that requires national security clearances
+E-PR-14,People Resources,List of personnel with national security clearances
+E-PR-15,People Resources,Screening and Rescreening Evidences
+E-PR-16,People Resources,Reinvestigation Evidences
+E-PR-17,People Resources,Code of Business Conduct
+E-PR-18,People Resources,Business Partner Code of Conduct
+E-PRIV-01,Privacy,Privacy Policy
+E-PRIV-02,Privacy,Privacy Review Evidence
+E-PRIV-03,Privacy,Privacy Readiness Review Evidence
+E-PRIV-04,Privacy,Consent Notice Snapshot
+E-PRIV-05,Privacy,Legal Disclosure Process
+E-PRIV-06,Privacy,PII Processing Agreements
+E-PRIV-07,Privacy,Customer Sample PII Agreement
+E-PRIV-08,Privacy,PII Processing Records
+E-PRIV-09,Privacy,Personal Health Information Documentation Records
+E-PRIV-10,Privacy,"Law enforcement Process
+
+"
+E-PRIV-11,Privacy,Sample investigation requests
+E-PRIV-12,Privacy,Evidence Sharing method screenshot
+E-PS-01,Proactive Security,Network Security Standard
+E-PS-02,Proactive Security,EDR Configuration Documentation
+E-PS-03,Proactive Security,Threat Hunting program documentation
+E-PS-04,Proactive Security,Threat indicator documentation
+E-PS-05,Proactive Security,Periodic Threat Modeling documentation
+E-PS-06,Proactive Security,Documentation on gathering intelligence on adversary personas
+E-RM-01,Risk Management,Vulnerability management standard
+E-RM-02,Risk Management,Latest vulnerability assessment report
+E-RM-03,Risk Management,Risk Management Standard
+E-RM-04,Risk Management,Risk assessment report
+E-RM-05,Risk Management,Sample evidences for the risks treatment plan for the identified risks
+E-RM-06,Risk Management,Risk Assessment HIPAA Report
+E-RM-07,Risk Management,Compliance Review report
+E-RM-08,Risk Management,Sample evidences of corrective actions taken in case of any deficiencies identified
+E-RM-09,Risk Management,Quarterly Review Evidence
+E-RM-10,Risk Management,Common Controls Framework
+E-RM-11,Risk Management,Audit Reports and associated documentation
+E-RM-12,Risk Management,Audit Plan
+E-RM-13,Risk Management,Audit Checklist
+E-RM-14,Risk Management,Remediation Plan
+E-RM-15,Risk Management,Finding documentation
+E-RM-16,Risk Management,Documented Corrective Action Plan
+E-RM-17,Risk Management,Statement of Applicability (SOA)
+E-SDD-01,System Design Documentation,Evidence of system diagrams
+E-SDD-02,System Design Documentation,Evidence of whitepapers
+E-SG-01,Security Governance,Information Security Management Standard
+E-SG-02,Security Governance,Evidence of periodic review of organization's policies and standards (with version history)
+E-SG-03,Security Governance,Sample of communication mail sent to employees
+E-SG-04,Security Governance,Sample Policy Exceptions
+E-SG-05,Security Governance,Document Management Criteria
+E-SG-06,Security Governance,Document Retention Evidence
+E-SG-07,Security Governance,Documented proprietary rights agreement and organization's network access agreement
+E-SG-08,Security Governance,Information Security management Standard is uploaded on intranet 
+E-SG-09,Security Governance,MOM of ISMS steering committee 
+E-SG-10,Security Governance,ISMS Scope document
+E-SG-11,Security Governance,Risk Management Policy
+E-SG-12,Security Governance,Risk Matrix 
+E-SG-13,Security Governance,PCI charter 
+E-SG-14,Security Governance,Approved budget allocation documentation
+E-SG-15,Security Governance,MOM of management meetings
+E-SG-16,Security Governance,Enterprise Data Catalogue 
+E-SG-17,Security Governance,Software License Agreement/Policy
+E-SG-18,Security Governance,Software monitoring compliance report to ensure the compliance posture 
+E-SLC-01,Service Lifecycle,Organization product lifecycle standard 
+E-SLC-02,Service Lifecycle,Secure product lifecycle
+E-SLC-03,Service Lifecycle,Source code standard 
+E-SLC-04,Service Lifecycle,Source code repository 
+E-SLC-05,Service Lifecycle,Central Source Code Repository
+E-SLC-06,Service Lifecycle,Shared Secret Rotation Logs 
+E-SLC-07,Service Lifecycle,Minutes of project scope and budget plan meeting
+E-SLC-08,Service Lifecycle,Formal sign-off on the project plan
+E-SLC-09,Service Lifecycle,Service Lifecycle Program
+E-SLC-10,Service Lifecycle,Information system Operation
+E-SLC-11,Service Lifecycle,Formal Approval/documents from the authorized personnel 
+E-SM-01,Systems Monitoring,Logging Standard
+E-SM-02,Systems Monitoring,Logging configuration
+E-SM-03,Systems Monitoring,Sample of production server logs
+E-SM-04,Systems Monitoring,Access review documentation
+E-SM-05,Systems Monitoring,NTP logs and configuration
+E-SM-06,Systems Monitoring,Quarterly Log reconciliation report
+E-SM-07,Systems Monitoring,Sample of remediation documentation
+E-SM-08,Systems Monitoring,Enterprise Antivirus Solution configuration
+E-SM-09,Systems Monitoring,Sample of antivirus logs
+E-SM-10,Systems Monitoring,Security Monitoring Standard
+E-SM-11,Systems Monitoring,List of monitoring rules
+E-SM-12,Systems Monitoring,Sample of alert rules
+E-SM-13,Systems Monitoring,Log integrity checks 
+E-SM-14,Systems Monitoring,Monitoring tool configuration
+E-SM-15,Systems Monitoring,Log evidence from remote sessions
+E-SM-16,Systems Monitoring,Evidence of monitoring tool installation
+E-SM-17,Systems Monitoring,Alerting criteria
+E-SM-18,Systems Monitoring,Sample of security monitoring rules configuration
+E-SM-19,Systems Monitoring,Sample of alerts generated
+E-SM-20,Systems Monitoring,Sample of legal sign off on monitoring criteria
+E-SM-21,Systems Monitoring,Alerting criteria for unauthorized logical access connections
+E-SM-22,Systems Monitoring,Availability Monitoring Standard
+E-SM-23,Systems Monitoring,Availability Monitoring Rules
+E-SM-24,Systems Monitoring,Availability Monitoring Tool Configuration
+E-SM-25,Systems Monitoring,Sample of Availability Monitoring Alerts
+E-SM-26,Systems Monitoring,Sample of Availability Incident Tickets
+E-SM-27,Systems Monitoring,Remote Session logs
+E-SM-28,Systems Monitoring,Periodic log review documentation
+E-SO-01,Site Operations,Images/Physical inspection confirming Non-partitioned ceilings Secured entry points; and/or Manned reception desks
+E-SO-02,Site Operations,Images/Physical inspection confirming data center facility has power and telecommunication lines tagged and labelled
+E-SO-03,Site Operations,"Images/Physical inspection confirming information security safeguards in place at Access Machines at entry/exit, Fire extinguishers, Fire Alarms etc."
+E-SO-04,Site Operations,Sample CCTV video of data center from intrusion detection and video surveillance system
+E-SO-05,Site Operations,Configuration from the camera management system that shows that it is configured to retain surveillance video data for 90 days
+E-SO-06,Site Operations,Images/Physical inspection confirming the fire detection/suppression systems in use at the Organization-owned data center
+E-SO-07,Site Operations,Images/Physical inspection confirming UPS and generators at a selection of Organization-owned data center
+E-SO-08,Site Operations,Physical Access Policy
+E-SO-09,Site Operations,Approval evidences for physical access
+E-SO-10,Site Operations,De-provisioning evidences
+E-SO-11,Site Operations,Physical Access Review evidence
+E-SO-12,Site Operations,termination Process Evidence for sample employees
+E-SO-13,Site Operations,Visitor Approval records
+E-SO-14,Site Operations,Visitor access monthly reviews
+E-SO-15,Site Operations,List of physical devices
+E-SO-16,Site Operations,Access list to inventory
+E-SO-17,Site Operations,Evidence of Key Rotation when compromised/ employee termination or transfer
+E-SO-18,Site Operations,Temperature and Humidity configuration
+E-SO-19,Site Operations,Temperature and Humidity Threshold defined in system
+E-SO-20,Site Operations,Temperature and Humidity Alarms triggered and remediation
+E-SO-21,Site Operations,fire suppression/detection certifications 
+E-SO-22,Site Operations,UPS and generator maintenance certificates
+E-SO-23,Site Operations,List of authorized personnel with access to shut-off power
+E-SO-24,Site Operations,Emergency lighting equipment certificates
+E-TA-01,Training and Awareness,"Compliance Training Policy
+
+
+
+"
+E-TA-02,Training and Awareness,Training Material
+E-TA-03,Training and Awareness,Training Records
+E-TA-04,Training and Awareness,Evidence of phishing campaigns set up by the organization (Eg - mails sent etc)
+E-TA-05,Training and Awareness,Access records who have access to PHI
+E-TPM-01,Third Party Management,Procurement Policy 
+E-TPM-02,Third Party Management,Questionnaire for assessing third party risks
+E-TPM-03,Third Party Management,Action Plan for vendor security review 
+E-TPM-04,Third Party Management,Vendor Security Reviews Evidence
+E-TPM-05,Third Party Management,Forensic investigation process document 
+E-TPM-06,Third Party Management,"
+
+Sample Forensic Investigations"
+E-TPM-07,Third Party Management,Vendor information security standard
+E-TPM-08,Third Party Management,Privacy Review Evidence
+E-TPM-09,Third Party Management,Remediation Evidence of non-compliances identified during Vendor Security Reviews
+E-TPM-10,Third Party Management,Network access Agreement
+E-TPM-11,Third Party Management,Sample Agreements for temporary workers
+E-TPM-12,Third Party Management,Evidence to Acknowledgement to Customers for Card Holder Data responsibilities
+E-TPM-13,Third Party Management,Business Associate Agreement 
+E-TPM-14,Third Party Management,Business Associate Subcontractor Agreement document
+E-TPM-15,Third Party Management,Vendor SLA document 
+E-TPM-16,Third Party Management,Results of Network Configuration Monitoring
+E-TPM-17,Third Party Management,Data Processing and Transfer Agreement
+E-TPM-18,Third Party Management,Vendor onboarding/ termination document
+E-TPM-19,Third Party Management,"
+
+Sample Vendor Agreement"
+E-VM-01,Vulnerability Management,Vulnerability Management Policy
+E-VM-02,Vulnerability Management,Scan Tool version evidence
+E-VM-03,Vulnerability Management,Scanning evidence for a sample hosts/accounts
+E-VM-04,Vulnerability Management,Resolution and rescan evidence for a sample vulnerability
+E-VM-05,Vulnerability Management,Sample exploited vulnerability resolution evidence
+E-VM-06,Vulnerability Management,Sample vulnerability remediation evidence
+E-VM-07,Vulnerability Management,Approved Scanning Vendor (ASV) Scan evidence
+E-VM-08,Vulnerability Management,Penetration Test Results
+E-VM-09,Vulnerability Management,Infrastructure Management Policy
+E-VM-10,Vulnerability Management,Patch Implementation Evidence
+E-VM-11,Vulnerability Management,End of Life software decomission plan
+E-VM-12,Vulnerability Management,Antivirus Deployment Evidence
+E-VM-13,Vulnerability Management,Antivirus Configuration Policies
+E-VM-14,Vulnerability Management,Media usage logs
+E-VM-15,Vulnerability Management,Secure Development Lifecycle Policy
+E-VM-16,Vulnerability Management,Sample Error Messages
+E-VM-17,Vulnerability Management,"Sample Disputes, inquiries and complaints"
+E-VM-18,Vulnerability Management,Management Review Evidence
+E-VM-19,Vulnerability Management,Verified Threats resolution evidence
+E-VM-20,Vulnerability Management,Sample Independent Information Security Assessment Results
+E-VM-21,Vulnerability Management,Sample Assessment Ticket and notification
+E-VM-22,Vulnerability Management,Sample Identified Bugs

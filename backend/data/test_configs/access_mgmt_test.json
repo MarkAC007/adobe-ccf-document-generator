@@ -1,0 +1,19 @@
+{
+  "test_name": "Access Management Policy Generation",
+  "policy_standard": "Access Management Policy",
+  "selected_frameworks": [
+    "nist_cybersecurity",
+    "iso_27001",
+    "pci_dss_v4"
+  ],
+  "test_parameters": {
+    "include_implementation_guidance": true,
+    "include_test_procedures": false,
+    "debug_mode": true
+  },
+  "expected_controls": [
+    "AM-01",
+    "AM-02",
+    "AM-03"
+  ]
+}

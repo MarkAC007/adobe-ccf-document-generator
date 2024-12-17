@@ -1,0 +1,1598 @@
+{
+  "E-AM-01": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Asset Management Policy"
+  },
+  "E-AM-02": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Asset Inventory"
+  },
+  "E-AM-03": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Asset Reconciliation Records"
+  },
+  "E-AM-04": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Network Discovery Scan Records"
+  },
+  "E-AM-05": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Evidence of Media Snapshots"
+  },
+  "E-AM-06": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Asset Movement Records"
+  },
+  "E-AM-07": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Portable Media Configuration Evidence"
+  },
+  "E-AM-08": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Asset Maintenance Records"
+  },
+  "E-AM-09": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Payment Card Device Verification Records"
+  },
+  "E-AM-10": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Hardware Installation Records"
+  },
+  "E-AM-11": {
+    "evidence_domain": "Asset Management",
+    "evidence_title": "Software Bill of Materials"
+  },
+  "E-BC-01": {
+    "evidence_domain": "Business Continuity",
+    "evidence_title": "Business Continuity Policy"
+  },
+  "E-BC-02": {
+    "evidence_domain": "Business Continuity",
+    "evidence_title": "Business Continuity Plan"
+  },
+  "E-BC-03": {
+    "evidence_domain": "Business Continuity",
+    "evidence_title": "Business Continuity/Disaster Recovery Test Results"
+  },
+  "E-BC-04": {
+    "evidence_domain": "Business Continuity",
+    "evidence_title": "Business Impact Analysis Documentation"
+  },
+  "E-BC-05": {
+    "evidence_domain": "Business Continuity",
+    "evidence_title": "Capacity Planning Meeting Minutes"
+  },
+  "E-BM-01": {
+    "evidence_domain": "Backup Management",
+    "evidence_title": "Backup Management Policy"
+  },
+  "E-BM-02": {
+    "evidence_domain": "Backup Management",
+    "evidence_title": "Backup Restoration Test Results"
+  },
+  "E-BM-03": {
+    "evidence_domain": "Backup Management",
+    "evidence_title": "Evidence of Failed Backup Review"
+  },
+  "E-BM-04": {
+    "evidence_domain": "Backup Management",
+    "evidence_title": "Backup Configuration Evidence"
+  },
+  "E-BM-05": {
+    "evidence_domain": "Backup Management",
+    "evidence_title": "Alternate Telecommunications Agreement"
+  },
+  "E-BM-06": {
+    "evidence_domain": "Backup Management",
+    "evidence_title": "Sample Alerts for Backup Failure"
+  },
+  "E-BM-07": {
+    "evidence_domain": "Backup Management",
+    "evidence_title": "Backup Configuration Evidence"
+  },
+  "E-CFM-01": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Firewall standard"
+  },
+  "E-CFM-02": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Configuration Management Standard"
+  },
+  "E-CFM-03": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Periodic Rule review documentation"
+  },
+  "E-CFM-04": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "System generated Latest patch versioning documentation"
+  },
+  "E-CFM-05": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Configuration deviation samples"
+  },
+  "E-CFM-06": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Security hardening standard "
+  },
+  "E-CFM-07": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Authorized application/software listing"
+  },
+  "E-CFM-08": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "List of denied activities on information systems"
+  },
+  "E-CFM-09": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Review history documentation"
+  },
+  "E-CFM-10": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Information systems activity logs"
+  },
+  "E-CFM-11": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Security hardening and configuration baselines checks review documentation"
+  },
+  "E-CFM-12": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Sample of device log reconciliation with Asset register"
+  },
+  "E-CFM-13": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "NTP Server configuration"
+  },
+  "E-CFM-14": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Sample server configuration"
+  },
+  "E-CFM-15": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "NTP server logs"
+  },
+  "E-CFM-16": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Logical Access Management Standard"
+  },
+  "E-CFM-17": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Access Review Records"
+  },
+  "E-CFM-18": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Sample of server logs"
+  },
+  "E-CFM-19": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Sample of collaborative computing device logs"
+  },
+  "E-CFM-20": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Authorized approval matrix"
+  },
+  "E-CFM-21": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Change Management Standard"
+  },
+  "E-CFM-22": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Sample of change requests"
+  },
+  "E-CFM-23": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Sample of documented approval on production job changes"
+  },
+  "E-CFM-24": {
+    "evidence_domain": "Configuration Management",
+    "evidence_title": "Sample of documented change monitoring details"
+  },
+  "E-CHM-01": {
+    "evidence_domain": "Change Management",
+    "evidence_title": "Change Management Policy"
+  },
+  "E-CHM-02": {
+    "evidence_domain": "Change Management",
+    "evidence_title": "Change Management Tool Configuration"
+  },
+  "E-CHM-03": {
+    "evidence_domain": "Change Management",
+    "evidence_title": "Change Records"
+  },
+  "E-CHM-04": {
+    "evidence_domain": "Change Management",
+    "evidence_title": "Company Website Link"
+  },
+  "E-CMS-01": {
+    "evidence_domain": "Customer Managed Security",
+    "evidence_title": "Customer capabilities in access management console"
+  },
+  "E-CMS-02": {
+    "evidence_domain": "Customer Managed Security",
+    "evidence_title": "Customer Authentication Standard"
+  },
+  "E-CMS-03": {
+    "evidence_domain": "Customer Managed Security",
+    "evidence_title": "Customer Admin Console"
+  },
+  "E-CMS-04": {
+    "evidence_domain": "Customer Managed Security",
+    "evidence_title": "Customer contracts and agreements"
+  },
+  "E-CMS-05": {
+    "evidence_domain": "Customer Managed Security",
+    "evidence_title": "Privileged User Roles capabilities"
+  },
+  "E-CRY-01": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "List of approved key storage solutions"
+  },
+  "E-CRY-02": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Periodic Access Review documentation"
+  },
+  "E-CRY-03": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Sample of Key rotation evidence"
+  },
+  "E-CRY-04": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Key Management Standard"
+  },
+  "E-CRY-05": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Sample key custodian acknowledgement form"
+  },
+  "E-CRY-06": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Data Classification and Handling Standard"
+  },
+  "E-CRY-07": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Data Encryption Standard"
+  },
+  "E-CRY-08": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Latest TLS Version evidence"
+  },
+  "E-CRY-09": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Digital Certificates Validity"
+  },
+  "E-CRY-10": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Qualys SSL Labs Scan Results"
+  },
+  "E-CRY-11": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Load Balancer Configuration"
+  },
+  "E-CRY-12": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Security Group Configuration"
+  },
+  "E-CRY-13": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Remediation & Tracking of expired SSL"
+  },
+  "E-CRY-14": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Sample confirmation on databases/storage location list"
+  },
+  "E-CRY-15": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Evidence of encryption enabled"
+  },
+  "E-CRY-16": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "List of cloud storage resources"
+  },
+  "E-CRY-17": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Access List of Key Repository"
+  },
+  "E-CRY-18": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Review history of authorized key stores list"
+  },
+  "E-CRY-19": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Process documentation for Decryption key storage\r\n"
+  },
+  "E-CRY-20": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Sample of signed Key Custodian Acknowledgements"
+  },
+  "E-CRY-21": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Sample of SSL Test results"
+  },
+  "E-CRY-22": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "SSL Configuration Files"
+  },
+  "E-CRY-23": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Software Development Lifecycle Policy\r\n"
+  },
+  "E-CRY-24": {
+    "evidence_domain": "Cryptography",
+    "evidence_title": "Configuration evidence for accessing software signing keys"
+  },
+  "E-DM-01": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Data Management Policy"
+  },
+  "E-DM-02": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Periodic Review Records"
+  },
+  "E-DM-03": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Data Categorization Evidence"
+  },
+  "E-DM-04": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Terms of Service"
+  },
+  "E-DM-05": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Consent Records"
+  },
+  "E-DM-06": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Terms of Service Update Process"
+  },
+  "E-DM-07": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Data Access Request Records"
+  },
+  "E-DM-08": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Data Deletion Request Records"
+  },
+  "E-DM-09": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Privacy inquiry Records"
+  },
+  "E-DM-10": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Sample Test Data"
+  },
+  "E-DM-11": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Access or update process document"
+  },
+  "E-DM-12": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Personal information access/update request records"
+  },
+  "E-DM-13": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Database Screenshots"
+  },
+  "E-DM-14": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "PAN authorization records"
+  },
+  "E-DM-15": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Personal Information Media Inventory"
+  },
+  "E-DM-16": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Integrity Checks"
+  },
+  "E-DM-17": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Media Erasure records"
+  },
+  "E-DM-18": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Sanitization Procedures Testing Records"
+  },
+  "E-DM-19": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Personal Information Deletion Records"
+  },
+  "E-DM-20": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Temporary Files deletion configuration"
+  },
+  "E-DM-21": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Sample Alerts showcasing restricted data via public websites is prohibited"
+  },
+  "E-DM-22": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "DLP Configuration"
+  },
+  "E-DM-23": {
+    "evidence_domain": "Data Management",
+    "evidence_title": "Configuration for posting on Public Websites"
+  },
+  "E-EM-01": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Board of directors charter"
+  },
+  "E-EM-02": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Board of directors meetings minutes"
+  },
+  "E-EM-03": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "List of members on the audit committee"
+  },
+  "E-EM-04": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Audit committee charter"
+  },
+  "E-EM-05": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Audit Committee meeting minutes"
+  },
+  "E-EM-06": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Evidence of follow up items or action plans"
+  },
+  "E-EM-07": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Documented corporate strategy in the Information Security policy"
+  },
+  "E-EM-08": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Operating plan procedure/process"
+  },
+  "E-EM-09": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Evidence showcasing the plans are communicated to the stakeholders (MOM)"
+  },
+  "E-EM-10": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Latest Cyber Security Insurance"
+  },
+  "E-EM-11": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Latest MOM of audit committee"
+  },
+  "E-EM-12": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Internal audit plan"
+  },
+  "E-EM-13": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Internal audit report"
+  },
+  "E-EM-14": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Minutes of meeting showcasing the Internal financial control assessment results"
+  },
+  "E-EM-15": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Minutes of meeting showcasing the security compliance status and issues identified"
+  },
+  "E-EM-16": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Minutes of meeting showcasing the security compliance results"
+  },
+  "E-EM-17": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Organization's control set"
+  },
+  "E-EM-18": {
+    "evidence_domain": "Entity Management",
+    "evidence_title": "Customer service agreement"
+  },
+  "E-IAM-01": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Logical Access Policy"
+  },
+  "E-IAM-02": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access Management Portal Workflow"
+  },
+  "E-IAM-03": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access Provisioning Logs"
+  },
+  "E-IAM-04": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access Modification Logs"
+  },
+  "E-IAM-05": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Sample alert for Access Modification"
+  },
+  "E-IAM-06": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access Termination Logs"
+  },
+  "E-IAM-07": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access De-Provisioning Logs"
+  },
+  "E-IAM-08": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access Review Reconciliation"
+  },
+  "E-IAM-09": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Corrective Action in Access Management Portal"
+  },
+  "E-IAM-10": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Shared secret rotation evidence"
+  },
+  "E-IAM-11": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Password Change evidence"
+  },
+  "E-IAM-12": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "List of User IDs"
+  },
+  "E-IAM-13": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access to IAM groups"
+  },
+  "E-IAM-14": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Configuration showing 90 days termination"
+  },
+  "E-IAM-15": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Configuration showing trigger is configured"
+  },
+  "E-IAM-16": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Password Policy"
+  },
+  "E-IAM-17": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Existing User listing"
+  },
+  "E-IAM-18": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Password policy from console"
+  },
+  "E-IAM-19": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Remote Access Standard"
+  },
+  "E-IAM-20": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "VPN Connection walkthrough"
+  },
+  "E-IAM-21": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "System config for Multi Factor Authentication"
+  },
+  "E-IAM-22": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access Reset process"
+  },
+  "E-IAM-23": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Session timeout config for server"
+  },
+  "E-IAM-24": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access Management Policy"
+  },
+  "E-IAM-25": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Active Directory Screenshot"
+  },
+  "E-IAM-26": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Account lockout parameters"
+  },
+  "E-IAM-27": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Sample configuration screenshot from Federal Systems"
+  },
+  "E-IAM-28": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Sample error information"
+  },
+  "E-IAM-29": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Authorized session manager evidence"
+  },
+  "E-IAM-30": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "List of privileged users"
+  },
+  "E-IAM-31": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access approval evidence"
+  },
+  "E-IAM-32": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Tunneling restriction config evidence"
+  },
+  "E-IAM-33": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Zero Trust Implementation Configuration"
+  },
+  "E-IAM-34": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access grant evidences"
+  },
+  "E-IAM-35": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Production access authentication"
+  },
+  "E-IAM-36": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Source Code access restrictions"
+  },
+  "E-IAM-37": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Changes made to source code and logs"
+  },
+  "E-IAM-38": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Service accounts listing"
+  },
+  "E-IAM-39": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Shared credential management tool screenshots"
+  },
+  "E-IAM-40": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Network Diagram "
+  },
+  "E-IAM-41": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Access approvals"
+  },
+  "E-IAM-42": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Sample Access Configuration"
+  },
+  "E-IAM-43": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "VPN Configuration and process"
+  },
+  "E-IAM-44": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Server configuration for idle session timeout"
+  },
+  "E-IAM-45": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Credential expiry configuration"
+  },
+  "E-IAM-46": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Session expiration enabled configuration"
+  },
+  "E-IAM-47": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Remote access configuration"
+  },
+  "E-IAM-48": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Remote Access credentials listing"
+  },
+  "E-IAM-49": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Remote Vendor access listing and permissions granted"
+  },
+  "E-IAM-50": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Credential Listing"
+  },
+  "E-IAM-51": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Identifiers listing"
+  },
+  "E-IAM-52": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "password setting mechanism"
+  },
+  "E-IAM-53": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "password encryption evidence"
+  },
+  "E-IAM-54": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Hardware Token Based Authentication Process document"
+  },
+  "E-IAM-55": {
+    "evidence_domain": "Identity and Access Management",
+    "evidence_title": "Hardware token granting evidence"
+  },
+  "E-IR-01": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Incident Response Plan"
+  },
+  "E-IR-02": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Incident Management Policy"
+  },
+  "E-IR-03": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Review history"
+  },
+  "E-IR-04": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Incident Training Records"
+  },
+  "E-IR-05": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Incident Training Material "
+  },
+  "E-IR-06": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Sample of incidents"
+  },
+  "E-IR-07": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Logs of Incident maintained"
+  },
+  "E-IR-08": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Link to public website"
+  },
+  "E-IR-09": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Incident Legal Communications Requirements Standard"
+  },
+  "E-IR-10": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Business Associates Agreement"
+  },
+  "E-IR-11": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Sample external communication of the incident"
+  },
+  "E-IR-12": {
+    "evidence_domain": "Incident Response",
+    "evidence_title": "Sample of customer support inquiry"
+  },
+  "E-MDM-01": {
+    "evidence_domain": "Mobile Device Management",
+    "evidence_title": "Mobile device management policy"
+  },
+  "E-MDM-02": {
+    "evidence_domain": "Mobile Device Management",
+    "evidence_title": "List of all mobile devices registered with MDM tool"
+  },
+  "E-MDM-03": {
+    "evidence_domain": "Mobile Device Management",
+    "evidence_title": "Sample mobile device configuration screenshots from the MDM tool"
+  },
+  "E-MDM-04": {
+    "evidence_domain": "Mobile Device Management",
+    "evidence_title": "Sample mobile device screenshots showcasing the devices are encrypted in the MDM tool"
+  },
+  "E-MDM-05": {
+    "evidence_domain": "Mobile Device Management",
+    "evidence_title": "Sample mobile device configuration screenshots showcasing the security features are enabled"
+  },
+  "E-MDM-06": {
+    "evidence_domain": "Mobile Device Management",
+    "evidence_title": "List of high risk travel locations"
+  },
+  "E-NO-01": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Network Security Standard"
+  },
+  "E-NO-02": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Firewall Configuration"
+  },
+  "E-NO-03": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "DMZ Configuration"
+  },
+  "E-NO-04": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Network security rules inventory"
+  },
+  "E-NO-05": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Security Rules Configuration"
+  },
+  "E-NO-06": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Dynamic packet filtering configuration"
+  },
+  "E-NO-07": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "NAT Configuration"
+  },
+  "E-NO-08": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Network Infrastructure Rules Review Records"
+  },
+  "E-NO-09": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Sample of network configuration settings for applicable systems"
+  },
+  "E-NO-10": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Sample of network architecture for applicable systems"
+  },
+  "E-NO-11": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Configuration of DNS Servers"
+  },
+  "E-NO-12": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Email Configuration"
+  },
+  "E-NO-13": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Vendor Agreement"
+  },
+  "E-NO-14": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Network Architecture Diagram"
+  },
+  "E-NO-15": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Network Segmentation Testing Records"
+  },
+  "E-NO-16": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Configuration of Logical Segregation"
+  },
+  "E-NO-17": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Data Flow Diagrams"
+  },
+  "E-NO-18": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Approved Traffic Flow and configuration"
+  },
+  "E-NO-19": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Network Monitoring Software Configuration"
+  },
+  "E-NO-20": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Sample alerts sent showcasing unauthorized wireless access points"
+  },
+  "E-NO-21": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Wireless Access Point Configuration"
+  },
+  "E-NO-22": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Wireless Connections Configuration"
+  },
+  "E-NO-23": {
+    "evidence_domain": "Network Operations",
+    "evidence_title": "Denial of Service Protection Plan Configuration on network devices"
+  },
+  "E-PR-01": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Human Resource Policy"
+  },
+  "E-PR-02": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Background Check Evidence for sample new hire employees"
+  },
+  "E-PR-03": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Sample Quarterly Check In Reminders"
+  },
+  "E-PR-04": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Career Portal Snapshot"
+  },
+  "E-PR-05": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Hiring Process for a sample employee"
+  },
+  "E-PR-06": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Termination Process Evidence for sample employees"
+  },
+  "E-PR-07": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "For sample employees, evidence of an exit interview"
+  },
+  "E-PR-08": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Evidence of action taken for employees violating policies, if any"
+  },
+  "E-PR-09": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Code of Ethics"
+  },
+  "E-PR-10": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Evidence of annual certification"
+  },
+  "E-PR-11": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Hotline Case Tracking Evidence"
+  },
+  "E-PR-12": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Audit Committee Communication Evidence"
+  },
+  "E-PR-13": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "List of roles that requires national security clearances"
+  },
+  "E-PR-14": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "List of personnel with national security clearances"
+  },
+  "E-PR-15": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Screening and Rescreening Evidences"
+  },
+  "E-PR-16": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Reinvestigation Evidences"
+  },
+  "E-PR-17": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Code of Business Conduct"
+  },
+  "E-PR-18": {
+    "evidence_domain": "People Resources",
+    "evidence_title": "Business Partner Code of Conduct"
+  },
+  "E-PRIV-01": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "Privacy Policy"
+  },
+  "E-PRIV-02": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "Privacy Review Evidence"
+  },
+  "E-PRIV-03": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "Privacy Readiness Review Evidence"
+  },
+  "E-PRIV-04": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "Consent Notice Snapshot"
+  },
+  "E-PRIV-05": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "Legal Disclosure Process"
+  },
+  "E-PRIV-06": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "PII Processing Agreements"
+  },
+  "E-PRIV-07": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "Customer Sample PII Agreement"
+  },
+  "E-PRIV-08": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "PII Processing Records"
+  },
+  "E-PRIV-09": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "Personal Health Information Documentation Records"
+  },
+  "E-PRIV-10": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "Law enforcement Process\r\n\r\n"
+  },
+  "E-PRIV-11": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "Sample investigation requests"
+  },
+  "E-PRIV-12": {
+    "evidence_domain": "Privacy",
+    "evidence_title": "Evidence Sharing method screenshot"
+  },
+  "E-PS-01": {
+    "evidence_domain": "Proactive Security",
+    "evidence_title": "Network Security Standard"
+  },
+  "E-PS-02": {
+    "evidence_domain": "Proactive Security",
+    "evidence_title": "EDR Configuration Documentation"
+  },
+  "E-PS-03": {
+    "evidence_domain": "Proactive Security",
+    "evidence_title": "Threat Hunting program documentation"
+  },
+  "E-PS-04": {
+    "evidence_domain": "Proactive Security",
+    "evidence_title": "Threat indicator documentation"
+  },
+  "E-PS-05": {
+    "evidence_domain": "Proactive Security",
+    "evidence_title": "Periodic Threat Modeling documentation"
+  },
+  "E-PS-06": {
+    "evidence_domain": "Proactive Security",
+    "evidence_title": "Documentation on gathering intelligence on adversary personas"
+  },
+  "E-RM-01": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Vulnerability management standard"
+  },
+  "E-RM-02": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Latest vulnerability assessment report"
+  },
+  "E-RM-03": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Risk Management Standard"
+  },
+  "E-RM-04": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Risk assessment report"
+  },
+  "E-RM-05": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Sample evidences for the risks treatment plan for the identified risks"
+  },
+  "E-RM-06": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Risk Assessment HIPAA Report"
+  },
+  "E-RM-07": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Compliance Review report"
+  },
+  "E-RM-08": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Sample evidences of corrective actions taken in case of any deficiencies identified"
+  },
+  "E-RM-09": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Quarterly Review Evidence"
+  },
+  "E-RM-10": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Common Controls Framework"
+  },
+  "E-RM-11": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Audit Reports and associated documentation"
+  },
+  "E-RM-12": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Audit Plan"
+  },
+  "E-RM-13": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Audit Checklist"
+  },
+  "E-RM-14": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Remediation Plan"
+  },
+  "E-RM-15": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Finding documentation"
+  },
+  "E-RM-16": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Documented Corrective Action Plan"
+  },
+  "E-RM-17": {
+    "evidence_domain": "Risk Management",
+    "evidence_title": "Statement of Applicability (SOA)"
+  },
+  "E-SDD-01": {
+    "evidence_domain": "System Design Documentation",
+    "evidence_title": "Evidence of system diagrams"
+  },
+  "E-SDD-02": {
+    "evidence_domain": "System Design Documentation",
+    "evidence_title": "Evidence of whitepapers"
+  },
+  "E-SG-01": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Information Security Management Standard"
+  },
+  "E-SG-02": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Evidence of periodic review of organization's policies and standards (with version history)"
+  },
+  "E-SG-03": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Sample of communication mail sent to employees"
+  },
+  "E-SG-04": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Sample Policy Exceptions"
+  },
+  "E-SG-05": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Document Management Criteria"
+  },
+  "E-SG-06": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Document Retention Evidence"
+  },
+  "E-SG-07": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Documented proprietary rights agreement and organization's network access agreement"
+  },
+  "E-SG-08": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Information Security management Standard is uploaded on intranet "
+  },
+  "E-SG-09": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "MOM of ISMS steering committee "
+  },
+  "E-SG-10": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "ISMS Scope document"
+  },
+  "E-SG-11": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Risk Management Policy"
+  },
+  "E-SG-12": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Risk Matrix "
+  },
+  "E-SG-13": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "PCI charter "
+  },
+  "E-SG-14": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Approved budget allocation documentation"
+  },
+  "E-SG-15": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "MOM of management meetings"
+  },
+  "E-SG-16": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Enterprise Data Catalogue "
+  },
+  "E-SG-17": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Software License Agreement/Policy"
+  },
+  "E-SG-18": {
+    "evidence_domain": "Security Governance",
+    "evidence_title": "Software monitoring compliance report to ensure the compliance posture "
+  },
+  "E-SLC-01": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Organization product lifecycle standard "
+  },
+  "E-SLC-02": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Secure product lifecycle"
+  },
+  "E-SLC-03": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Source code standard "
+  },
+  "E-SLC-04": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Source code repository "
+  },
+  "E-SLC-05": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Central Source Code Repository"
+  },
+  "E-SLC-06": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Shared Secret Rotation Logs "
+  },
+  "E-SLC-07": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Minutes of project scope and budget plan meeting"
+  },
+  "E-SLC-08": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Formal sign-off on the project plan"
+  },
+  "E-SLC-09": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Service Lifecycle Program"
+  },
+  "E-SLC-10": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Information system Operation"
+  },
+  "E-SLC-11": {
+    "evidence_domain": "Service Lifecycle",
+    "evidence_title": "Formal Approval/documents from the authorized personnel "
+  },
+  "E-SM-01": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Logging Standard"
+  },
+  "E-SM-02": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Logging configuration"
+  },
+  "E-SM-03": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Sample of production server logs"
+  },
+  "E-SM-04": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Access review documentation"
+  },
+  "E-SM-05": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "NTP logs and configuration"
+  },
+  "E-SM-06": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Quarterly Log reconciliation report"
+  },
+  "E-SM-07": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Sample of remediation documentation"
+  },
+  "E-SM-08": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Enterprise Antivirus Solution configuration"
+  },
+  "E-SM-09": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Sample of antivirus logs"
+  },
+  "E-SM-10": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Security Monitoring Standard"
+  },
+  "E-SM-11": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "List of monitoring rules"
+  },
+  "E-SM-12": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Sample of alert rules"
+  },
+  "E-SM-13": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Log integrity checks "
+  },
+  "E-SM-14": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Monitoring tool configuration"
+  },
+  "E-SM-15": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Log evidence from remote sessions"
+  },
+  "E-SM-16": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Evidence of monitoring tool installation"
+  },
+  "E-SM-17": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Alerting criteria"
+  },
+  "E-SM-18": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Sample of security monitoring rules configuration"
+  },
+  "E-SM-19": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Sample of alerts generated"
+  },
+  "E-SM-20": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Sample of legal sign off on monitoring criteria"
+  },
+  "E-SM-21": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Alerting criteria for unauthorized logical access connections"
+  },
+  "E-SM-22": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Availability Monitoring Standard"
+  },
+  "E-SM-23": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Availability Monitoring Rules"
+  },
+  "E-SM-24": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Availability Monitoring Tool Configuration"
+  },
+  "E-SM-25": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Sample of Availability Monitoring Alerts"
+  },
+  "E-SM-26": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Sample of Availability Incident Tickets"
+  },
+  "E-SM-27": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Remote Session logs"
+  },
+  "E-SM-28": {
+    "evidence_domain": "Systems Monitoring",
+    "evidence_title": "Periodic log review documentation"
+  },
+  "E-SO-01": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Images/Physical inspection confirming Non-partitioned ceilings Secured entry points; and/or Manned reception desks"
+  },
+  "E-SO-02": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Images/Physical inspection confirming data center facility has power and telecommunication lines tagged and labelled"
+  },
+  "E-SO-03": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Images/Physical inspection confirming information security safeguards in place at Access Machines at entry/exit, Fire extinguishers, Fire Alarms etc."
+  },
+  "E-SO-04": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Sample CCTV video of data center from intrusion detection and video surveillance system"
+  },
+  "E-SO-05": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Configuration from the camera management system that shows that it is configured to retain surveillance video data for 90 days"
+  },
+  "E-SO-06": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Images/Physical inspection confirming the fire detection/suppression systems in use at the Organization-owned data center"
+  },
+  "E-SO-07": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Images/Physical inspection confirming UPS and generators at a selection of Organization-owned data center"
+  },
+  "E-SO-08": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Physical Access Policy"
+  },
+  "E-SO-09": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Approval evidences for physical access"
+  },
+  "E-SO-10": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "De-provisioning evidences"
+  },
+  "E-SO-11": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Physical Access Review evidence"
+  },
+  "E-SO-12": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "termination Process Evidence for sample employees"
+  },
+  "E-SO-13": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Visitor Approval records"
+  },
+  "E-SO-14": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Visitor access monthly reviews"
+  },
+  "E-SO-15": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "List of physical devices"
+  },
+  "E-SO-16": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Access list to inventory"
+  },
+  "E-SO-17": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Evidence of Key Rotation when compromised/ employee termination or transfer"
+  },
+  "E-SO-18": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Temperature and Humidity configuration"
+  },
+  "E-SO-19": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Temperature and Humidity Threshold defined in system"
+  },
+  "E-SO-20": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Temperature and Humidity Alarms triggered and remediation"
+  },
+  "E-SO-21": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "fire suppression/detection certifications "
+  },
+  "E-SO-22": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "UPS and generator maintenance certificates"
+  },
+  "E-SO-23": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "List of authorized personnel with access to shut-off power"
+  },
+  "E-SO-24": {
+    "evidence_domain": "Site Operations",
+    "evidence_title": "Emergency lighting equipment certificates"
+  },
+  "E-TA-01": {
+    "evidence_domain": "Training and Awareness",
+    "evidence_title": "Compliance Training Policy\r\n\r\n\r\n\r\n"
+  },
+  "E-TA-02": {
+    "evidence_domain": "Training and Awareness",
+    "evidence_title": "Training Material"
+  },
+  "E-TA-03": {
+    "evidence_domain": "Training and Awareness",
+    "evidence_title": "Training Records"
+  },
+  "E-TA-04": {
+    "evidence_domain": "Training and Awareness",
+    "evidence_title": "Evidence of phishing campaigns set up by the organization (Eg - mails sent etc)"
+  },
+  "E-TA-05": {
+    "evidence_domain": "Training and Awareness",
+    "evidence_title": "Access records who have access to PHI"
+  },
+  "E-TPM-01": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Procurement Policy "
+  },
+  "E-TPM-02": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Questionnaire for assessing third party risks"
+  },
+  "E-TPM-03": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Action Plan for vendor security review "
+  },
+  "E-TPM-04": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Vendor Security Reviews Evidence"
+  },
+  "E-TPM-05": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Forensic investigation process document "
+  },
+  "E-TPM-06": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "\r\n\r\nSample Forensic Investigations"
+  },
+  "E-TPM-07": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Vendor information security standard"
+  },
+  "E-TPM-08": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Privacy Review Evidence"
+  },
+  "E-TPM-09": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Remediation Evidence of non-compliances identified during Vendor Security Reviews"
+  },
+  "E-TPM-10": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Network access Agreement"
+  },
+  "E-TPM-11": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Sample Agreements for temporary workers"
+  },
+  "E-TPM-12": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Evidence to Acknowledgement to Customers for Card Holder Data responsibilities"
+  },
+  "E-TPM-13": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Business Associate Agreement "
+  },
+  "E-TPM-14": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Business Associate Subcontractor Agreement document"
+  },
+  "E-TPM-15": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Vendor SLA document "
+  },
+  "E-TPM-16": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Results of Network Configuration Monitoring"
+  },
+  "E-TPM-17": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Data Processing and Transfer Agreement"
+  },
+  "E-TPM-18": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "Vendor onboarding/ termination document"
+  },
+  "E-TPM-19": {
+    "evidence_domain": "Third Party Management",
+    "evidence_title": "\r\n\r\nSample Vendor Agreement"
+  },
+  "E-VM-01": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Vulnerability Management Policy"
+  },
+  "E-VM-02": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Scan Tool version evidence"
+  },
+  "E-VM-03": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Scanning evidence for a sample hosts/accounts"
+  },
+  "E-VM-04": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Resolution and rescan evidence for a sample vulnerability"
+  },
+  "E-VM-05": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Sample exploited vulnerability resolution evidence"
+  },
+  "E-VM-06": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Sample vulnerability remediation evidence"
+  },
+  "E-VM-07": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Approved Scanning Vendor (ASV) Scan evidence"
+  },
+  "E-VM-08": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Penetration Test Results"
+  },
+  "E-VM-09": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Infrastructure Management Policy"
+  },
+  "E-VM-10": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Patch Implementation Evidence"
+  },
+  "E-VM-11": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "End of Life software decomission plan"
+  },
+  "E-VM-12": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Antivirus Deployment Evidence"
+  },
+  "E-VM-13": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Antivirus Configuration Policies"
+  },
+  "E-VM-14": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Media usage logs"
+  },
+  "E-VM-15": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Secure Development Lifecycle Policy"
+  },
+  "E-VM-16": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Sample Error Messages"
+  },
+  "E-VM-17": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Sample Disputes, inquiries and complaints"
+  },
+  "E-VM-18": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Management Review Evidence"
+  },
+  "E-VM-19": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Verified Threats resolution evidence"
+  },
+  "E-VM-20": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Sample Independent Information Security Assessment Results"
+  },
+  "E-VM-21": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Sample Assessment Ticket and notification"
+  },
+  "E-VM-22": {
+    "evidence_domain": "Vulnerability Management",
+    "evidence_title": "Sample Identified Bugs"
+  }
+}
