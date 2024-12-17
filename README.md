@@ -1,312 +1,151 @@
-# Adobe CCF Policy Generation Web Service
+# Adobe CCF Policy Generator
 
-This service provides a web API endpoint for generating policy documents based on Adobe's CCF.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Overview
+A powerful web service that automatically generates policy documents based on Adobe's Common Control Framework (CCF). This tool helps organizations streamline their compliance documentation process by generating standardized policy documents that align with various security frameworks.
 
-The service is built using Flask and provides a REST API endpoint that accepts policy configuration data and returns generated policy documents in markdown format with the additional option to convert the markdown content to Word (.docx)
+## 🌟 Key Features
 
-## Project Structure
+- **Framework Alignment**: Built on Adobe CCF Open Source v5
+- **Multiple Output Formats**: Generate policies in both Markdown and Word (.docx) formats
+- **Flexible Templates**: Customizable policy templates with variable substitution
+- **Framework Mapping**: Automatic mapping between different security frameworks
+- **REST API**: Simple HTTP endpoint for easy integration
+- **Docker Support**: Ready-to-use containerized deployment
+
+## 🚀 Quick Start
+
+### Using Docker (Recommended)
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/adobe-ccf-policy-generator.git
+cd adobe-ccf-policy-generator
+
+# Build and run with Docker
+docker build -t policy-generator ./backend
+docker run -p 5000:5000 policy-generator
+```
+
+### Manual Installation
+
+```bash
+# Clone and install dependencies
+git clone https://github.com/markac007/adobe-ccf-policy-generator.git
+cd adobe-ccf-policy-generator/backend
+pip install -r requirements.txt
+
+# Run the service
+python scripts/generate_policy_from_web.py
+```
+
+## 📚 Documentation
+
+### API Usage
+
+```bash
+# Generate a policy document in markdown
+curl -X POST http://localhost:5000/generate \
+     -H "Content-Type: application/json" \
+     -d @config.json
+
+# Generate a Word document
+curl -X POST "http://localhost:5000/generate?format=docx" \
+     -H "Content-Type: application/json" \
+     -d @config.json
+```
+
+### Example Configuration
+
+```json
+{
+    "policy_standard": "Access Management",
+    "controls": ["AM-01", "AM-02"],
+    "frameworks": ["NIST CSF", "PCI DSS v4"],
+    "template_path": "custom_template.md"  // Optional
+}
+```
+
+## 🏗️ Project Structure
+
 ```
 backend/
 ├── src/
 │   ├── __init__.py
-│   └── templates.py      # Template handling logic
+│   └── templates.py          # Template handling logic
 ├── scripts/
-│   ├── generate_policy_from_web.py    # Web service entry point
-│   └── generate_policy_from_input.py  # Core policy generation
+│   ├── generate_policy_from_web.py    # Web service endpoint
+│   └── generate_policy_from_input.py  # Core generation logic
 ├── templates/
-│   └── policy_template.md  # Default policy template
+│   └── policy_template.md   # Default template
 └── data/
-    └── processed/
+    └── processed/           # Processed control data
         ├── control_guidance.json
         ├── controls_v2.json
         └── controls_mapping.json
 ```
 
-## Architecture
+## 🔄 Workflow
 
-### Main Components
-
-1. `generate_policy_from_web.py` - Web service entry point
-2. `generate_policy_from_input.py` - Core policy generation logic
-3. `templates.py` - Template rendering engine
-4. `policy_template.md` - Default policy document template
-5. Flask web server - Handles HTTP requests
-
-## Workflow
-
-1. **Request Handling**
-   - The service listens on port 5000
-   - Accepts POST requests at `/generate` endpoint
-   - Expects JSON configuration data in the request body
-   - Supports both markdown and Word document output formats
-
-2. **Policy Generation Process**   
 ```mermaid
-   sequenceDiagram
-       participant Client
-       participant Web as Web Service<br/>(generate_policy_from_web.py)
-       participant Gen as PolicyGenerator<br/>(generate_policy_from_input.py)
-       participant Conv as Document Converter<br/>(document_converter.py)
-       participant Data as Data Files<br/>(data/processed/*)
-       participant FS as File System<br/>(output/policies/)
-
-       Client->>Web: POST /generate with config JSON
-       Note over Web: @generate_policy_endpoint()
-       Web->>Gen: Initialize PolicyGenerator
-       Gen->>Data: Load control data
-       Gen->>Gen: Process controls and frameworks
-       Gen->>FS: Save as markdown (.md)
-       
-       alt format=docx
-           Gen->>Conv: Convert markdown to Word
-           Conv->>FS: Save as Word document (.docx)
-       end
-       
-       Web->>FS: Read final document
-       Web->>Client: Return response
+sequenceDiagram
+    participant Client
+    participant Web as Web Service
+    participant Gen as PolicyGenerator
+    participant Conv as DocumentConverter
+    participant Data as Data Files
+    
+    Client->>Web: POST /generate
+    Web->>Gen: Generate Policy
+    Gen->>Data: Load Controls
+    Gen->>Gen: Process
+    Gen-->>Conv: Convert (if docx)
+    Web->>Client: Return Document
 ```
 
-3. **Document Processing**
-   - Markdown content is always generated first
-   - Word documents are created by converting the markdown
-   - Preserves formatting:
-     - Heading levels (H1-H4)
-     - Bold text (**text**)
-     - Tables
-     - Numbered lists
-   - Maintains consistent file naming:
-     ```
-     {policy_name}_policy_{YYYYMMDD}.md
-     {policy_name}_policy_{YYYYMMDD}.docx
-     ```
+## 🛠️ Template Customization
 
-4. **Template Processing**
-   - Templates use Python's string.Template for variable substitution
-   - Supports custom templates via template_path parameter
-   - Variables available in templates:
-     
-     **Basic Variables:**
-     - ${policy_standard}
-     - ${policy_standard_lower}
-     - ${current_date}
+Templates support various variables for customization:
 
-     **Control Section Variables:**
-     - ${control_sections} - Full formatted control sections
-     - ${framework_references} - Framework mapping table
+- Basic: `${policy_standard}`, `${current_date}`
+- Controls: `${control_id}`, `${control_name}`, `${control_type}`
+- Content: `${policy_description}`, `${implementation}`, `${testing_procedures}`
 
-     **Per Control Variables:**
-     Each control in the control_sections can access:
-     ```
-     ${control_id}          - Control identifier
-     ${control_name}        - Name of the control
-     ${control_theme}       - Theme/category of the control
-     ${control_type}        - Type of control (Technical, Administrative, etc.)
-     ${policy_description}  - Control policy description
-     ${implementation}      - Implementation guidance
-     ${testing_procedures}  - Testing procedures for the control
-     
-     # Arrays (joined with commas by default)
-     ${audit_artifacts}     - Required audit evidence
+[See Template Documentation](#template-structure) for more details.
 
-     ```
+## 🤝 Contributing
 
-5. **Example Custom Template Usage**
-```markdown
-### ${control_id} - ${control_name}
-**Type:** ${control_type}
-**Theme:** ${control_theme}
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting PRs.
 
-#### Policy Description
-${policy_description}
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to your branch
+5. Open a Pull Request
 
-#### Implementation Requirements
-${implementation}
+## 📝 License
 
-#### Audit Requirements
-**Evidence Required:**
-${audit_artifacts}
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-**Testing Procedures:**
-${testing_procedures}
-```
+## 🙏 Acknowledgments
 
-6. **Response Format**   
-```json
-   {
-       "success": true,
-       "content": "Document content (markdown) or base64 (docx)",
-       "format": "md or docx",
-       "message": "Successfully generated policy for [standard]"
-   }   
-```
+- Adobe for the Common Control Framework
+- Contributors and maintainers
+- The security and compliance community
 
-## Error Handling
+## ⚠️ Security
 
-The service includes comprehensive error handling:
-- Invalid JSON data
-- Policy generation failures
-- File system errors
-- Template rendering errors
+Found a security issue? Please report it confidentially to [security@yourdomain.com](mailto:security@yourdomain.com).
 
-All errors are returned in a consistent format: 
-```json
-{
-    "error": "Error message description"
-}
-```
+## 📞 Support
 
-## Setup and Usage
+- Create an [Issue](https://github.com/markac007/adobe-ccf-policy-generator/issues)
 
-1. **Installation**
-   ```bash
-   pip install -r requirements.txt
-   ```
 
-2. **Running the Service**
-   ```bash
-   cd backend
-   python scripts/generate_policy_from_web.py
-   ```
+## 🗺️ Roadmap
 
-### Option 2: Docker Installation
-1. **Build the Docker Image**
-   ```bash
-   # From the backend directory
-   docker build -t policy-generator .
-   ```
-
-2. **Run the Container**
-   ```bash
-   docker run -p 5000:5000 policy-generator
-   ```
-
-3. **Access the Application**
-   - Web Interface: http://localhost:5000
-   - API Endpoint: http://localhost:5000/generate
-
-### Making API Requests
-
-1. **Making Requests**
-   ```bash
-   # For markdown output (default)
-   curl -X POST http://localhost:5000/generate \
-        -H "Content-Type: application/json" \
-        -d @config.json
-
-   # For Word document output
-   curl -X POST "http://localhost:5000/generate?format=docx" \
-        -H "Content-Type: application/json" \
-        -d @config.json
-   ```
-
-## Dependencies
-
-- Flask
-- Flask-CORS
-- python-docx (for Word document generation)
-- pandoc (for markdown to Word conversion)
-- PolicyGenerator (internal module)
-- DocumentConverter (internal module)
-
-## Configuration
-
-The service requires:
-- Valid JSON configuration data
-- Proper file system permissions for temporary file creation
-- Network access for web server functionality
-- Access to data files in data/processed/
-- Pandoc installation (included in Docker image)
-
-## Security Considerations
-
-- CORS is enabled for cross-origin requests
-- Input validation is performed on received JSON data
-- Template injection protection via string.Template
-- File paths are properly sanitized
-
-## Template Structure
-
-The generated policy document follows this structure:
-
-1. **Document Control**
-   - Version
-   - Last Updated Date
-   - Classification
-
-2. **Policy Sections**
-   - Purpose
-   - Scope
-   - Policy Requirements
-
-3. **Control Sections**
-   Each control includes:
-   ```
-   ### [Control ID] - [Control Name]
-   
-   #### Control Information
-   | Type | Theme |
-   |:-----|:------|
-   
-   #### Policy Description
-   
-   #### Implementation Requirements
-   (Numbered list)
-   
-   #### Testing Procedures
-   (Numbered list)
-   
-   #### Audit Requirements
-   | ID | Domain | Title |
-   |:---|:-------|:------|
-   ```
-
-4. **Framework Mappings**
-   Two reference tables are provided:
-   
-   a. **Control to Framework Mapping**
-   ```
-   | Control ID | Framework | Reference |
-   |:-----------|:----------|:-----------|
-   | AM-01 | NIST CSF | ID.AM-1, ID.AM-2 |
-   | AM-01 | PCI DSS v4 | 12.5.1, 12.5.2 |
-   ```
-   
-   b. **Framework to Control Mapping**
-   ```
-   | Framework | Reference | Controls |
-   |:----------|:----------|:---------|
-   | NIST CSF | ID.AM-1 | AM-01, AM-02 |
-   | PCI DSS v4 | 12.5.1 | AM-01, AM-04 |
-   ```
-
-## Template Variables
-
-1. **Basic Variables:**
-   - ${policy_standard}
-   - ${policy_standard_lower}
-   - ${current_date}
-
-2. **Control Section Variables:**
-   - ${control_sections}
-   - ${framework_references}
-   - ${reverse_framework_references}
-
-3. **Per Control Variables:**
-   - ${control_id}
-   - ${control_name}
-   - ${control_theme}
-   - ${control_type}
-   - ${policy_description}
-   - ${formatted_implementation}
-   - ${formatted_testing}
-   - ${evidence_table}
-
-## Data Sources
-
-The service integrates multiple data sources:
-- Control guidance (control_guidance.json)
-- Control mappings (controls_mapping.json)
-- Evidence requirements (erl.json)
-- Control data (controls_v2.json)
+- [ ] Update code for next CCF relase
+- [ ] Enhanced template customization
+- [ ] Enhanced UI for policy generation
+- [ ] Batch processing capabilities
+- [ ] PDF output format
