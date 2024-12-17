@@ -11,20 +11,20 @@
             min-height: 100vh;
             margin: 0;
             padding: 0;
-            background-color: #f0f2f5;
+            background-color: #fafafa;
         }
         .left-panel {
-            width: 400px;
+            width: 450px;
             padding: 20px;
             background-color: white;
             border-right: 1px solid #dee2e6;
             height: 100vh;
             overflow-y: auto;
             position: fixed;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
         .right-panel {
-            margin-left: 400px;
+            margin-left: 450px;
             flex-grow: 1;
             padding: 40px 60px;
             height: 100vh;
@@ -33,30 +33,42 @@
         }
         select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
             background-color: white;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        select:hover {
+            border-color: #FA0F00;
+        }
+        select:focus {
+            outline: none;
+            border-color: #FA0F00;
+            box-shadow: 0 0 0 3px rgba(250, 15, 0, 0.1);
         }
         .multiselect {
             height: 200px;
         }
         button {
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 16px;
-            background-color: #1a73e8;
+            background-color: #FA0F00;
             color: white;
             border: none;
             cursor: pointer;
             margin: 10px 0;
             width: 100%;
-            border-radius: 4px;
-            transition: background-color 0.2s;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s;
         }
         button:hover {
-            background-color: #1557b0;
+            background-color: #D40E00;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(250, 15, 0, 0.2);
         }
         .json-section {
             margin-top: 20px;
@@ -98,45 +110,53 @@
         .output-container {
             position: relative;
             margin-bottom: 20px;
+            display: none;
         }
         #copyButton {
             position: absolute;
             top: 10px;
             right: 10px;
             padding: 5px 10px;
-            background-color: #1a73e8;
+            background-color: #FA0F00;
             color: white;
             border: none;
             border-radius: 3px;
             cursor: pointer;
             font-size: 14px;
             width: auto;
+            display: none;
         }
         #copyButton:hover {
-            background-color: #1557b0;
+            background-color: #D40E00;
         }
         .section {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            transition: box-shadow 0.2s;
+        }
+        .section:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #444;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 15px;
         }
         #markdownOutput {
             margin-top: 20px;
-            padding: 40px;
+            padding: 40px 60px;
             background-color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 12px;
             max-width: 900px;
             margin: 0 auto;
             line-height: 1.6;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.05);
         }
         #markdownOutput h1 {
             margin-bottom: 40px;
@@ -173,20 +193,20 @@
         h1 {
             margin-top: 0;
             margin-bottom: 20px;
-            color: #1a73e8;
+            color: #FA0F00;
             font-size: 24px;
         }
         .download-button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #FA0F00;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             margin-top: 10px;
         }
         .download-button:hover {
-            background-color: #0056b3;
+            background-color: #D40E00;
         }
         .button-container {
             display: flex;
@@ -201,7 +221,7 @@
         .download-button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #28a745;  /* Green color for download */
+            background-color: #FA0F00;
             color: white;
             border: none;
             border-radius: 5px;
@@ -209,14 +229,108 @@
         }
         
         .download-button:hover {
-            background-color: #218838;
+            background-color: #D40E00;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .header-section h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header-section p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .ccf-diagram {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #f0f0f0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .ccf-diagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+        }
+        
+        .ccf-diagram h3 {
+            color: #FA0F00;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .ccf-diagram p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 0;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            padding: 15px 30px;
+            font-size: 14px;
+            color: #666;
+            background: linear-gradient(to right, transparent, #fff);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+        }
+        
+        .footer .heart {
+            color: #ff4d4d;
+            display: inline-block;
+            animation: heartbeat 1.5s ease infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            5% { transform: scale(1.2); }
+            10% { transform: scale(1.1); }
+            15% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        
+        .footer a {
+            color: #FA0F00;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer a:hover {
+            color: #D40E00;
+        }
+        .debug-mode .output-container {
+            display: block;
+        }
+        .debug-mode #copyButton {
+            display: block;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <div class="left-panel">
-        <h1>Policy Generator</h1>
+        <div class="header-section">
+            <h1>CCF Policy Generator</h1>
+            <p>Generate standardized security policies based on Adobe's Common Control Framework</p>
+            <div class="ccf-diagram">
+                <h3>Framework Alignment - CCF version 5</h3>
+                <p>This tool leverages Adobe CCF's unified control framework to generate policies that align with multiple compliance standards simultaneously.</p>
+            </div>
+        </div>
         
         <div class="section">
             <label for="policySelect">Select Policy Standard:</label>
@@ -294,7 +408,18 @@
     </div>
 
     <div class="right-panel">
+        <div class="header-section" style="text-align: left; padding-left: 0;">
+            <p style="font-style: italic; color: #666;">
+                Based on Adobe's Common Control Framework (CCF) - an innovative approach to simplifying security compliance.
+                <a href="https://www.adobe.com/trust/compliance/adobe-ccf.html" target="_blank" style="color: #FA0F00; text-decoration: none;">Learn more about CCF</a>
+            </p>
+        </div>
         <div id="markdownOutput"></div>
+    </div>
+
+    <div class="footer">
+        Made with <span class="heart">♥</span> by the community • 
+        <a href="https://github.com/markac007/adobe-ccf-policy-generator" target="_blank">GitHub</a>
     </div>
 
     <script>
