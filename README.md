@@ -141,7 +141,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## ⚠️ Security
 
-Found a security issue? Please report it confidentially to [security@yourdomain.com](mailto:security@yourdomain.com).
+Found a security issue? Please report it by creating an [Issue](https://github.com/markac007/adobe-ccf-policy-generator/issues)
 
 ## 📞 Support
 
