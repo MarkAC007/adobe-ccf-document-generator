@@ -2,10 +2,10 @@ name: Docker Build and Publish
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
     tags: [ 'v*.*.*' ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
 
 env:
   REGISTRY: ghcr.io
@@ -35,6 +35,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=dev,enable=${{ github.ref == 'refs/heads/dev' }}
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
