@@ -1,6 +1,7 @@
 # Adobe CCF Policy Generator
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Docker Image](https://github.com/markac007/adobe-ccf-policy-generator/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/markac007/adobe-ccf-policy-generator/pkgs/container/adobe-ccf-policy-generator)
 
 A powerful web service that automatically generates policy documents based on [Adobe's Common Control Framework (CCF)](https://www.adobe.com/trust/compliance/adobe-ccf.html). This tool helps organizations streamline their compliance documentation process by generating standardized policy documents that align with various security frameworks.
 
@@ -21,7 +22,19 @@ A powerful web service that automatically generates policy documents based on [A
 
 ## 🚀 Quick Start
 
-### Using Docker (Recommended)
+### Using Pre-built Docker Image
+
+```bash
+# Pull and run the latest stable image
+docker pull ghcr.io/markac007/adobe-ccf-policy-generator:latest
+docker run -p 5000:5000 ghcr.io/markac007/adobe-ccf-policy-generator:latest
+
+# Or use the development version
+docker pull ghcr.io/markac007/adobe-ccf-policy-generator:dev
+docker run -p 5000:5000 ghcr.io/markac007/adobe-ccf-policy-generator:dev
+```
+
+### Building Locally with Docker
 
 ```bash
 # Clone the repository
@@ -111,6 +124,14 @@ sequenceDiagram
 
 ## 🛠️ Template Customization
 
+The project includes a visual template editor that allows you to:
+- Create and modify policy templates
+- Drag-and-drop section management
+- Configure section properties
+- Preview template structure
+
+Access the template editor at `http://localhost:5000/template-editor` after starting the service.
+
 Templates support various variables for customization:
 
 - Basic: `${policy_standard}`, `${current_date}`
@@ -151,8 +172,8 @@ Found a security issue? Please report it by creating an [Issue](https://github.c
 ## 🗺️ Roadmap
 
 - [ ] Update code for next CCF relase
-- [ ] Enhanced template customization
-- [ ] Enhanced UI for policy generation
+- [X] Enhanced template customization
+- [X] Enhanced UI for policy generation
 - [ ] Batch processing capabilities
 - [ ] PDF output format
 - [ ] Add support for indented bullets
