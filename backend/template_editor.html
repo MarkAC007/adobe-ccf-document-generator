@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy Template Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/template-editor.css">
+    <!-- Debug CSS loading -->
+    <script>
+        window.addEventListener('load', function() {
+            const styles = document.styleSheets;
+            console.log('Loaded stylesheets:', styles);
+        });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <h1>CCF Policy Generator</h1>
+        <nav class="header-nav">
+            <a href="/">Policy Generator</a>
+            <a href="/template-editor" class="active">Template Editor</a>
+        </nav>
+    </header>
+
+    <div class="editor-container">
+        <div class="templates-list">
+            <h2>Templates</h2>
+            <button onclick="createNewTemplate()">New Template</button>
+            <div id="templatesList"></div>
+        </div>
+        
+        <div class="editor-main">
+            <div class="template-actions">
+                <button onclick="saveTemplate()" class="save-button">Save Template</button>
+                <button onclick="deleteTemplate()" class="danger">Delete Template</button>
+            </div>
+            <div class="template-details">
+                <input type="text" id="templateName" placeholder="Template Name">
+                <input type="hidden" id="templateId">
+                <textarea id="templateDescription" placeholder="Template Description"></textarea>
+            </div>
+            
+            <div class="sections-editor">
+                <div class="available-sections">
+                    <h4>Available Sections</h4>
+                    <div id="availableSections" class="draggable-sections"></div>
+                </div>
+                
+                <div class="template-sections">
+                    <h4>Template Sections</h4>
+                    <div id="templateSections" class="sortable-sections"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Made with ❤️ by the community • <a href="https://github.com/adobe/ccf-policy-generator" target="_blank">GitHub</a></p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script>
+        let currentTemplate = null;
+        let availableSections = {};
+        
+        // Initialize drag and drop
+        new Sortable(document.getElementById('availableSections'), {
+            group: {
+                name: 'sections',
+                pull: 'clone',
+                put: false
+            },
+            sort: false,
+            animation: 150,
+            ghostClass: 'dragging'
+        });
+
+        new Sortable(document.getElementById('templateSections'), {
+            group: {
+                name: 'sections',
+                pull: true,
+                put: true
+            },
+            animation: 150,
+            ghostClass: 'dragging',
+            onAdd: function(evt) {
+                const item = evt.item;
+                // Add configuration controls if needed
+                addSectionControls(item);
+            }
+        });
+
+        // Load available sections and templates
+        async function initialize() {
+            try {
+                // Load available sections
+                const sectionsResponse = await fetch('http://localhost:5000/api/templates/sections');
+                if (!sectionsResponse.ok) {
+                    throw new Error(`HTTP error! status: ${sectionsResponse.status}`);
+                }
+                availableSections = await sectionsResponse.json();
+                console.log('Available sections:', availableSections); // Debug log
+                displayAvailableSections();
+
+                // Load templates
+                const templatesResponse = await fetch('http://localhost:5000/api/templates');
+                if (!templatesResponse.ok) {
+                    throw new Error(`HTTP error! status: ${templatesResponse.status}`);
+                }
+                const templates = await templatesResponse.json();
+                displayTemplatesList(templates);
+            } catch (error) {
+                console.error('Failed to initialize:', error);
+                document.getElementById('availableSections').innerHTML = 
+                    `<div class="error">Error loading sections: ${error.message}</div>`;
+            }
+        }
+
+        function displayAvailableSections() {
+            const container = document.getElementById('availableSections');
+            container.innerHTML = '';
+            
+            Object.entries(availableSections).forEach(([id, section]) => {
+                const div = document.createElement('div');
+                div.className = 'section-item';
+                div.setAttribute('data-section-type', id);
+                div.setAttribute('data-config', JSON.stringify(section));
+                div.innerHTML = `
+                    <div class="section-content">
+                        <span class="section-name">${section.name}</span>
+                        <small class="section-type">${section.type}</small>
+                        <small class="section-description">${section.description}</small>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function displayTemplatesList(templates) {
+            const container = document.getElementById('templatesList');
+            container.innerHTML = '';
+            
+            Object.entries(templates).forEach(([id, template]) => {
+                const div = document.createElement('div');
+                div.className = 'template-item';
+                div.setAttribute('data-template-id', id);
+                
+                // Add built-in badge for standard/detailed templates
+                const isBuiltIn = id === 'standard' || id === 'detailed';
+                div.innerHTML = `
+                    <div class="template-header">
+                        <span class="template-name">${template.name}</span>
+                        ${isBuiltIn ? '<span class="badge">Built-in</span>' : ''}
+                    </div>
+                    <small class="template-description">${template.description}</small>
+                    <div class="template-actions">
+                        ${isBuiltIn ? 
+                            '<button class="view-btn" onclick="loadTemplate(\'' + id + '\')"><i class="fas fa-eye"></i> View</button>' :
+                            `<button class="edit-btn" onclick="loadTemplate('${id}')"><i class="fas fa-edit"></i> Edit</button>
+                             <button class="delete-btn" onclick="deleteTemplate('${id}')"><i class="fas fa-trash"></i></button>`
+                        }
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function addSectionControls(sectionElement) {
+            const sectionType = sectionElement.getAttribute('data-section-type');
+            const sectionConfig = availableSections[sectionType];
+            
+            // Add configuration options based on section type
+            if (sectionConfig.type === 'table') {
+                // Add table configuration controls
+            } else if (sectionConfig.type === 'list') {
+                // Add list configuration controls
+            }
+        }
+
+        async function loadTemplate(templateId) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/templates/${templateId}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const template = await response.json();
+                
+                // Update form fields
+                document.getElementById('templateName').value = template.name;
+                document.getElementById('templateId').value = template.id;
+                document.getElementById('templateDescription').value = template.description;
+                
+                // Clear and update sections
+                const sectionsContainer = document.getElementById('templateSections');
+                sectionsContainer.innerHTML = '';
+                
+                template.sections.forEach(section => {
+                    const div = document.createElement('div');
+                    div.className = 'section-item';
+                    div.setAttribute('data-section-type', section.type);
+                    div.setAttribute('data-config', JSON.stringify(section.config));
+                    div.innerHTML = `
+                        <div class="section-content">
+                            <span class="section-name">${section.config.name}</span>
+                            <small class="section-type">${section.config.type}</small>
+                        </div>
+                        <div class="controls">
+                            <button onclick="configureSection(this)" title="Configure">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                            <button onclick="removeSection(this)" title="Remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `;
+                    sectionsContainer.appendChild(div);
+                });
+                
+                // Update UI state
+                const isBuiltIn = templateId === 'standard' || templateId === 'detailed';
+                document.getElementById('templateName').disabled = isBuiltIn;
+                document.getElementById('templateDescription').disabled = isBuiltIn;
+                document.querySelector('button[onclick="saveTemplate()"]').style.display = isBuiltIn ? 'none' : 'inline-block';
+                document.querySelector('button[onclick="deleteTemplate()"]').style.display = isBuiltIn ? 'none' : 'inline-block';
+                
+            } catch (error) {
+                console.error('Error loading template:', error);
+                alert(`Failed to load template: ${error.message}`);
+            }
+        }
+
+        // Initialize the editor
+        document.addEventListener('DOMContentLoaded', initialize);
+
+        function displayTemplateSections(sections) {
+            const container = document.getElementById('templateSections');
+            container.innerHTML = '';
+            
+            sections.forEach(section => {
+                const div = document.createElement('div');
+                div.className = 'section-item';
+                div.setAttribute('data-section-type', section.type);
+                div.setAttribute('data-config', JSON.stringify(section.config));
+                div.innerHTML = `
+                    <span>${section.config.name}</span>
+                    <div class="controls">
+                        <button onclick="configureSection(this)" title="Configure">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <button onclick="removeSection(this)" title="Remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        async function createNewTemplate() {
+            currentTemplate = {
+                id: '',
+                name: 'New Template',
+                description: '',
+                sections: []
+            };
+            
+            document.getElementById('templateName').value = currentTemplate.name;
+            document.getElementById('templateId').value = '';
+            document.getElementById('templateDescription').value = '';
+            document.getElementById('templateSections').innerHTML = '';
+        }
+
+        async function saveTemplate() {
+            const templateId = document.getElementById('templateId').value;
+            const name = document.getElementById('templateName').value;
+            const description = document.getElementById('templateDescription').value;
+            
+            if (!name) {
+                alert('Template name is required');
+                return;
+            }
+
+            // Get sections configuration
+            const sections = Array.from(document.getElementById('templateSections').children)
+                .map(element => ({
+                    type: element.getAttribute('data-section-type'),
+                    config: JSON.parse(element.getAttribute('data-config') || '{}')
+                }));
+
+            const templateData = {
+                id: templateId,
+                name,
+                description,
+                sections
+            };
+
+            try {
+                // Use POST for new templates, PUT for updates
+                const method = templateId ? 'PUT' : 'POST';
+                const response = await fetch('http://localhost:5000/api/templates', {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(templateData)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to save template');
+                }
+
+                const result = await response.json();
+                alert('Template saved successfully');
+                
+                // If this was a new template, update the template ID
+                if (!templateId) {
+                    document.getElementById('templateId').value = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+                }
+                
+                // Reload templates list
+                const templatesResponse = await fetch('http://localhost:5000/api/templates');
+                const templates = await templatesResponse.json();
+                displayTemplatesList(templates);
+            } catch (error) {
+                console.error('Save error:', error);
+                alert(`Failed to save template: ${error.message}`);
+            }
+        }
+
+        async function deleteTemplate(templateId) {
+            if (!templateId) {
+                alert('No template selected');
+                return;
+            }
+
+            if (!confirm('Are you sure you want to delete this template?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/templates?id=${templateId}`, {
+                    method: 'DELETE'
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to delete template');
+                }
+
+                const result = await response.json();
+                alert('Template deleted successfully');
+                createNewTemplate();
+                
+                // Reload templates list
+                const templatesResponse = await fetch('http://localhost:5000/api/templates');
+                const templates = await templatesResponse.json();
+                displayTemplatesList(templates);
+            } catch (error) {
+                console.error('Delete error:', error);
+                alert(`Failed to delete template: ${error.message}`);
+            }
+        }
+
+        function configureSection(button) {
+            const sectionElement = button.closest('.section-item');
+            const sectionType = sectionElement.getAttribute('data-section-type');
+            const config = JSON.parse(sectionElement.getAttribute('data-config'));
+            
+            // Create modal for configuration
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3>Configure ${config.name}</h3>
+                    ${generateConfigurationForm(sectionType, config)}
+                    <div class="modal-actions">
+                        <button onclick="saveSectionConfig(this)">Save</button>
+                        <button onclick="closeModal(this)">Cancel</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function generateConfigurationForm(sectionType, config) {
+            const sectionConfig = availableSections[sectionType];
+            let html = '<div class="config-form">';
+            
+            switch (sectionConfig.type) {
+                case 'table':
+                    html += `
+                        <div class="form-group">
+                            <label>Columns</label>
+                            <div id="columns">
+                                ${(config.columns || []).map((col, i) => `
+                                    <input type="text" value="${col}" placeholder="Column ${i + 1}">
+                                `).join('')}
+                            </div>
+                            <button onclick="addColumn()">Add Column</button>
+                        </div>
+                    `;
+                    break;
+                case 'list':
+                    html += `
+                        <div class="form-group">
+                            <label>Default Items</label>
+                            <textarea placeholder="One item per line">${(config.items || []).join('\n')}</textarea>
+                        </div>
+                    `;
+                    break;
+                // Add other section type configurations
+            }
+            
+            html += '</div>';
+            return html;
+        }
+
+        function removeSection(button) {
+            const section = button.closest('.section-item');
+            section.remove();
+        }
+    </script>
+</body>
+</html> 

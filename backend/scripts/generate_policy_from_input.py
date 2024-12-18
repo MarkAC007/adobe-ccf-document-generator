@@ -5,6 +5,7 @@ from datetime import datetime
 from pathlib import Path
 import re
 import sys
+from string import Template
 
 # Add the parent directory to Python path
 sys.path.append(str(Path(__file__).parent.parent))
@@ -192,25 +193,73 @@ class PolicyGenerator:
         
         return table_lines
 
+    def _format_control_sections(self, controls: List[Dict]) -> str:
+        """Format control sections using the template"""
+        control_sections = []
+        for control in controls:
+            # Format numbered lists
+            implementation = PolicyTemplate._format_numbered_list(control.get('implementation_guidance', ''))
+            testing = PolicyTemplate._format_numbered_list(control.get('testing_procedure', ''))
+            
+            # Format evidence table rows
+            evidence_rows = []
+            for evidence in control.get('evidence_details', []):
+                evidence_rows.append(
+                    f"| {evidence['id']} | {evidence['domain']} | {evidence['title']} |"
+                )
+            evidence_table = '\n'.join(evidence_rows) if evidence_rows else '| - | - | - |'
+            
+            # Prepare control section data
+            control_data = {
+                'control_id': control.get('ccf_id', ''),
+                'control_name': control.get('control_name', ''),
+                'control_theme': control.get('control_theme', ''),
+                'control_type': control.get('control_type', ''),
+                'policy_description': control.get('control_description', ''),
+                'formatted_implementation': implementation,
+                'formatted_testing': testing,
+                'evidence_table': evidence_table
+            }
+            
+            # Render control section
+            control_section = Template(PolicyTemplate.CONTROL_SECTION_TEMPLATE).substitute(control_data)
+            control_sections.append(control_section)
+        
+        return '\n\n'.join(control_sections)
+
     def generate_policy_markdown(self, config: Dict) -> str:
         """Generate markdown content for policy"""
         policy_standard = config["policy_standard"]
         selected_frameworks = config.get("selected_frameworks", [])
+        template_id = config.get("template_id", "standard")
+        
+        print(f"Generating policy with template: {template_id}")  # Debug log
         
         # Get controls and sort them
         controls = self._get_controls_for_domain(policy_standard, selected_frameworks)
         controls.sort(key=lambda x: x.get("ccf_id", ""))
         
+        # Calculate dates
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        next_review = datetime.now().replace(year=datetime.now().year + 1)
+        next_review_date = next_review.strftime("%Y-%m-%d")
+        
+        # Format control sections
+        control_sections = self._format_control_sections(controls)
+        
         # Prepare template data
         template_data = {
             "policy_standard": policy_standard,
-            "controls": controls,
-            "framework_references": self._get_all_framework_references(controls, selected_frameworks),
-            "reverse_framework_references": self._get_reverse_framework_references(controls, selected_frameworks)
+            "policy_standard_lower": policy_standard.lower(),
+            "current_date": current_date,
+            "next_review_date": next_review_date,
+            "control_sections": control_sections,
+            "framework_references": '\n'.join(self._get_all_framework_references(controls, selected_frameworks)),
+            "reverse_framework_references": '\n'.join(self._get_reverse_framework_references(controls, selected_frameworks))
         }
         
-        # Render template
-        return self.template.render(template_data)
+        # Render template with specified template_id
+        return self.template.render(template_data, template_id)
 
     def _get_all_framework_references(self, controls: List[Dict], frameworks: List[str]) -> List[str]:
         """Get all framework references for controls"""
@@ -255,10 +304,11 @@ class PolicyGenerator:
         output_dir = Path("output/policies")
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        # Generate base filename (remove duplicate 'policy' in name)
+        # Generate base filename (include template_id in filename)
         domain_name = config["policy_standard"].lower().replace(" ", "_")
+        template_id = config.get("template_id", "standard")
         current_date = datetime.now().strftime("%Y%m%d")
-        base_filename = f"{domain_name}_{current_date}"
+        base_filename = f"{domain_name}_{template_id}_{current_date}"
         
         # Save markdown first
         md_path = output_dir / f"{base_filename}.md"
@@ -319,6 +369,12 @@ class PolicyGenerator:
             table_rows.append(f"| {framework} | {ref} | {controls_string} |")
         
         return table_rows
+
+    def generate_policy_document(self, config: dict) -> str:
+        """Generate policy document based on configuration"""
+        template_id = config.get('template_id', 'standard')
+        # ... rest of the existing generation logic ...
+        return PolicyTemplate.render(template_data, template_id)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate policy document from configuration')

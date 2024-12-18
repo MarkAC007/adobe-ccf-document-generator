@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.9-slim
 
 # Install pandoc for document conversion
 RUN apt-get update && \
@@ -6,26 +6,31 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app/backend
+WORKDIR /app
 
 # Copy requirements and install dependencies
-COPY ./requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy backend files
-COPY ./scripts ./scripts
-COPY ./src ./src
-COPY ./data ./data
-COPY ./index.html .
+# Copy the backend code
+COPY src/ ./src/
+COPY scripts/ ./scripts/
+COPY data/ ./data/
+COPY templates/ ./templates/
 
-# Create output directory
+# Copy static files
+COPY static/ ./static/
+COPY index.html ./static/
+COPY template_editor.html ./static/
+
+# Create necessary directories
 RUN mkdir -p output/policies
 
 # Set environment variables
-ENV PYTHONPATH=/app/backend
+ENV PYTHONPATH=/app
 
 # Expose port
 EXPOSE 5000
 
-# Start the application
+# Run the application
 CMD ["python", "scripts/generate_policy_from_web.py"] 

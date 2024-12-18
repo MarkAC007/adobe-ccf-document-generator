@@ -1,0 +1,176 @@
+/* Template Editor specific styles */
+.editor-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+    gap: 20px;
+    padding: 20px;
+    flex: 1;
+}
+
+/* Templates List Panel */
+.templates-list {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.template-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.template-item:last-child {
+    border-bottom: none;
+}
+
+.template-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.template-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.badge {
+    background: #e9ecef;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    color: #666;
+}
+
+.template-description {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Template Actions */
+.template-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.save-button {
+    background-color: #28a745;  /* Green for save */
+}
+
+.save-button:hover {
+    background-color: #218838;
+}
+
+/* Editor Main Section */
+.editor-main {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.template-details {
+    margin-bottom: 20px;
+}
+
+.template-details input,
+.template-details textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.template-details textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.sections-editor {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Available and Template Sections */
+.draggable-sections,
+.sortable-sections {
+    min-height: 200px;
+    border: 2px dashed #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.section-item {
+    background: white;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    cursor: grab;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.section-content {
+    flex: 1;
+}
+
+.section-name {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.section-type {
+    display: block;
+    color: #666;
+    font-size: 0.8em;
+    margin-bottom: 4px;
+}
+
+.section-description {
+    display: block;
+    color: #666;
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+.controls {
+    display: flex;
+    gap: 5px;
+}
+
+.controls button {
+    padding: 4px 8px;
+    font-size: 0.9em;
+    background: none;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.controls button:hover {
+    background: #f8f9fa;
+    color: #333;
+}
+
+/* Drag and Drop States */
+.dragging {
+    opacity: 0.5;
+}
+
+.section-item.dragging {
+    background: #f8f9fa;
+    border: 2px dashed #FA0F00;
+} 
