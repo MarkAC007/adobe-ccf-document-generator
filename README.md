@@ -1,7 +1,7 @@
 # Adobe CCF Policy Generator
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Docker Image](https://github.com/markac007/adobe-ccf-policy-generator/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/markac007/adobe-ccf-policy-generator/pkgs/container/adobe-ccf-policy-generator)
+[![Docker Pulls](https://img.shields.io/docker/pulls/markac007/adobe-ccf-policy-generator)](https://hub.docker.com/r/markac007/adobe-ccf-policy-generator)
 
 A powerful web service that automatically generates policy documents based on [Adobe's Common Control Framework (CCF)](https://www.adobe.com/trust/compliance/adobe-ccf.html). This tool helps organizations streamline their compliance documentation process by generating standardized policy documents that align with various security frameworks.
 
@@ -26,12 +26,12 @@ A powerful web service that automatically generates policy documents based on [A
 
 ```bash
 # Pull and run the latest stable image
-docker pull ghcr.io/markac007/adobe-ccf-policy-generator:latest
-docker run -p 5000:5000 ghcr.io/markac007/adobe-ccf-policy-generator:latest
+docker pull markac007/adobe-ccf-policy-generator:latest
+docker run -p 5000:5000 markac007/adobe-ccf-policy-generator:latest
 
 # Or use the development version
-docker pull ghcr.io/markac007/adobe-ccf-policy-generator:dev
-docker run -p 5000:5000 ghcr.io/markac007/adobe-ccf-policy-generator:dev
+docker pull markac007/adobe-ccf-policy-generator:dev
+docker run -p 5000:5000 markac007/adobe-ccf-policy-generator:dev
 ```
 
 ### Building Locally with Docker
@@ -178,3 +178,4 @@ Found a security issue? Please report it by creating an [Issue](https://github.c
 - [ ] PDF output format
 - [ ] Add support for indented bullets
 
+.
