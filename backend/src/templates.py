@@ -4,7 +4,11 @@ from datetime import datetime
 import re
 
 class PolicyTemplate:
-    DEFAULT_TEMPLATE = """# ${policy_standard}
+    TEMPLATES = {
+        "standard": {
+            "name": "Standard Policy Template",
+            "description": "Default template with standard policy sections",
+            "content": """# ${policy_standard}
 
 ## Document Control
 - **Version:** 1.0
@@ -31,6 +35,85 @@ ${framework_references}
 |:----------|:----------|:---------|
 ${reverse_framework_references}
 """
+        },
+        "detailed": {
+            "name": "Detailed Policy Template",
+            "description": "Extended template with additional sections",
+            "content": """# ${policy_standard}
+
+## Document Control
+- **Version:** 1.0
+- **Last Updated:** ${current_date}
+- **Classification:** Internal
+- **Owner:** Information Security Team
+- **Next Review Date:** ${next_review_date}
+
+## Executive Summary
+This document outlines the comprehensive requirements for ${policy_standard_lower}. The policy is designed to ensure consistent and secure practices across the organization.
+
+## Purpose and Objectives
+This policy defines requirements for ${policy_standard_lower} with the following objectives:
+1. Establish clear governance and accountability
+2. Ensure regulatory compliance
+3. Protect organizational assets and data
+4. Enable secure business operations
+
+## Scope
+This policy applies to:
+- All employees and contractors
+- All systems and data
+- Third-party service providers
+- Business partners with access to systems
+
+## Definitions and Terminology
+| **Term** | **Definition** |
+|:---------|:--------------|
+| Control | A measure designed to provide reasonable assurance regarding the achievement of objectives |
+| Policy | A formal statement of rules and requirements that must be met |
+| Standard | A mandatory requirement that supports policies |
+| Procedure | A documented method to implement policies and standards |
+
+## Policy Requirements
+
+${control_sections}
+
+## Framework References
+| **Control ID** | **Framework** | **Reference** |
+|:-----------|:----------|:-----------|
+${framework_references}
+
+## Framework Reference Mapping
+| **Framework** | **Reference** | **Controls** |
+|:----------|:----------|:---------|
+${reverse_framework_references}
+
+## Compliance and Monitoring
+### Compliance Measurement
+- Regular assessments will be conducted to ensure compliance
+- Automated monitoring tools will be used where applicable
+- Quarterly compliance reports will be generated
+
+### Non-Compliance
+Violations of this policy may result in:
+1. Disciplinary action
+2. Termination of employment
+3. Legal action if warranted
+
+## Review and Updates
+- This policy will be reviewed annually
+- Updates will be made in response to:
+  - Changes in business requirements
+  - New security threats
+  - Regulatory changes
+  - Lessons learned from incidents
+
+## Document History
+| **Version** | **Date** | **Changes** | **Approved By** |
+|:------------|:---------|:------------|:----------------|
+| 1.0 | ${current_date} | Initial Release | Information Security Team |
+"""
+        }
+    }
 
     CONTROL_SECTION_TEMPLATE = """### ${control_id} - ${control_name}
 
@@ -70,56 +153,56 @@ ${evidence_table}
         # Format as numbered list
         return '\n'.join(f"{i+1}. {item}" for i, item in enumerate(items))
 
-    @classmethod
-    def render(cls, data: Dict) -> str:
-        """Render the policy template with provided data"""
-        # Add current date to template data
-        data['current_date'] = datetime.now().strftime("%Y-%m-%d")
-        
-        # Prepare control sections
-        control_sections = []
-        for control in data.get('controls', []):
-            # Format numbered lists
-            implementation = cls._format_numbered_list(control.get('implementation_guidance', ''))
-            testing = cls._format_numbered_list(control.get('testing_procedure', ''))
-            
-            # Format evidence table rows
-            evidence_rows = []
-            for evidence in control.get('evidence_details', []):
-                evidence_rows.append(
-                    f"| {evidence['id']} | {evidence['domain']} | {evidence['title']} |"
-                )
-            evidence_table = '\n'.join(evidence_rows) if evidence_rows else '| - | - | - |'
-            
-            # Prepare control section data
-            control_data = {
-                'control_id': control.get('ccf_id', ''),
-                'control_name': control.get('control_name', ''),
-                'control_theme': control.get('control_theme', ''),
-                'control_type': control.get('control_type', ''),
-                'policy_description': control.get('control_description', ''),
-                'formatted_implementation': implementation,
-                'formatted_testing': testing,
-                'evidence_table': evidence_table
-            }
-            
-            # Render control section
-            control_section = Template(cls.CONTROL_SECTION_TEMPLATE).substitute(control_data)
-            control_sections.append(control_section)
+    def __init__(self, template_id="standard"):
+        self.template_id = template_id
+        self.template = self.TEMPLATES[template_id]["content"]
 
+    @classmethod
+    def get_available_templates(cls):
+        """Return list of available templates with metadata"""
+        return {
+            template_id: {
+                "name": template["name"],
+                "description": template["description"],
+                "sections": cls.get_template_sections(template_id)
+            }
+            for template_id, template in cls.TEMPLATES.items()
+        }
+
+    @classmethod
+    def get_template_sections(cls, template_id: str) -> List[str]:
+        """Get main sections from template"""
+        template = cls.TEMPLATES.get(template_id, cls.TEMPLATES["standard"])
+        content = template["content"]
+        # Extract section headers (##)
+        sections = [
+            section.strip().split('\n')[0].replace('##', '').strip()
+            for section in content.split('##')
+            if section.strip() and not section.startswith('#')
+        ]
+        return sections
+
+    @classmethod
+    def render(cls, data: Dict, template_id: str = "standard") -> str:
+        """Render the policy template with provided data"""
+        print(f"Rendering template: {template_id}")  # Debug log
+        
+        if template_id not in cls.TEMPLATES:
+            print(f"Warning: Template {template_id} not found, using standard")
+            template_id = "standard"
+        
+        template_instance = cls(template_id)
+        
+        # Print template sections for debugging
+        sections = [s.strip().split('\n')[0] for s in template_instance.template.split('##') if s.strip()]
+        print(f"Template sections: {sections}")
+        
         # Render main template
-        return Template(cls.DEFAULT_TEMPLATE).substitute(
-            policy_standard=data['policy_standard'],
-            policy_standard_lower=data['policy_standard'].lower(),
-            current_date=data['current_date'],
-            control_sections='\n\n'.join(control_sections),
-            framework_references='\n'.join(data.get('framework_references', [])),
-            reverse_framework_references='\n'.join(data.get('reverse_framework_references', []))
-        )
+        return Template(template_instance.template).substitute(data)
 
     @classmethod
     def from_file(cls, template_path: str) -> 'PolicyTemplate':
         """Create template instance from file"""
         with open(template_path, 'r') as f:
-            cls.DEFAULT_TEMPLATE = f.read()
+            cls.TEMPLATES["standard"]["content"] = f.read()
         return cls

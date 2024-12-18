@@ -368,6 +368,19 @@
         </div>
 
         <div class="section">
+            <label for="templateSelect">Select Template:</label>
+            <select id="templateSelect">
+                <option value="">Loading templates...</option>
+            </select>
+            <div class="template-info" style="margin-top: 12px;">
+                <p class="template-description" style="font-size: 13px; color: #666; margin-bottom: 8px;"></p>
+                <div class="template-preview" style="font-size: 12px; color: #888;">
+                    <strong>Sections:</strong> <span class="template-sections"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
             <label for="frameworkSelect">Select Frameworks (Hold Ctrl/Cmd to select multiple):</label>
             <select id="frameworkSelect" class="multiselect" multiple>
                 <option value="nist_cybersecurity">NIST CSF</option>
@@ -440,12 +453,55 @@
 
         let currentMarkdown = ''; // Store the current markdown content
 
+        async function loadTemplates() {
+            try {
+                const response = await fetch('http://localhost:5000/templates');
+                const templates = await response.json();
+                
+                const templateSelect = document.getElementById('templateSelect');
+                templateSelect.innerHTML = '';
+                
+                Object.entries(templates).forEach(([id, template]) => {
+                    const option = document.createElement('option');
+                    option.value = id;
+                    option.textContent = template.name;
+                    option.dataset.description = template.description;
+                    option.dataset.sections = template.sections.join(',');
+                    templateSelect.appendChild(option);
+                });
+                
+                // Show description for initial template
+                updateTemplateDescription();
+            } catch (error) {
+                console.error('Failed to load templates:', error);
+            }
+        }
+
+        function updateTemplateDescription() {
+            const templateSelect = document.getElementById('templateSelect');
+            const descriptionElement = document.querySelector('.template-description');
+            const sectionsElement = document.querySelector('.template-sections');
+            const selectedOption = templateSelect.options[templateSelect.selectedIndex];
+            
+            if (selectedOption && selectedOption.dataset.description) {
+                descriptionElement.textContent = selectedOption.dataset.description;
+                const sections = selectedOption.dataset.sections?.split(',') || [];
+                sectionsElement.textContent = sections.join(' • ');
+            } else {
+                descriptionElement.textContent = '';
+                sectionsElement.textContent = '';
+            }
+        }
+
         async function generatePolicy() {
             const policySelect = document.getElementById('policySelect');
             const frameworkSelect = document.getElementById('frameworkSelect');
+            const templateSelect = document.getElementById('templateSelect');
             const output = document.getElementById('output');
             const markdownOutput = document.getElementById('markdownOutput');
             const copyButton = document.getElementById('copyButton');
+            
+            console.log("Selected template:", templateSelect.value); // Debug log
             
             if (!policySelect.value) {
                 alert('Please select a policy');
@@ -456,7 +512,8 @@
 
             const policy = {
                 policy_standard: policySelect.options[policySelect.selectedIndex].text,
-                selected_frameworks: selectedFrameworks
+                selected_frameworks: selectedFrameworks,
+                template_id: templateSelect.value
             };
 
             output.textContent = JSON.stringify(policy, null, 4);
@@ -496,7 +553,8 @@
                     },
                     body: JSON.stringify({
                         policy_standard: policySelect.options[policySelect.selectedIndex].text,
-                        selected_frameworks: Array.from(frameworkSelect.selectedOptions).map(option => option.value)
+                        selected_frameworks: Array.from(frameworkSelect.selectedOptions).map(option => option.value),
+                        template_id: templateSelect.value
                     })
                 });
 
@@ -518,6 +576,11 @@
                 alert(`Error downloading document: ${error.message}`);
             }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTemplates();
+            document.getElementById('templateSelect').addEventListener('change', updateTemplateDescription);
+        });
     </script>
 </body>
 </html> 

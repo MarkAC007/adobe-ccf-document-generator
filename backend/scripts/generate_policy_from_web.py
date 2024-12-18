@@ -20,8 +20,11 @@ CORS(app)
 
 def generate_policy_from_web_config(config_data, output_format='md'):
     try:
+        print(f"Received config: {config_data}")  # Debug log
         generator = PolicyGenerator()
         output_file = generator.generate_policy(config_data, output_format)
+        
+        print(f"Generated file: {output_file}")  # Debug log
         
         # Get the filename from the output path
         filename = Path(output_file).name
@@ -40,9 +43,10 @@ def generate_policy_from_web_config(config_data, output_format='md'):
             "content": content if output_format == 'md' else base64.b64encode(content).decode(),
             "format": output_format,
             "filename": filename,
-            "message": f"Successfully generated policy for {config_data['policy_standard']}"
+            "message": f"Successfully generated policy for {config_data['policy_standard']} using template {config_data.get('template_id', 'standard')}"
         }
     except Exception as e:
+        print(f"Error generating policy: {str(e)}")  # Debug log
         return {"error": str(e)}
 
 @app.route('/')
@@ -62,6 +66,16 @@ def generate_policy_endpoint():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)})
+
+@app.route('/templates', methods=['GET'])
+def get_templates():
+    """Return available templates with metadata"""
+    templates = PolicyTemplate.get_available_templates()
+    # Add section information for each template
+    for template_id, template in templates.items():
+        sections = PolicyTemplate.get_template_sections(template_id)
+        template['sections'] = sections
+    return jsonify(templates)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
