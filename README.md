@@ -25,7 +25,7 @@ A powerful web service that automatically generates policy documents based on [A
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/adobe-ccf-policy-generator.git
+git clone https://github.com/markac007/adobe-ccf-policy-generator.git
 cd adobe-ccf-policy-generator
 
 # Build and run with Docker
@@ -155,3 +155,5 @@ Found a security issue? Please report it by creating an [Issue](https://github.c
 - [ ] Enhanced UI for policy generation
 - [ ] Batch processing capabilities
 - [ ] PDF output format
+- [ ] Add support for indented bullets
+
