@@ -1,15 +1,32 @@
 # Asset Management Policy
 
-## Document Control
-- **Version:** 1.0
-- **Last Updated:** 2024-12-18
-- **Classification:** Internal
-
 ## Purpose
-This policy defines requirements for asset management policy.
+
+This policy defines requirements for asset management policy with the following objectives:
+1. Establish clear governance and accountability
+2. Ensure regulatory compliance
+3. Protect organizational assets and data
+4. Enable secure business operations
 
 ## Scope
-This policy applies to all systems and data.
+
+This policy applies to:
+- All employees and contractors
+- All systems and data
+- Third-party service providers
+- Business partners with access to systems
+
+## Document Control
+
+
+## Definitions
+
+| **Term** | **Definition** |
+|:---------|:--------------|
+| Control | A measure designed to provide reasonable assurance regarding the achievement of objectives |
+| Policy | A formal statement of rules and requirements that must be met |
+| Standard | A mandatory requirement that supports policies |
+| Procedure | A documented method to implement policies and standards |
 
 ## Policy Requirements
 
@@ -73,35 +90,6 @@ Evidence Required:
 | E-AM-03 | Asset Management | Asset Reconciliation Records |
 
 
-### AM-05 - Inventory Labels
-
-#### Control Information
-| **Type** | **Theme** |
-|:-----|:------|
-| Preventive | Process |
-
-#### Policy Description
-Organization assets are labeled and have designated owners.
-
-#### Implementation Requirements
-1. Ensure all assets in the system device asset inventory are assigned appropriate labels as per the organization's labelling procedures.
-2. Ensure each asset has an assigned owner and accuracy is maintained.
-
-#### Testing Procedures
-1. Inspect documentation to determine whether requirements for asset labelling ownership assessment are defined.
-2. Inspect the asset listings to determine whether the assets are labelled and have a designated owner.
-3. For a sample of services, inspect the asset reports to determine asset are labelled and have a designated owner.
-4. Observe and compare physical assets at an organization's data center to determine whether the assets were labelled according to in-scope asset listings.
-
-#### Audit Requirements
-Evidence Required:
-
-| **ID** | **Domain** | **Title** |
-|:---|:-------|:------|
-| E-AM-02 | Asset Management | Asset Inventory |
-| E-AM-01 | Asset Management | Asset Management Policy |
-
-
 ### AM-07 - Asset Transportation Authorization
 
 #### Control Information
@@ -158,17 +146,17 @@ Evidence Required:
 
 
 ## Framework References
+
 | **Control ID** | **Framework** | **Reference** |
 |:-----------|:----------|:-----------|
 | AM-01 | HIPAA Security | 164.310(d)(1) |
-| AM-01 | SOC 2 | CC6.1 |
+| AM-01 | NIST CSF | ID.AM-1, ID.AM-2 |
 | AM-02 | HIPAA Security | 164.310(d)(1) |
-| AM-02 | SOC 2 | CC6.1 |
-| AM-05 | SOC 2 | CC6.1 |
+| AM-02 | NIST CSF | ID.AM-1, ID.AM-2 |
 | AM-07 | HIPAA Security | 164.310(d)(1), 164.310(d)(2)(iii) |
-| AM-07 | SOC 2 | CC6.7 |
+| AM-07 | NIST CSF | ID.AM-4, PR.DS-3 |
 | AM-10 | HIPAA Security | 164.310(a)(2)(iv) |
-| AM-10 | SOC 2 | A1.2 |
+| AM-10 | NIST CSF | PR.DS-8, PR.MA-1 |
 
 ## Framework Reference Mapping
 | **Framework** | **Reference** | **Controls** |
@@ -176,6 +164,9 @@ Evidence Required:
 | HIPAA Security | 164.310(a)(2)(iv) | AM-10 |
 | HIPAA Security | 164.310(d)(1) | AM-01, AM-02, AM-07 |
 | HIPAA Security | 164.310(d)(2)(iii) | AM-07 |
-| SOC 2 | A1.2 | AM-10 |
-| SOC 2 | CC6.1 | AM-01, AM-02, AM-05 |
-| SOC 2 | CC6.7 | AM-07 |
+| NIST CSF | ID.AM-1 | AM-01, AM-02 |
+| NIST CSF | ID.AM-2 | AM-01, AM-02 |
+| NIST CSF | ID.AM-4 | AM-07 |
+| NIST CSF | PR.DS-3 | AM-07 |
+| NIST CSF | PR.DS-8 | AM-10 |
+| NIST CSF | PR.MA-1 | AM-10 |

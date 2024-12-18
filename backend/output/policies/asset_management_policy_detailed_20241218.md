@@ -94,6 +94,90 @@ Evidence Required:
 | E-AM-03 | Asset Management | Asset Reconciliation Records |
 
 
+### AM-04 - Inventory Reconciliation: Logging
+
+#### Control Information
+| **Type** | **Theme** |
+|:-----|:------|
+| Preventive | Process |
+
+#### Policy Description
+Organization reconciles the enterprise log repository against the established device inventory on a quarterly basis; non-inventoried devices are assigned an owner.
+
+#### Implementation Requirements
+1. Ensure logs from enterprise logging solutions are reconciled with the system device asset inventory on a quarterly basis.
+2. Ensure necessary actions are taken to include non-inventoried assets in the inventory with appropriate ownership details
+
+#### Testing Procedures
+1. Inspect the reconciliation report of enterprise log repository against the established device inventory to determine that the inventories are reconciled on a quarterly basis.
+2. Inspect the non-inventoried devices to determine that the assets have a designed owner.
+
+#### Audit Requirements
+Evidence Required:
+
+| **ID** | **Domain** | **Title** |
+|:---|:-------|:------|
+| E-AM-03 | Asset Management | Asset Reconciliation Records |
+| E-AM-02 | Asset Management | Asset Inventory |
+
+
+### AM-05 - Inventory Labels
+
+#### Control Information
+| **Type** | **Theme** |
+|:-----|:------|
+| Preventive | Process |
+
+#### Policy Description
+Organization assets are labeled and have designated owners.
+
+#### Implementation Requirements
+1. Ensure all assets in the system device asset inventory are assigned appropriate labels as per the organization's labelling procedures.
+2. Ensure each asset has an assigned owner and accuracy is maintained.
+
+#### Testing Procedures
+1. Inspect documentation to determine whether requirements for asset labelling ownership assessment are defined.
+2. Inspect the asset listings to determine whether the assets are labelled and have a designated owner.
+3. For a sample of services, inspect the asset reports to determine asset are labelled and have a designated owner.
+4. Observe and compare physical assets at an organization's data center to determine whether the assets were labelled according to in-scope asset listings.
+
+#### Audit Requirements
+Evidence Required:
+
+| **ID** | **Domain** | **Title** |
+|:---|:-------|:------|
+| E-AM-02 | Asset Management | Asset Inventory |
+| E-AM-01 | Asset Management | Asset Management Policy |
+
+
+### AM-06 - Media Marking
+
+#### Control Information
+| **Type** | **Theme** |
+|:-----|:------|
+| Preventive | Process |
+
+#### Policy Description
+Where applicable, Organization marks information system media indicating the distribution limitations, handling caveats, and applicable security markings (if any) of the information. Exemptions must be approved by management and remain in a specific controlled area.
+
+#### Implementation Requirements
+1. Ensure that a process is established and documented for media marking and handling, including distribution limitation.
+2. Ensure that sensitive information containing media is marked as per the organization's media marking requirements as applicable.
+3. Ensure that any exceptions are approved by management, documented and retained by authorized personnel.
+
+#### Testing Procedures
+1. Inspect information system media marking to indicate the distribution limitations, handling caveats, and applicable security markings (if any) of the information.
+2. Inspect exemption cases to validate that it must be approved by management and remain in a specific area.
+
+#### Audit Requirements
+Evidence Required:
+
+| **ID** | **Domain** | **Title** |
+|:---|:-------|:------|
+| E-AM-01 | Asset Management | Asset Management Policy |
+| E-AM-05 | Asset Management | Evidence of Media Snapshots |
+
+
 ### AM-07 - Asset Transportation Authorization
 
 #### Control Information
@@ -119,6 +203,61 @@ Evidence Required:
 |:---|:-------|:------|
 | E-AM-01 | Asset Management | Asset Management Policy |
 | E-AM-06 | Asset Management | Asset Movement Records |
+
+
+### AM-08 - Asset Transportation Documentation
+
+#### Control Information
+| **Type** | **Theme** |
+|:-----|:------|
+| Preventive | Process |
+
+#### Policy Description
+Organization documents the transportation of physical media outside of datacenters. Physical media is packaged securely and transported in a secure, traceable manner.
+
+#### Implementation Requirements
+1. Ensure appropriate records and approvals are obtained and documented against entry and exit of each asset.
+2. Ensure all assets being transported are secured as per the organization's policy and can be tracked when offsite.
+
+#### Testing Procedures
+1. Inspect the policy and/or standard to determine whether the transportation of physical media outside of datacenters are defined.
+2. Inspect the logs of physical media evidence that have been transported to determine that physical media is packed securely and transported in a secure, traceable manner.
+
+#### Audit Requirements
+Evidence Required:
+
+| **ID** | **Domain** | **Title** |
+|:---|:-------|:------|
+| E-AM-01 | Asset Management | Asset Management Policy |
+| E-AM-06 | Asset Management | Asset Movement Records |
+
+
+### AM-09 - Use of Portable Media
+
+#### Control Information
+| **Type** | **Theme** |
+|:-----|:------|
+| Preventive | Process |
+
+#### Policy Description
+The use of portable media in Organization datacenters is prohibited unless explicitly authorized by management.
+
+#### Implementation Requirements
+1. Ensure policy and procedures are established and communicated prohibiting the use of portable media.
+2. Ensure necessary controls are in place to detect the usage of portable media inside the organization's network.
+3. Ensure any exceptions are documented based on business justification and need and are approved appropriately.
+
+#### Testing Procedures
+1. Inspect the policy and/or standard to determine that the use of portable media in the datacenters is prohibited unless explicitly authorized by management.
+2. Inspect Configurations to detect the use of portable media.
+
+#### Audit Requirements
+Evidence Required:
+
+| **ID** | **Domain** | **Title** |
+|:---|:-------|:------|
+| E-AM-01 | Asset Management | Asset Management Policy |
+| E-AM-07 | Asset Management | Portable Media Configuration Evidence |
 
 
 ### AM-10 - Maintenance of Assets
@@ -149,23 +288,63 @@ Evidence Required:
 | E-AM-08 | Asset Management | Asset Maintenance Records |
 
 
+### AM-12 - Component Installation: Inspection and Approval
+
+#### Control Information
+| **Type** | **Theme** |
+|:-----|:------|
+| Preventive | Process |
+
+#### Policy Description
+Prior to installation in a production network, hardware components are inspected for improper or unauthorized modifications.
+
+#### Implementation Requirements
+1. Ensure a process is established and documented for approval of hardware prior to installation on production.
+2. Ensure each asset is inspected with agreed on procedures before being enabled on production.
+
+#### Testing Procedures
+1. Validate if a process exists for the approval and verification of hardware prior to production installation.
+2. Inspect hardware components installation records in a production network to determine that modifications were validated before installation.
+
+#### Audit Requirements
+Evidence Required:
+
+| **ID** | **Domain** | **Title** |
+|:---|:-------|:------|
+| E-AM-01 | Asset Management | Asset Management Policy |
+| E-AM-10 | Asset Management | Hardware Installation Records |
+
+
 ## Framework References
 | **Control ID** | **Framework** | **Reference** |
 |:-----------|:----------|:-----------|
-| AM-01 | NIST CSF | ID.AM-1, ID.AM-2 |
-| AM-02 | NIST CSF | ID.AM-1, ID.AM-2 |
-| AM-07 | NIST CSF | ID.AM-4, PR.DS-3 |
-| AM-10 | NIST CSF | PR.DS-8, PR.MA-1 |
+| AM-01 | FedRAMP Moderate | CM-08, CM-08 (01) |
+| AM-02 | FedRAMP Moderate | CM-08, CM-08 (01) |
+| AM-04 | FedRAMP Moderate | CM-08 (03) |
+| AM-05 | FedRAMP Moderate | CM-08 |
+| AM-06 | FedRAMP Moderate | MP-03 |
+| AM-07 | FedRAMP Moderate | MA-02, PE-08, SA-09 (05) |
+| AM-08 | FedRAMP Moderate | MA-02, MP-05 |
+| AM-09 | FedRAMP Moderate | MP-05, MP-07 |
+| AM-10 | FedRAMP Moderate | CM-08, MA-02, MA-03, MA-04, MP-01 |
+| AM-12 | FedRAMP Moderate | MA-03 (02) |
 
 ## Framework Reference Mapping
 | **Framework** | **Reference** | **Controls** |
 |:----------|:----------|:---------|
-| NIST CSF | ID.AM-1 | AM-01, AM-02 |
-| NIST CSF | ID.AM-2 | AM-01, AM-02 |
-| NIST CSF | ID.AM-4 | AM-07 |
-| NIST CSF | PR.DS-3 | AM-07 |
-| NIST CSF | PR.DS-8 | AM-10 |
-| NIST CSF | PR.MA-1 | AM-10 |
+| FedRAMP Moderate | CM-08 | AM-01, AM-02, AM-05, AM-10 |
+| FedRAMP Moderate | CM-08 (01) | AM-01, AM-02 |
+| FedRAMP Moderate | CM-08 (03) | AM-04 |
+| FedRAMP Moderate | MA-02 | AM-07, AM-08, AM-10 |
+| FedRAMP Moderate | MA-03 | AM-10 |
+| FedRAMP Moderate | MA-03 (02) | AM-12 |
+| FedRAMP Moderate | MA-04 | AM-10 |
+| FedRAMP Moderate | MP-01 | AM-10 |
+| FedRAMP Moderate | MP-03 | AM-06 |
+| FedRAMP Moderate | MP-05 | AM-08, AM-09 |
+| FedRAMP Moderate | MP-07 | AM-09 |
+| FedRAMP Moderate | PE-08 | AM-07 |
+| FedRAMP Moderate | SA-09 (05) | AM-07 |
 
 ## Compliance and Monitoring
 ### Compliance Measurement
