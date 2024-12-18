@@ -2,8 +2,17 @@
   "matrix_only": {
     "name": "Matrix ONLY",
     "description": "",
-    "content": "# ${policy_standard}\n\n## Definitions\n\n| **Term** | **Definition** |\n|:---------|:--------------|\n| Control | A measure designed to provide reasonable assurance regarding the achievement of objectives |\n| Policy | A formal statement of rules and requirements that must be met |\n| Standard | A mandatory requirement that supports policies |\n| Procedure | A documented method to implement policies and standards |\n\n## Framework References\n\n| **Control ID** | **Framework** | **Reference** |\n|:-----------|:----------|:-----------|\n${framework_references}\n\n## Framework Reference Mapping\n| **Framework** | **Reference** | **Controls** |\n|:----------|:----------|:---------|\n${reverse_framework_references}\n",
+    "content": "# ${policy_standard}\n\n---\n\n## Framework References\n\n| **Control ID** | **Framework** | **Reference** |\n|:-----------|:----------|:-----------|\n${framework_references}\n\n---\n\n## Framework Reference Mapping\n| **Framework** | **Reference** | **Controls** |\n|:----------|:----------|:---------|\n${reverse_framework_references}\n\n---\n\n## Definitions\n\n| **Term** | **Definition** |\n|:---------|:--------------|\n| Control | A measure designed to provide reasonable assurance regarding the achievement of objectives |\n| Policy | A formal statement of rules and requirements that must be met |\n| Standard | A mandatory requirement that supports policies |\n| Procedure | A documented method to implement policies and standards |\n",
     "sections": [
+      {
+        "type": "framework_references",
+        "config": {
+          "description": "Map policy controls to compliance frameworks",
+          "name": "Framework References",
+          "required": true,
+          "type": "table"
+        }
+      },
       {
         "type": "definitions",
         "config": {
@@ -13,15 +22,6 @@
           ],
           "description": "Define key terms and concepts used in the policy",
           "name": "Definitions",
-          "type": "table"
-        }
-      },
-      {
-        "type": "framework_references",
-        "config": {
-          "description": "Map policy controls to compliance frameworks",
-          "name": "Framework References",
-          "required": true,
           "type": "table"
         }
       }

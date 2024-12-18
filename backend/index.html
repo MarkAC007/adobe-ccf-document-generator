@@ -29,7 +29,6 @@
                 <p>Generate standardized security policies based on Adobe's Common Control Framework</p>
                 <div class="ccf-diagram">
                     <h3>Framework Alignment - CCF version 5</h3>
-                    <p>This tool leverages Adobe CCF's unified control framework to generate policies that align with multiple compliance standards simultaneously.</p>
                 </div>
             </div>
             
@@ -75,9 +74,6 @@
                 </select>
                 <div class="template-info" style="margin-top: 12px;">
                     <p class="template-description" style="font-size: 13px; color: #666; margin-bottom: 8px;"></p>
-                    <div class="template-preview" style="font-size: 12px; color: #888;">
-                        <strong>Sections:</strong> <span class="template-sections"></span>
-                    </div>
                 </div>
             </div>
 
@@ -161,16 +157,12 @@
         function updateTemplateDescription() {
             const templateSelect = document.getElementById('templateSelect');
             const descriptionElement = document.querySelector('.template-description');
-            const sectionsElement = document.querySelector('.template-sections');
             const selectedOption = templateSelect.options[templateSelect.selectedIndex];
             
             if (selectedOption && selectedOption.dataset.description) {
                 descriptionElement.textContent = selectedOption.dataset.description;
-                const sections = selectedOption.dataset.sections?.split(',') || [];
-                sectionsElement.textContent = sections.join(' • ');
             } else {
                 descriptionElement.textContent = '';
-                sectionsElement.textContent = '';
             }
         }
 

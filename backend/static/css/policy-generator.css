@@ -63,3 +63,72 @@ button {
 }
 
 /* Add other policy generator specific styles... */ 
+
+/* Markdown Table Styles */
+#markdownOutput table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#markdownOutput th {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+}
+
+#markdownOutput td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    vertical-align: top;
+    color: #444;
+}
+
+#markdownOutput tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+#markdownOutput tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Other Markdown Content Styles */
+#markdownOutput h1, 
+#markdownOutput h2, 
+#markdownOutput h3 {
+    color: #333;
+    margin-top: 3em;
+    margin-bottom: 0.75em;
+}
+
+#markdownOutput p {
+    line-height: 1.6;
+    margin-bottom: 1em;
+}
+
+#markdownOutput ul, 
+#markdownOutput ol {
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+#markdownOutput li {
+    margin-bottom: 0.5em;
+}
+
+/* First heading shouldn't have top margin */
+#markdownOutput h1:first-child {
+    margin-top: 0;
+}
+
+/* Add section breaks */
+#markdownOutput hr {
+    margin: 2em 0;
+    border: none;
+    border-top: 1px solid #dee2e6;
+} 

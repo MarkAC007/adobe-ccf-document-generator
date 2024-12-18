@@ -53,6 +53,21 @@
     display: block;
 }
 
+/* Template Actions */
+.template-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.save-button {
+    background-color: #28a745;  /* Green for save */
+}
+
+.save-button:hover {
+    background-color: #218838;
+}
+
 /* Editor Main Section */
 .editor-main {
     background: white;
