@@ -178,3 +178,4 @@ Found a security issue? Please report it by creating an [Issue](https://github.c
 - [ ] PDF output format
 - [ ] Add support for indented bullets
 
+.
