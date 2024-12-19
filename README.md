@@ -3,6 +3,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Docker Pulls](https://img.shields.io/docker/pulls/markac007/adobe-ccf-policy-generator)](https://hub.docker.com/r/markac007/adobe-ccf-policy-generator)
 
+🚀 **Try it out:** [Live Demo](https://adobe-ccf-demo.compliancegenie.io/)
+
 A powerful web service that automatically generates policy documents based on [Adobe's Common Control Framework (CCF)](https://www.adobe.com/trust/compliance/adobe-ccf.html). This tool helps organizations streamline their compliance documentation process by generating standardized policy documents that align with various security frameworks.
 
 <p align="center">
@@ -19,8 +21,14 @@ A powerful web service that automatically generates policy documents based on [A
 - **Framework Mapping**: Automatic mapping between different security frameworks
 - **REST API**: Simple HTTP endpoint for easy integration
 - **Docker Support**: Ready-to-use containerized deployment
+- **Visual Template Editor**: Drag-and-drop interface for creating custom templates
+- **Modern UI**: Clean, responsive interface with Adobe design elements
 
 ## 🚀 Quick Start
+
+### Try the Demo
+
+Visit our [live demo](https://adobe-ccf-demo.compliancegenie.io/) to try the policy generator without installation.
 
 ### Using Pre-built Docker Image
 
@@ -97,6 +105,9 @@ backend/
 │   └── generate_policy_from_input.py  # Core generation logic
 ├── templates/
 │   └── policy_template.md   # Default template
+├── static/
+│   ├── css/                 # Styling files
+│   └── js/                  # JavaScript files
 └── data/
     └── processed/           # Processed control data
         ├── control_guidance.json
