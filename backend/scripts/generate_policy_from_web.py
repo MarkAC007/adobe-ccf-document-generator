@@ -52,7 +52,8 @@ def add_security_headers(response):
         "default-src 'self'; "
         "script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com cdn.jsdelivr.net; "
         "style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; "
-        "font-src 'self' cdnjs.cloudflare.com"
+        "font-src 'self' cdnjs.cloudflare.com; "
+        "connect-src 'self' http://localhost:5000"
     )
     
     # Ensure CORS headers are present
