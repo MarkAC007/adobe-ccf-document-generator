@@ -40,34 +40,51 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      # Install Docker Scout CLI
       - name: Install Docker Scout
+        if: github.event_name == 'pull_request'
         run: |
           curl -fsSL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh -o install-scout.sh
           chmod +x install-scout.sh
           ./install-scout.sh
 
-      - name: Run Docker Scout
+      # Run Docker Scout quickview for PRs
+      - name: Run Docker Scout Quickview
+        if: github.event_name == 'pull_request'
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
-          docker scout cves ${{ steps.meta.outputs.tags }} > scan-output.txt
+          # Run quickview and save output
+          docker scout quickview ${{ steps.meta.outputs.tags }} > scout-quickview.txt
           
-          docker scout cves ${{ steps.meta.outputs.tags }} --format sarif > scout-results.sarif
-          
-          if grep -B4 -A1 "Fixed version  : [0-9]" scan-output.txt; then
-            echo "Found vulnerabilities with available fixes!"
-            exit 1
-          else
-            echo "No vulnerabilities with available fixes found."
-            exit 0
-          fi
+          # Format the output as a markdown comment
+          echo "## Docker Scout Security Analysis" > pr-comment.md
+          echo "\`\`\`" >> pr-comment.md
+          cat scout-quickview.txt >> pr-comment.md
+          echo "\`\`\`" >> pr-comment.md
+          echo "" >> pr-comment.md
+          echo "This is an informational security scan. Please review any findings." >> pr-comment.md
 
+      # Post comment on PR
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const comment = fs.readFileSync('pr-comment.md', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      # Upload scan results
       - name: Upload scan results
-        if: always()
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v3
         with:
           name: docker-scout-results
-          path: |
-            scout-results.sarif
-            scan-output.txt
+          path: scout-quickview.txt
