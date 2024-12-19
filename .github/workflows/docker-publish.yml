@@ -54,7 +54,7 @@ jobs:
           chmod +x install-scout.sh
           ./install-scout.sh
 
-      # Run Docker Scout quickview for PRs
+      # Run Docker Scout Quickview and prepare PR comment
       - name: Run Docker Scout Quickview
         if: github.event_name == 'pull_request'
         env:
@@ -69,7 +69,10 @@ jobs:
           docker scout quickview $IMAGE_TAG > scout-quickview.txt
           
           # Format the output as a markdown comment
-          echo "## Docker Scout Security Analysis" > pr-comment.md
+          echo "## Docker Image" > pr-comment.md
+          echo "Image to test: \`$IMAGE_TAG\`" >> pr-comment.md
+          echo "" >> pr-comment.md
+          echo "## Docker Scout Security Analysis" >> pr-comment.md
           echo "\`\`\`" >> pr-comment.md
           cat scout-quickview.txt >> pr-comment.md
           echo "\`\`\`" >> pr-comment.md
