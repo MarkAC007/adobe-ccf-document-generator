@@ -18,7 +18,17 @@ from jinja2 import Template
 app = Flask(__name__, 
            static_folder=str(Path(__file__).parent.parent / 'static'),
            static_url_path='/static')
-CORS(app)
+# Configure CORS with development-friendly settings
+CORS(app, resources={
+    r"/*": {
+        "origins": ["http://localhost:5000", "null", "file://"],  # Allow local file access
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],  # More permissive headers
+        "expose_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True,
+        "max_age": 3600
+    }
+})
 
 # Debug print to verify paths
 print("Static folder path:", app.static_folder)
@@ -30,6 +40,28 @@ PolicyTemplate.load_templates()
 @app.after_request
 def after_request(response):
     print(f"Request: {request.path} -> Status: {response.status_code}")
+    return response
+
+# Add security headers middleware
+@app.after_request
+def add_security_headers(response):
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    response.headers['Content-Security-Policy'] = (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com cdn.jsdelivr.net; "
+        "style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; "
+        "font-src 'self' cdnjs.cloudflare.com"
+    )
+    
+    # Ensure CORS headers are present
+    if 'Origin' in request.headers:
+        response.headers['Access-Control-Allow-Origin'] = request.headers['Origin']
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    else:
+        response.headers['Access-Control-Allow-Origin'] = '*'
+    
     return response
 
 def generate_policy_from_web_config(config_data, output_format='md'):

@@ -1,16 +1,22 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
-# Install pandoc for document conversion
+# Install pandoc and essential build tools
 RUN apt-get update && \
-    apt-get install -y pandoc && \
+    apt-get install -y --no-install-recommends \
+    pandoc \
+    build-essential && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+# Create non-root user for security
+RUN useradd -m -r appuser
 
 WORKDIR /app
 
 # Copy requirements and install dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip install --upgrade pip setuptools
 
 # Copy the backend code
 COPY src/ ./src/
@@ -23,11 +29,15 @@ COPY static/ ./static/
 COPY index.html ./static/
 COPY template_editor.html ./static/
 
-# Create necessary directories
-RUN mkdir -p output/policies
+# Create necessary directories and set permissions
+RUN mkdir -p output/policies && \
+    chown -R appuser:appuser /app
 
 # Set environment variables
 ENV PYTHONPATH=/app
+
+# Switch to non-root user
+USER appuser
 
 # Expose port
 EXPOSE 5000
