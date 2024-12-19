@@ -51,14 +51,23 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
-          docker scout cves ${{ steps.meta.outputs.tags }} \
-            --exit-code \
-            --only-fixed \
-            --format sarif > scout-results.sarif
+          docker scout cves ${{ steps.meta.outputs.tags }} > scan-output.txt
+          
+          docker scout cves ${{ steps.meta.outputs.tags }} --format sarif > scout-results.sarif
+          
+          if grep -B4 -A1 "Fixed version  : [0-9]" scan-output.txt; then
+            echo "Found vulnerabilities with available fixes!"
+            exit 1
+          else
+            echo "No vulnerabilities with available fixes found."
+            exit 0
+          fi
 
       - name: Upload scan results
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: docker-scout-results
-          path: scout-results.sarif
+          path: |
+            scout-results.sarif
+            scan-output.txt
