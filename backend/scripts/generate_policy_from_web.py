@@ -18,12 +18,18 @@ from jinja2 import Template
 app = Flask(__name__, 
            static_folder=str(Path(__file__).parent.parent / 'static'),
            static_url_path='/static')
-# Configure CORS with development-friendly settings
+# Define allowed origins
+ALLOWED_ORIGINS = [
+    'http://localhost:5000',
+    'https://adobe-ccf-demo.compliancegenie.io'
+]
+
+# Configure CORS with environment-aware settings
 CORS(app, resources={
     r"/*": {
-        "origins": ["http://localhost:5000", "null", "file://"],  # Allow local file access
+        "origins": ALLOWED_ORIGINS,
         "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],  # More permissive headers
+        "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],
         "expose_headers": ["Content-Type", "Authorization"],
         "supports_credentials": True,
         "max_age": 3600
@@ -48,20 +54,25 @@ def add_security_headers(response):
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-XSS-Protection'] = '1; mode=block'
+    
+    # Build CSP connect-src with all allowed origins
+    connect_src = " ".join(["'self'"] + ALLOWED_ORIGINS)
+    
     response.headers['Content-Security-Policy'] = (
         "default-src 'self'; "
+        f"connect-src {connect_src}; "
         "script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com cdn.jsdelivr.net; "
         "style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; "
-        "font-src 'self' cdnjs.cloudflare.com; "
-        "connect-src 'self' http://localhost:5000"
+        "font-src 'self' cdnjs.cloudflare.com"
     )
     
-    # Ensure CORS headers are present
-    if 'Origin' in request.headers:
-        response.headers['Access-Control-Allow-Origin'] = request.headers['Origin']
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
-    else:
-        response.headers['Access-Control-Allow-Origin'] = '*'
+    # Handle CORS headers
+    origin = request.headers.get('Origin')
+    if origin in ALLOWED_ORIGINS:
+        response.headers['Access-Control-Allow-Origin'] = origin
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
     
     return response
 
@@ -245,6 +256,14 @@ def test_static():
             </body>
         </html>
     """
+
+# Update the frontend API URL based on environment
+@app.route('/config')
+def get_config():
+    api_url = os.environ.get('API_URL', 'http://localhost:5000')
+    return jsonify({
+        'apiUrl': api_url
+    })
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
