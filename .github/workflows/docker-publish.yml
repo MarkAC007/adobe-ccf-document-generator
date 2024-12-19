@@ -39,6 +39,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          load: true
 
       # Install Docker Scout CLI
       - name: Install Docker Scout
@@ -55,8 +56,12 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
+          # Get the first tag (PR tag) from the metadata
+          IMAGE_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n 1)
+          echo "Analyzing image: $IMAGE_TAG"
+          
           # Run quickview and save output
-          docker scout quickview ${{ steps.meta.outputs.tags }} > scout-quickview.txt
+          docker scout quickview $IMAGE_TAG > scout-quickview.txt
           
           # Format the output as a markdown comment
           echo "## Docker Scout Security Analysis" > pr-comment.md
