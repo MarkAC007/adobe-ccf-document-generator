@@ -1,3 +1,5 @@
 flask
 flask-cors
 pypandoc>=1.11
+setuptools>=70.0.0
+pip>=23.3
