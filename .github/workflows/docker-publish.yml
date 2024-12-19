@@ -41,3 +41,18 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Run Docker Scout
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          docker scout cves ${{ steps.meta.outputs.tags }} \
+            --exit-code \
+            --only-fixed \
+            --format sarif > scout-results.sarif
+
+      - name: Upload scan results
+        if: github.ref == 'refs/heads/dev' && always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-scout-results
+          path: scout-results.sarif
