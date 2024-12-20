@@ -65,6 +65,12 @@ python scripts/generate_policy_from_web.py
 
 ## 📚 Documentation
 
+### API Documentation
+
+Access the interactive API documentation at:
+- Swagger UI: `http://localhost:5000/api/docs`
+- OpenAPI Spec: `http://localhost:5000/api/swagger.json`
+
 ### API Usage
 
 ```bash
@@ -95,7 +101,7 @@ curl -X POST "http://localhost:5000/generate?format=docx" \
 ```
 backend/
 ├── src/
-│   ├���─ __init__.py
+│   ├── __init__.py
 │   └── templates.py          # Template handling logic
 ├── scripts/
 │   ├── generate_policy_from_web.py    # Web service endpoint

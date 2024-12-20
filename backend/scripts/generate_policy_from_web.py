@@ -11,6 +11,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
+from flask_restx import Api, Resource, fields
 from src.templates import PolicyTemplate
 from scripts.generate_policy_from_input import PolicyGenerator
 from jinja2 import Template
@@ -105,29 +106,79 @@ def generate_policy_from_web_config(config_data, output_format='md'):
 def root():
     return app.send_static_file('index.html')
 
-@app.route('/generate', methods=['POST'])
-def generate_policy_endpoint():
-    try:
-        config_data = request.json
-        output_format = request.args.get('format', 'md').lower()
-        
-        if output_format not in ['md', 'docx']:
-            return jsonify({"error": "Invalid format. Use 'md' or 'docx'"})
-        
-        result = generate_policy_from_web_config(config_data, output_format)
-        return jsonify(result)
-    except Exception as e:
-        return jsonify({"error": str(e)})
+# Configure API documentation
+api = Api(app, version='1.0', 
+    title='Adobe CCF Policy Generator API',
+    description='API for generating policy documents based on Adobe\'s Common Control Framework',
+    doc='/api/docs'
+)
 
-@app.route('/templates', methods=['GET'])
-def get_templates():
-    """Return available templates with metadata"""
-    templates = PolicyTemplate.get_available_templates()
-    # Add section information for each template
-    for template_id, template in templates.items():
-        sections = PolicyTemplate.get_template_sections(template_id)
-        template['sections'] = sections
-    return jsonify(templates)
+# Define namespaces
+ns_policies = api.namespace('policies', description='Policy generation operations')
+ns_templates = api.namespace('templates', description='Template management operations')
+
+# Define models for Swagger
+policy_config = api.model('PolicyConfig', {
+    'policy_standard': fields.String(required=True, description='Name of the policy standard'),
+    'selected_frameworks': fields.List(fields.String, description='List of selected compliance frameworks'),
+    'template_id': fields.String(description='Template ID to use')
+})
+
+template_model = api.model('Template', {
+    'id': fields.String(description='Template identifier'),
+    'name': fields.String(required=True, description='Template name'),
+    'description': fields.String(description='Template description'),
+    'sections': fields.List(fields.Raw, description='Template sections')
+})
+
+# API routes with Swagger documentation
+@ns_policies.route('/generate')
+class PolicyGeneration(Resource):
+    @ns_policies.expect(policy_config)
+    @ns_policies.doc(params={'format': 'Output format (md/docx)'})
+    @ns_policies.response(200, 'Success')
+    @ns_policies.response(400, 'Validation Error')
+    def post(self):
+        """Generate a policy document"""
+        output_format = request.args.get('format', 'md').lower()
+        if output_format not in ['md', 'docx']:
+            return {'error': 'Invalid format. Use "md" or "docx"'}, 400
+            
+        result = generate_policy_from_web_config(request.json, output_format)
+        return result
+
+@ns_templates.route('/')
+class TemplateList(Resource):
+    @ns_templates.response(200, 'Success', [template_model])
+    def get(self):
+        """Get list of available templates"""
+        templates = PolicyTemplate.get_available_templates()
+        for template_id, template in templates.items():
+            sections = PolicyTemplate.get_template_sections(template_id)
+            template['sections'] = sections
+        return templates
+
+    @ns_templates.expect(template_model)
+    @ns_templates.response(201, 'Template created')
+    def post(self):
+        """Create a new template"""
+        template_data = request.json
+        try:
+            if not template_data.get('name'):
+                return {'error': 'Template name is required'}, 400
+            
+            if not template_data.get('id'):
+                template_data['id'] = template_data['name'].lower().replace(' ', '_')
+            
+            PolicyTemplate.add_template(
+                template_id=template_data['id'],
+                name=template_data['name'],
+                description=template_data.get('description', ''),
+                sections=template_data.get('sections', [])
+            )
+            return {'message': 'Template created successfully'}, 201
+        except Exception as e:
+            return {'error': str(e)}, 400
 
 @app.route('/template-editor')
 def serve_template_editor():
