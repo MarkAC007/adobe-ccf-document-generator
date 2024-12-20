@@ -33,8 +33,9 @@ COPY template_editor.html ./static/
 RUN mkdir -p output/policies && \
     chown -R appuser:appuser /app
 
-# Set environment variables
+# Set environment variables with localhost as default
 ENV PYTHONPATH=/app
+ENV BASE_URL=http://localhost:5000
 
 # Switch to non-root user
 USER appuser

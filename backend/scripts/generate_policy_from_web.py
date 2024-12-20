@@ -15,24 +15,20 @@ from src.templates import PolicyTemplate
 from scripts.generate_policy_from_input import PolicyGenerator
 from jinja2 import Template
 
+# Get base URL from environment variable
+BASE_URL = os.getenv('BASE_URL', 'http://localhost:5000')
+
 app = Flask(__name__, 
            static_folder=str(Path(__file__).parent.parent / 'static'),
            static_url_path='/static')
-# Define allowed origins
-ALLOWED_ORIGINS = [
-    'http://localhost:5000',
-    'https://adobe-ccf-demo.compliancegenie.io'
-]
 
-# Configure CORS with environment-aware settings
+# Configure CORS to use the BASE_URL
 CORS(app, resources={
     r"/*": {
-        "origins": ALLOWED_ORIGINS,
+        "origins": [BASE_URL],
         "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],
-        "expose_headers": ["Content-Type", "Authorization"],
-        "supports_credentials": True,
-        "max_age": 3600
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
     }
 })
 
@@ -48,19 +44,17 @@ def after_request(response):
     print(f"Request: {request.path} -> Status: {response.status_code}")
     return response
 
-# Add security headers middleware
+# Update security headers to use BASE_URL
 @app.after_request
 def add_security_headers(response):
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-XSS-Protection'] = '1; mode=block'
     
-    # Build CSP connect-src with all allowed origins
-    connect_src = " ".join(["'self'"] + ALLOWED_ORIGINS)
-    
+    # Use BASE_URL in CSP
     response.headers['Content-Security-Policy'] = (
         "default-src 'self'; "
-        f"connect-src {connect_src}; "
+        f"connect-src 'self' {BASE_URL}; "
         "script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com cdn.jsdelivr.net; "
         "style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; "
         "font-src 'self' cdnjs.cloudflare.com"
@@ -68,9 +62,9 @@ def add_security_headers(response):
     
     # Handle CORS headers
     origin = request.headers.get('Origin')
-    if origin in ALLOWED_ORIGINS:
+    if origin == BASE_URL:
         response.headers['Access-Control-Allow-Origin'] = origin
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
         response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
         response.headers['Access-Control-Allow-Credentials'] = 'true'
     
@@ -260,9 +254,8 @@ def test_static():
 # Update the frontend API URL based on environment
 @app.route('/config')
 def get_config():
-    api_url = os.environ.get('API_URL', 'http://localhost:5000')
     return jsonify({
-        'apiUrl': api_url
+        'baseUrl': os.getenv('BASE_URL', 'http://localhost:5000')
     })
 
 if __name__ == "__main__":
