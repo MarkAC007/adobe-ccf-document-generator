@@ -104,7 +104,7 @@ def generate_policy_from_web_config(config_data, output_format='md'):
 
 @app.route('/')
 def serve_index():
-    return send_file('static/index.html')
+    return send_file(str(Path(__file__).parent.parent / 'index.html'))
 
 # Configure API documentation
 api = Api(app, version='1.0', 
@@ -183,7 +183,7 @@ class TemplateList(Resource):
 
 @app.route('/template-editor')
 def serve_template_editor():
-    return app.send_static_file('template_editor.html')
+    return send_file(str(Path(__file__).parent.parent / 'template_editor.html'))
 
 @app.route('/api/templates', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def manage_templates():
