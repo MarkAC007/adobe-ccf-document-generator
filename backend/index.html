@@ -128,11 +128,24 @@
     </footer>
 
     <script>
+        let baseUrl = 'http://localhost:5000'; // Default value
+
+        // Load configuration when page loads
+        async function loadConfig() {
+            try {
+                const response = await fetch('/config');
+                const config = await response.json();
+                baseUrl = config.baseUrl;
+            } catch (error) {
+                console.error('Failed to load config:', error);
+            }
+        }
+
         let currentMarkdown = ''; // Store the current markdown content
 
         async function loadTemplates() {
             try {
-                const response = await fetch('http://localhost:5000/templates');
+                const response = await fetch(`${baseUrl}/templates`);
                 const templates = await response.json();
                 
                 const templateSelect = document.getElementById('templateSelect');
@@ -186,7 +199,7 @@
             };
 
             try {
-                const response = await fetch('http://localhost:5000/generate', {
+                const response = await fetch(`${baseUrl}/generate`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -212,7 +225,7 @@
 
         async function downloadWord() {
             try {
-                const response = await fetch('http://localhost:5000/generate?format=docx', {
+                const response = await fetch(`${baseUrl}/generate?format=docx`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -244,7 +257,9 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            loadTemplates();
+            loadConfig().then(() => {
+                loadTemplates();
+            });
             document.getElementById('templateSelect').addEventListener('change', updateTemplateDescription);
         });
     </script>
