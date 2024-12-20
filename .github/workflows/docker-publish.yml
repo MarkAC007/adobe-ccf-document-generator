@@ -2,7 +2,7 @@ name: Docker Build and Publish
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "main" ]
@@ -33,6 +33,7 @@ jobs:
           images: markac007/adobe-ccf-policy-generator
           tags: |
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=dev,enable=${{ github.ref == 'refs/heads/dev' }}
             type=ref,event=pr
             type=semver,pattern={{version}}
             type=sha,format=long
@@ -44,7 +45,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          load: true
+          load: ${{ github.event_name == 'pull_request' }}
 
       # Install Docker Scout CLI
       - name: Install Docker Scout
