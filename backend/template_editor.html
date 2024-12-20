@@ -63,6 +63,19 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
     <script>
+        let baseUrl = 'http://localhost:5000'; // Default value
+        
+        // Load configuration when page loads
+        async function loadConfig() {
+            try {
+                const response = await fetch('/config');
+                const config = await response.json();
+                baseUrl = config.baseUrl;
+            } catch (error) {
+                console.error('Failed to load config:', error);
+            }
+        }
+
         let currentTemplate = null;
         let availableSections = {};
         
@@ -96,8 +109,10 @@
         // Load available sections and templates
         async function initialize() {
             try {
-                // Load available sections
-                const sectionsResponse = await fetch('http://localhost:5000/api/templates/sections');
+                await loadConfig();
+                
+                // Update URLs to use baseUrl
+                const sectionsResponse = await fetch(`${baseUrl}/api/templates/sections`);
                 if (!sectionsResponse.ok) {
                     throw new Error(`HTTP error! status: ${sectionsResponse.status}`);
                 }
@@ -106,7 +121,7 @@
                 displayAvailableSections();
 
                 // Load templates
-                const templatesResponse = await fetch('http://localhost:5000/api/templates');
+                const templatesResponse = await fetch(`${baseUrl}/api/templates`);
                 if (!templatesResponse.ok) {
                     throw new Error(`HTTP error! status: ${templatesResponse.status}`);
                 }
@@ -182,7 +197,7 @@
 
         async function loadTemplate(templateId) {
             try {
-                const response = await fetch(`http://localhost:5000/api/templates/${templateId}`);
+                const response = await fetch(`${baseUrl}/api/templates/${templateId}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -301,7 +316,7 @@
             try {
                 // Use POST for new templates, PUT for updates
                 const method = templateId ? 'PUT' : 'POST';
-                const response = await fetch('http://localhost:5000/api/templates', {
+                const response = await fetch(`${baseUrl}/api/templates`, {
                     method,
                     headers: {
                         'Content-Type': 'application/json'
@@ -323,7 +338,7 @@
                 }
                 
                 // Reload templates list
-                const templatesResponse = await fetch('http://localhost:5000/api/templates');
+                const templatesResponse = await fetch(`${baseUrl}/api/templates`);
                 const templates = await templatesResponse.json();
                 displayTemplatesList(templates);
             } catch (error) {
@@ -343,7 +358,7 @@
             }
 
             try {
-                const response = await fetch(`http://localhost:5000/api/templates?id=${templateId}`, {
+                const response = await fetch(`${baseUrl}/api/templates?id=${templateId}`, {
                     method: 'DELETE'
                 });
 
@@ -357,7 +372,7 @@
                 createNewTemplate();
                 
                 // Reload templates list
-                const templatesResponse = await fetch('http://localhost:5000/api/templates');
+                const templatesResponse = await fetch(`${baseUrl}/api/templates`);
                 const templates = await templatesResponse.json();
                 displayTemplatesList(templates);
             } catch (error) {

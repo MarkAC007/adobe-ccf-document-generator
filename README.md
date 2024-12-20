@@ -33,14 +33,19 @@ Visit our [live demo](https://adobe-ccf-demo.compliancegenie.io/) to try the pol
 ### Using Pre-built Docker Image
 
 ```bash
-# Pull and run the latest stable image
+# Pull and run the latest stable image (uses default localhost:5000)
 docker pull markac007/adobe-ccf-policy-generator:latest
 docker run -p 5000:5000 markac007/adobe-ccf-policy-generator:latest
 
-# Or use the development version
-docker pull markac007/adobe-ccf-policy-generator:dev
-docker run -p 5000:5000 markac007/adobe-ccf-policy-generator:dev
+# Production deployment with custom domain
+docker run -p 5000:5000 -e BASE_URL=https://your-domain.com markac007/adobe-ccf-policy-generator
 ```
+
+### Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| BASE_URL | Base URL for API endpoints | http://localhost:5000 |
 
 ### Building Locally with Docker
 
@@ -98,7 +103,7 @@ curl -X POST "http://localhost:5000/generate?format=docx" \
 ```
 backend/
 ├── src/
-│   ├── __init__.py
+│   ├���─ __init__.py
 │   └── templates.py          # Template handling logic
 ├── scripts/
 │   ├── generate_policy_from_web.py    # Web service endpoint
