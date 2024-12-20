@@ -103,14 +103,15 @@ def generate_policy_from_web_config(config_data, output_format='md'):
         return {"error": str(e)}
 
 @app.route('/')
-def root():
-    return app.send_static_file('index.html')
+def serve_index():
+    return send_file('static/index.html')
 
 # Configure API documentation
 api = Api(app, version='1.0', 
     title='Adobe CCF Policy Generator API',
     description='API for generating policy documents based on Adobe\'s Common Control Framework',
-    doc='/api/docs'
+    doc='/swagger',
+    prefix='/api'
 )
 
 # Define namespaces

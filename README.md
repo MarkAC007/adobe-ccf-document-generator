@@ -68,7 +68,7 @@ python scripts/generate_policy_from_web.py
 ### API Documentation
 
 Access the interactive API documentation at:
-- Swagger UI: `http://localhost:5000/api/docs`
+- Swagger UI: `http://localhost:5000/swagger`
 - OpenAPI Spec: `http://localhost:5000/api/swagger.json`
 
 ### API Usage
