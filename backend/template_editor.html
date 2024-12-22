@@ -83,7 +83,7 @@
         new Sortable(document.getElementById('availableSections'), {
             group: {
                 name: 'sections',
-                pull: 'clone',
+                pull: true,
                 put: false
             },
             sort: false,
@@ -282,6 +282,9 @@
                 description: '',
                 sections: []
             };
+            
+            // Reset available sections
+            displayAvailableSections();
             
             document.getElementById('templateName').value = currentTemplate.name;
             document.getElementById('templateId').value = '';
