@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 # Install pandoc and essential build tools
 RUN apt-get update && \
