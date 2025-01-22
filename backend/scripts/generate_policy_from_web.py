@@ -9,23 +9,29 @@ from datetime import datetime, timedelta
 # Add the parent directory to Python path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, send_from_directory
 from flask_cors import CORS
 from src.templates import PolicyTemplate
 from scripts.generate_policy_from_input import PolicyGenerator
 from jinja2 import Template
 
-# Get base URL from environment variable
+# Get base URL from environment variable with fallback for local development
 BASE_URL = os.getenv('BASE_URL', 'http://localhost:5000')
 
+# Set up paths
+BACKEND_DIR = Path(__file__).parent.parent
+STATIC_DIR = BACKEND_DIR / 'static'
+TEMPLATES_DIR = BACKEND_DIR / 'templates'
+
 app = Flask(__name__, 
-           static_folder=str(Path(__file__).parent.parent / 'static'),
+           static_folder=str(STATIC_DIR),
+           template_folder=str(TEMPLATES_DIR),
            static_url_path='/static')
 
-# Configure CORS to use the BASE_URL
+# Configure CORS to allow local development
 CORS(app, resources={
     r"/*": {
-        "origins": [BASE_URL],
+        "origins": ["http://localhost:5000", "http://127.0.0.1:5000", BASE_URL],
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"],
         "supports_credentials": True
@@ -34,6 +40,7 @@ CORS(app, resources={
 
 # Debug print to verify paths
 print("Static folder path:", app.static_folder)
+print("Template folder path:", app.template_folder)
 
 # After creating the Flask app
 PolicyTemplate.load_templates()
@@ -103,7 +110,11 @@ def generate_policy_from_web_config(config_data, output_format='md'):
 
 @app.route('/')
 def root():
-    return app.send_static_file('index.html')
+    try:
+        return send_from_directory(app.static_folder, 'index.html')
+    except Exception as e:
+        print(f"Error serving index.html: {str(e)}")
+        return f"Error: {str(e)}", 500
 
 @app.route('/generate', methods=['POST'])
 def generate_policy_endpoint():

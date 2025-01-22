@@ -20,9 +20,6 @@ ${control_sections}
 
 ## Compliance Requirements
 
-### Framework References
-| Control ID | Framework | Reference |
-|:-----------|:----------|:-----------|
 ${framework_references}
 
 #### Audit Requirements

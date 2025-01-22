@@ -28,9 +28,8 @@ This policy applies to all systems and data.
 
 ${control_sections}
 
-## Framework References
-| **Control ID** | **Framework** | **Reference** |
-|:-----------|:----------|:-----------|
+## Compliance Requirements
+
 ${framework_references}
 
 ## Framework Reference Mapping
@@ -80,9 +79,8 @@ This policy applies to:
 
 ${control_sections}
 
-## Framework References
-| **Control ID** | **Framework** | **Reference** |
-|:-----------|:----------|:-----------|
+## Compliance Requirements
+
 ${framework_references}
 
 ## Framework Reference Mapping
@@ -360,13 +358,7 @@ ${evidence_table}
                 content_parts.append("${control_sections}")
             
             elif section_type == "framework_references":
-                content_parts.append("| **Control ID** | **Framework** | **Reference** |")
-                content_parts.append("|:-----------|:----------|:-----------|")
                 content_parts.append("${framework_references}")
-                content_parts.append("\n## Framework Reference Mapping")
-                content_parts.append("| **Framework** | **Reference** | **Controls** |")
-                content_parts.append("|:----------|:----------|:---------|")
-                content_parts.append("${reverse_framework_references}")
             
             elif section_type == "compliance":
                 content_parts.append("### Compliance Measurement")
@@ -463,3 +455,53 @@ ${evidence_table}
         except Exception as e:
             print(f"Error saving templates: {e}")
             raise
+
+    def _generate_framework_references_table(self, controls: List[Dict], selected_frameworks: List[str]) -> List[str]:
+        """Generate framework references table with frameworks as column headers"""
+        # Get unique frameworks and sort them
+        frameworks = sorted(set(selected_frameworks))
+        
+        # Build header rows
+        header = ["| Control ID"]
+        header.extend([f" | {self._format_framework_name(fw)}" for fw in frameworks])
+        header.append(" |")
+        
+        # Build separator row
+        separator = ["|:----------"]
+        separator.extend(["|:----------" for _ in frameworks])
+        separator.append("|")
+        
+        table_lines = [
+            "## Framework References",
+            "".join(header),
+            "".join(separator)
+        ]
+        
+        # Build consolidated references by control ID
+        consolidated_refs = {}
+        for control in controls:
+            control_id = control.get("ccf_id")
+            if not control_id:
+                continue
+            
+            mappings = self.controls_mapping.get(control_id, {})
+            if control_id not in consolidated_refs:
+                consolidated_refs[control_id] = {fw: [] for fw in frameworks}
+            
+            for framework in frameworks:
+                ref_key = f"{framework}_ref"
+                refs = mappings.get(ref_key, [])
+                if refs:
+                    consolidated_refs[control_id][framework].extend(refs)
+        
+        # Generate table rows
+        for control_id in sorted(consolidated_refs.keys()):
+            row = [f"| {control_id}"]
+            for framework in frameworks:
+                refs = consolidated_refs[control_id][framework]
+                ref_string = ", ".join(sorted(set(refs))) if refs else "-"
+                row.append(f" | {ref_string}")
+            row.append(" |")
+            table_lines.append("".join(row))
+        
+        return table_lines

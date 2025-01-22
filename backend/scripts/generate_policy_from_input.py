@@ -149,15 +149,27 @@ class PolicyGenerator:
         }
         return framework_names.get(framework, framework)
 
-    def _generate_framework_references_table(self, controls: List[Dict], selected_frameworks: List[str]) -> List[str]:
-        """Generate framework references table with consolidated references"""
+    def _generate_framework_references_table(self, controls: List[Dict], selected_frameworks: List[str]) -> str:
+        """Generate framework references table with frameworks as column headers"""
+        # Get unique frameworks and sort them
+        frameworks = sorted(set(selected_frameworks))
+        
+        # Build header rows with proper framework display names
+        header = ["| Control ID"]
+        header.extend([f" | {self._format_framework_name(fw)}" for fw in frameworks])
+        header.append(" |")
+        
+        # Build separator row with proper alignment
+        separator = ["|:-----------|"]  # Left align Control ID
+        separator.extend([":----------:|" for _ in frameworks])  # Center align framework columns
+        separator[-1] = separator[-1][:-1] + "|"  # Fix last separator
+        
         table_lines = [
-            "## Framework References",
-            "| Control ID | Framework | Reference |",
-            "|:-----------|:----------|:-----------|"
+            "".join(header),
+            "".join(separator)
         ]
         
-        # Build consolidated references
+        # Build consolidated references by control ID
         consolidated_refs = {}
         for control in controls:
             control_id = control.get("ccf_id")
@@ -165,33 +177,29 @@ class PolicyGenerator:
                 continue
             
             mappings = self.controls_mapping.get(control_id, {})
-            for framework in selected_frameworks:
+            if control_id not in consolidated_refs:
+                consolidated_refs[control_id] = {fw: [] for fw in frameworks}
+            
+            # Process each framework's references
+            for framework in frameworks:
                 ref_key = f"{framework}_ref"
                 refs = mappings.get(ref_key, [])
-                if not refs:
-                    continue
-                
-                # Convert framework to display name
-                framework_display = {
-                    'nist_cybersecurity': 'NIST CSF',
-                    'hipaa_security': 'HIPAA Security',
-                    'pci_dss_v4': 'PCI DSS v4',
-                    # Add other framework display names as needed
-                }.get(framework, framework.upper())
-                
-                # Create key for sorting and grouping
-                key = (control_id, framework_display)
-                if key not in consolidated_refs:
-                    consolidated_refs[key] = []
-                consolidated_refs[key].extend(refs)
+                if refs:
+                    # Sort and deduplicate references
+                    consolidated_refs[control_id][framework] = sorted(set(refs))
         
-        # Sort by control ID and framework
-        for (control_id, framework), refs in sorted(consolidated_refs.items()):
-            # Join references with commas
-            ref_string = ', '.join(refs)
-            table_lines.append(f"| {control_id} | {framework} | {ref_string} |")
+        # Generate table rows
+        for control_id in sorted(consolidated_refs.keys()):
+            row = [f"| {control_id}"]
+            for framework in frameworks:
+                refs = consolidated_refs[control_id][framework]
+                # Format references with proper spacing and handling of empty values
+                ref_string = ", ".join(refs) if refs else "-"
+                row.append(f" | {ref_string}")
+            row.append(" |")
+            table_lines.append("".join(row))
         
-        return table_lines
+        return "\n".join(table_lines)
 
     def _format_control_sections(self, controls: List[Dict]) -> str:
         """Format control sections using the template"""
@@ -247,6 +255,9 @@ class PolicyGenerator:
         # Format control sections
         control_sections = self._format_control_sections(controls)
         
+        # Generate framework references with new format
+        framework_references = self._generate_framework_references_table(controls, selected_frameworks)
+        
         # Prepare template data
         template_data = {
             "policy_standard": policy_standard,
@@ -254,7 +265,7 @@ class PolicyGenerator:
             "current_date": current_date,
             "next_review_date": next_review_date,
             "control_sections": control_sections,
-            "framework_references": '\n'.join(self._get_all_framework_references(controls, selected_frameworks)),
+            "framework_references": framework_references,
             "reverse_framework_references": '\n'.join(self._get_reverse_framework_references(controls, selected_frameworks))
         }
         
