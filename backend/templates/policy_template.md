@@ -20,7 +20,6 @@ ${control_sections}
 
 ## Compliance Requirements
 
-### Framework References
 ${framework_references}
 
 #### Audit Requirements

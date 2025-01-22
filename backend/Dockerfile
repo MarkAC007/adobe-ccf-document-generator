@@ -26,8 +26,6 @@ COPY templates/ ./templates/
 
 # Copy static files
 COPY static/ ./static/
-COPY index.html ./static/
-COPY template_editor.html ./static/
 
 # Create necessary directories and set permissions
 RUN mkdir -p output/policies && \

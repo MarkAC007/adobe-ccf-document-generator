@@ -28,7 +28,8 @@ This policy applies to all systems and data.
 
 ${control_sections}
 
-## Framework References
+## Compliance Requirements
+
 ${framework_references}
 
 ## Framework Reference Mapping
@@ -78,9 +79,8 @@ This policy applies to:
 
 ${control_sections}
 
-## Framework References
-| **Control ID** | **Framework** | **Reference** |
-|:-----------|:----------|:-----------|
+## Compliance Requirements
+
 ${framework_references}
 
 ## Framework Reference Mapping

@@ -103,7 +103,7 @@ curl -X POST "http://localhost:5000/generate?format=docx" \
 ```
 backend/
 ├── src/
-│   ├���─ __init__.py
+│   ├── __init__.py
 │   └── templates.py          # Template handling logic
 ├── scripts/
 │   ├── generate_policy_from_web.py    # Web service endpoint
@@ -137,6 +137,70 @@ sequenceDiagram
     Gen-->>Conv: Convert (if docx)
     Web->>Client: Return Document
 ```
+
+## 📊 Framework References Structure
+
+The Framework References section maps CCF controls to various security frameworks. The data flow works as follows:
+
+1. **Data Sources**
+   - `controls_mapping.json`: Contains mappings between CCF controls and framework references
+   - `control_guidance.json`: Contains control details and metadata
+
+2. **Processing Flow**
+   ```mermaid
+   graph TD
+       A[Select Controls] --> B[Load Framework Mappings]
+       B --> C[Process Each Control]
+       C --> D[Extract Framework References]
+       D --> E[Format Table]
+       
+       subgraph "Framework Mapping Process"
+           F[Control ID] --> G[Framework References]
+           G --> H[Reference Numbers]
+       end
+   ```
+
+3. **Table Structure**
+   Current:
+   ```
+   | Control ID | Framework | Reference |
+   |------------|-----------|-----------|
+   | AM-01     | FedRAMP   | CM-08     |
+   | AM-01     | HIPAA     | 164.310   |
+   ```
+
+   Desired:
+   ```
+   | Control ID | FedRAMP | HIPAA    | ISO 27002 |
+   |------------|---------|----------|-----------|
+   | AM-01     | CM-08   | 164.310  | -         |
+   | AM-02     | CM-09   | -        | 5.13      |
+   ```
+
+4. **Data Transformation**
+   ```python
+   # Conceptual flow
+   {
+     "AM-01": {
+       "fedramp_moderate_ref": ["CM-08"],
+       "hipaa_security_ref": ["164.310"]
+     }
+   }
+   ↓
+   {
+     "AM-01": {
+       "FedRAMP": "CM-08",
+       "HIPAA": "164.310",
+       "ISO 27002": "-"
+     }
+   }
+   ```
+
+This transformation requires:
+1. Collecting all unique frameworks
+2. Creating a matrix of Control IDs × Frameworks
+3. Populating references or "-" for each cell
+4. Generating a properly formatted markdown table
 
 ## 🛠️ Template Customization
 
