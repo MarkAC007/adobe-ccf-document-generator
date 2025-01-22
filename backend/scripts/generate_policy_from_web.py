@@ -11,6 +11,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from flask import Flask, request, jsonify, send_file, send_from_directory
 from flask_cors import CORS
+from flask_swagger_ui import get_swaggerui_blueprint
 from src.templates import PolicyTemplate
 from scripts.generate_policy_from_input import PolicyGenerator
 from jinja2 import Template
@@ -27,6 +28,22 @@ app = Flask(__name__,
            static_folder=str(STATIC_DIR),
            template_folder=str(TEMPLATES_DIR),
            static_url_path='/static')
+
+# Configure Swagger UI
+SWAGGER_URL = '/api/docs'  # URL for exposing Swagger UI
+API_YAML_URL = '/static/openapi.yaml'  # Our API YAML file
+
+# Create Swagger UI blueprint
+swagger_ui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_YAML_URL,
+    config={
+        'app_name': "Adobe CCF Document Generator API"
+    }
+)
+
+# Register Swagger UI blueprint
+app.register_blueprint(swagger_ui_blueprint, url_prefix=SWAGGER_URL)
 
 # Configure CORS to allow local development
 CORS(app, resources={
@@ -268,6 +285,11 @@ def get_config():
     return jsonify({
         'baseUrl': os.getenv('BASE_URL', 'http://localhost:5000')
     })
+
+# Serve OpenAPI specification
+@app.route('/static/openapi.yaml')
+def serve_swagger_spec():
+    return send_from_directory(BACKEND_DIR, 'openapi.yaml')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

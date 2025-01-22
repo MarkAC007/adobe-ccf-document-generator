@@ -1,0 +1,276 @@
+openapi: 3.0.3
+info:
+  title: Adobe CCF Document Generator API
+  description: API for generating and managing policy documents and templates
+  version: 1.0.0
+servers:
+  - url: '{baseUrl}'
+    description: Dynamic server URL
+    variables:
+      baseUrl:
+        default: http://localhost:5000
+        description: Base URL for the API
+
+paths:
+  /generate:
+    post:
+      summary: Generate a policy document
+      description: Generates a policy document based on provided configuration
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: [md, docx]
+          required: false
+          description: Output format for the policy document
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - policy_standard
+              properties:
+                policy_standard:
+                  type: string
+                  description: Name of the policy standard
+                template_id:
+                  type: string
+                  description: ID of the template to use
+      responses:
+        '200':
+          description: Successfully generated policy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  content:
+                    type: string
+                    description: Policy content (base64 encoded for docx)
+                  format:
+                    type: string
+                    enum: [md, docx]
+                  filename:
+                    type: string
+                  message:
+                    type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /templates:
+    get:
+      summary: Get all available templates
+      description: Returns a list of all available templates with their metadata and sections
+      responses:
+        '200':
+          description: List of templates
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    sections:
+                      type: array
+                      items:
+                        type: object
+
+  /api/templates:
+    get:
+      summary: Get all templates
+      description: Returns all available templates
+      responses:
+        '200':
+          description: List of templates
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Create a new template
+      description: Creates a new policy template
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                description:
+                  type: string
+                sections:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: Template created successfully
+        '400':
+          description: Invalid request
+
+    put:
+      summary: Update an existing template
+      description: Updates an existing policy template
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                description:
+                  type: string
+                sections:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: Template updated successfully
+        '400':
+          description: Invalid request
+
+    delete:
+      summary: Delete a template
+      description: Deletes an existing template
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID of the template to delete
+      responses:
+        '200':
+          description: Template deleted successfully
+        '400':
+          description: Invalid request
+
+  /api/templates/sections:
+    get:
+      summary: Get available section types
+      description: Returns all available section types and their configurations
+      responses:
+        '200':
+          description: List of available sections
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/templates/{template_id}:
+    get:
+      summary: Get template details
+      description: Returns details for a specific template
+      parameters:
+        - in: path
+          name: template_id
+          required: true
+          schema:
+            type: string
+          description: ID of the template
+      responses:
+        '200':
+          description: Template details
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Template not found
+
+  /api/templates/preview:
+    post:
+      summary: Preview template
+      description: Generates a preview of a template with sample data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - sections
+              properties:
+                name:
+                  type: string
+                sections:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: Template preview
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: string
+        '400':
+          description: Invalid request
+
+  /config:
+    get:
+      summary: Get API configuration
+      description: Returns the API configuration including base URL
+      responses:
+        '200':
+          description: API configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  baseUrl:
+                    type: string
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+
+  securitySchemes:
+    CorsPolicy:
+      type: apiKey
+      name: Origin
+      in: header
+      description: CORS policy for allowed origins
+
+security:
+  - CorsPolicy: [] 
