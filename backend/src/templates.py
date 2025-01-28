@@ -456,64 +456,52 @@ ${evidence_table}
             print(f"Error saving templates: {e}")
             raise
 
-    def _generate_framework_references_table(self, controls: List[Dict], selected_frameworks: List[str]) -> str:
+    def _generate_framework_references_table(self, controls: List[Dict], selected_frameworks: List[str]) -> List[str]:
         """Generate framework references table with frameworks as column headers"""
         # Get unique frameworks and sort them
         frameworks = sorted(set(selected_frameworks))
         
         # Build header rows
-        table_lines = ['<div class="mapping-table">']
-        table_lines.append('<table>')
+        header = ["| Control ID"]
+        header.extend([f" | {self._format_framework_name(fw)}" for fw in frameworks])
+        header.append(" |")
         
-        # Add table header
-        header_row = ['<tr>']
-        header_row.append('<th>Control ID</th>')
-        header_row.append('<th>Control Name</th>')
-        header_row.extend([f'<th>{self._format_framework_name(fw)}</th>' for fw in frameworks])
-        header_row.append('</tr>')
-        table_lines.append(''.join(header_row))
+        # Build separator row
+        separator = ["|:----------"]
+        separator.extend(["|:----------" for _ in frameworks])
+        separator.append("|")
         
-        # Sort controls by ID
-        sorted_controls = sorted(controls, key=lambda x: x.get('ccf_id', ''))
+        table_lines = [
+            "## Framework References",
+            "".join(header),
+            "".join(separator)
+        ]
         
-        # Add control rows
-        for control in sorted_controls:
-            control_id = control.get('ccf_id', '')
-            control_name = control.get('control_name', '')
+        # Build consolidated references by control ID
+        consolidated_refs = {}
+        for control in controls:
+            control_id = control.get("ccf_id")
+            if not control_id:
+                continue
             
-            row = ['<tr>']
-            row.append(f'<td class="control-id">{control_id}</td>')
-            row.append(f'<td class="control-name">{control_name}</td>')
+            mappings = self.controls_mapping.get(control_id, {})
+            if control_id not in consolidated_refs:
+                consolidated_refs[control_id] = {fw: [] for fw in frameworks}
             
-            # Add framework references
             for framework in frameworks:
                 ref_key = f"{framework}_ref"
-                refs = control.get(ref_key, [])
-                if not isinstance(refs, list):
-                    refs = [refs] if refs else []
-                
-                # Format references
-                ref_text = '<br>'.join(str(ref) for ref in refs if ref) if refs else '-'
-                row.append(f'<td class="framework-ref">{ref_text}</td>')
-            
-            row.append('</tr>')
-            table_lines.append(''.join(row))
+                refs = mappings.get(ref_key, [])
+                if refs:
+                    consolidated_refs[control_id][framework].extend(refs)
         
-        table_lines.append('</table>')
-        table_lines.append('</div>')
+        # Generate table rows
+        for control_id in sorted(consolidated_refs.keys()):
+            row = [f"| {control_id}"]
+            for framework in frameworks:
+                refs = consolidated_refs[control_id][framework]
+                ref_string = ", ".join(sorted(set(refs))) if refs else "-"
+                row.append(f" | {ref_string}")
+            row.append(" |")
+            table_lines.append("".join(row))
         
-        return '\n'.join(table_lines)
-
-    def _format_framework_name(self, framework: str) -> str:
-        """Format framework ID to display name"""
-        framework_names = {
-            'nist_cybersecurity': 'NIST CSF',
-            'iso_27001': 'ISO 27001',
-            'pci_dss_v4': 'PCI DSS v4',
-            'iso_27002': 'ISO 27002',
-            'fedramp_moderate': 'FedRAMP Moderate',
-            'hipaa_security': 'HIPAA Security',
-            'soc_2': 'SOC 2',
-            # Add other framework mappings as needed
-        }
-        return framework_names.get(framework, framework.upper())
+        return table_lines

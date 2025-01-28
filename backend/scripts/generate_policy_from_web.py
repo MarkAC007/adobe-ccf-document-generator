@@ -62,14 +62,6 @@ print("Template folder path:", app.template_folder)
 # After creating the Flask app
 PolicyTemplate.load_templates()
 
-# After other imports and before app initialization
-try:
-    with open(BACKEND_DIR / 'data' / 'processed' / 'controls_v2.json', 'r') as f:
-        controls_data = json.load(f)
-except Exception as e:
-    print(f"Error loading controls data: {str(e)}")
-    controls_data = {"controls": []}
-
 # Debug logging for static files
 @app.after_request
 def after_request(response):
@@ -298,71 +290,6 @@ def get_config():
 @app.route('/static/openapi.yaml')
 def serve_swagger_spec():
     return send_from_directory(BACKEND_DIR, 'openapi.yaml')
-
-# Add new route for framework mapping page
-@app.route('/framework-mapping')
-def serve_framework_mapping():
-    """Serve the framework mapping page"""
-    try:
-        return send_from_directory(app.static_folder, 'framework-mapping.html')
-    except Exception as e:
-        print(f"Error serving framework-mapping.html: {str(e)}")
-        return f"Error: {str(e)}", 500
-
-# Add new API endpoint for framework mapping
-@app.route('/api/framework-mapping', methods=['POST'])
-def generate_framework_mapping():
-    """Generate framework mapping table for selected frameworks"""
-    try:
-        data = request.get_json()
-        selected_frameworks = data.get('selected_frameworks', [])
-        output_format = request.args.get('format', 'md')  # Default to markdown
-        
-        if not selected_frameworks:
-            return jsonify({'error': 'No frameworks selected'}), 400
-
-        # Get all controls that have mappings for selected frameworks
-        relevant_controls = []
-        for control in controls_data['controls']:
-            has_mapping = False
-            for framework in selected_frameworks:
-                ref_field = f"{framework}_ref"
-                if control.get(ref_field) and control[ref_field]:
-                    has_mapping = True
-                    break
-            if has_mapping:
-                relevant_controls.append(control)
-
-        # Generate document using PolicyGenerator
-        generator = PolicyGenerator()
-        output_file = generator.generate_mapping_doc(
-            controls=relevant_controls,
-            selected_frameworks=selected_frameworks,
-            output_format=output_format
-        )
-
-        # Read the generated file
-        try:
-            with open(output_file, 'rb' if output_format == 'docx' else 'r') as f:
-                content = f.read()
-        except Exception as e:
-            print(f"Error reading generated file: {e}")
-            raise
-
-        if output_format == 'docx':
-            return jsonify({
-                'content': base64.b64encode(content).decode(),
-                'filename': Path(output_file).name
-            })
-        else:
-            return jsonify({
-                'content': content,
-                'control_count': len(relevant_controls)
-            })
-
-    except Exception as e:
-        print(f"Error generating framework mapping: {str(e)}")
-        return jsonify({'error': str(e)}), 500
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

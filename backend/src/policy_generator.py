@@ -2,7 +2,6 @@ import logging
 from pathlib import Path
 from datetime import datetime
 from .templates import PolicyTemplate
-from typing import List, Dict
 
 class PolicyGenerator:
     def __init__(self, data_processor):
@@ -90,36 +89,3 @@ class PolicyGenerator:
             f.write(document)
         
         return file_path
-
-    def generate_mapping_doc(self, controls: List[Dict], selected_frameworks: List[str], output_format='md') -> str:
-        """Generate framework mapping document in markdown or docx format"""
-        try:
-            # Generate markdown content
-            template_handler = PolicyTemplate()
-            markdown_content = template_handler._generate_framework_references_table(
-                controls=controls,
-                selected_frameworks=selected_frameworks
-            )
-
-            # Create output filename
-            timestamp = datetime.now().strftime("%Y%m%d")
-            base_filename = f"framework_mapping_{timestamp}"
-            
-            # Save markdown file
-            markdown_path = Path(self.output_dir) / 'mapping' / f"{base_filename}.md"
-            markdown_path.parent.mkdir(parents=True, exist_ok=True)
-            
-            with open(markdown_path, 'w', encoding='utf-8') as f:
-                f.write(markdown_content)
-
-            if output_format == 'docx':
-                # Convert to Word document
-                docx_path = Path(self.output_dir) / 'mapping' / f"{base_filename}.docx"
-                self._convert_to_docx(markdown_path, docx_path)
-                return str(docx_path)
-            
-            return str(markdown_path)
-
-        except Exception as e:
-            print(f"Error generating mapping document: {e}")
-            raise
