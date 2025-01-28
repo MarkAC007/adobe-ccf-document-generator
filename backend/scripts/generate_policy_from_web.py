@@ -15,6 +15,10 @@ from flask_swagger_ui import get_swaggerui_blueprint
 from src.templates import PolicyTemplate
 from scripts.generate_policy_from_input import PolicyGenerator
 from jinja2 import Template
+from src.document_converter import DocumentConverter
+import tempfile
+from pathlib import Path
+from src.framework_mapper import FrameworkMapper
 
 # Get base URL from environment variable with fallback for local development
 BASE_URL = os.getenv('BASE_URL', 'http://localhost:5000')
@@ -133,18 +137,103 @@ def root():
         print(f"Error serving index.html: {str(e)}")
         return f"Error: {str(e)}", 500
 
+@app.route('/framework-mapping')
+def framework_mapping():
+    try:
+        return send_from_directory(app.static_folder, 'framework-mapping.html')
+    except Exception as e:
+        print(f"Error serving framework-mapping.html: {str(e)}")
+        return f"Error: {str(e)}", 500
+
+@app.route('/template-editor')
+def serve_template_editor():
+    try:
+        return send_from_directory(app.static_folder, 'template_editor.html')
+    except Exception as e:
+        print(f"Error serving template_editor.html: {str(e)}")
+        return f"Error: {str(e)}", 500
+
 @app.route('/generate', methods=['POST'])
 def generate_policy_endpoint():
     try:
         config_data = request.json
         output_format = request.args.get('format', 'md').lower()
+        print(f"\n=== Starting Generate Request ===")
+        print(f"Config data: {config_data}")
+        print(f"Output format: {output_format}")
         
+        # Check if this is a framework-only mapping request
+        if 'selected_frameworks' in config_data and 'policy_standard' not in config_data:
+            try:
+                print("\n=== Framework Mapping Flow ===")
+                
+                # Create framework mapper instead of policy generator
+                mapper = FrameworkMapper()
+                print("FrameworkMapper initialized successfully")
+                
+                converter = DocumentConverter()
+                print("DocumentConverter initialized successfully")
+                
+                # Generate markdown content
+                print(f"\nGenerating mapping for frameworks: {config_data['selected_frameworks']}")
+                markdown_content = mapper.generate_mapping(
+                    selected_frameworks=config_data['selected_frameworks']
+                )
+                print("Markdown content generated successfully")
+                
+                if output_format == 'docx':
+                    print("\n=== DOCX Conversion Flow ===")
+                    # Create temporary markdown file
+                    with tempfile.NamedTemporaryFile(mode='w', suffix='.md', delete=False) as temp_md:
+                        temp_md.write(markdown_content)
+                        temp_md_path = Path(temp_md.name)
+                        print(f"Temporary markdown file created: {temp_md_path}")
+                    
+                    # Convert to DOCX using existing converter
+                    docx_path = converter.markdown_to_docx(temp_md_path)
+                    print(f"DOCX file generated: {docx_path}")
+                    
+                    # Read the generated DOCX
+                    with open(docx_path, 'rb') as f:
+                        docx_content = f.read()
+                    print("DOCX content read successfully")
+                    
+                    # Clean up temporary files
+                    temp_md_path.unlink()
+                    docx_path.unlink()
+                    print("Temporary files cleaned up")
+                    
+                    return jsonify({
+                        "success": True,
+                        "content": base64.b64encode(docx_content).decode(),
+                        "format": "docx",
+                        "filename": f"framework_mapping_{datetime.now().strftime('%Y%m%d')}.docx"
+                    })
+                else:
+                    print("\nReturning markdown content")
+                    return jsonify({
+                        "success": True,
+                        "content": markdown_content,
+                        "format": "md"
+                    })
+            except Exception as e:
+                print(f"\n=== Error in Framework Mapping ===")
+                print(f"Error type: {type(e)}")
+                print(f"Error message: {str(e)}")
+                print(f"Error location: {e.__traceback__.tb_frame.f_code.co_filename}:{e.__traceback__.tb_lineno}")
+                return jsonify({"error": str(e)})
+        
+        # Handle regular policy generation
         if output_format not in ['md', 'docx']:
             return jsonify({"error": "Invalid format. Use 'md' or 'docx'"})
         
         result = generate_policy_from_web_config(config_data, output_format)
         return jsonify(result)
     except Exception as e:
+        print(f"\n=== Error in Generate Endpoint ===")
+        print(f"Error type: {type(e)}")
+        print(f"Error message: {str(e)}")
+        print(f"Error location: {e.__traceback__.tb_frame.f_code.co_filename}:{e.__traceback__.tb_lineno}")
         return jsonify({"error": str(e)})
 
 @app.route('/templates', methods=['GET'])
@@ -156,10 +245,6 @@ def get_templates():
         sections = PolicyTemplate.get_template_sections(template_id)
         template['sections'] = sections
     return jsonify(templates)
-
-@app.route('/template-editor')
-def serve_template_editor():
-    return app.send_static_file('template_editor.html')
 
 @app.route('/api/templates', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def manage_templates():

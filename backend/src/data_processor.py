@@ -5,9 +5,13 @@ from pathlib import Path
 import numpy as np
 
 class DataProcessor:
-    def __init__(self, raw_data_path: Path, processed_data_path: Path):
+    def __init__(self, raw_data_path, processed_data_path):
+        """Initialize with paths as strings"""
         self.raw_data_path = raw_data_path
         self.processed_data_path = processed_data_path
+        print(f"\n=== DataProcessor Initialization ===")
+        print(f"Raw data path: {self.raw_data_path}")
+        print(f"Processed data path: {self.processed_data_path}")
         self.setup_logging()
 
     def setup_logging(self):
@@ -248,10 +252,17 @@ class DataProcessor:
             logging.error(f"Error processing CSV files: {str(e)}")
             raise
 
-    def get_processed_controls(self) -> dict:
-        """Get processed controls data"""
-        with open(self.processed_data_path / 'controls_v2.json') as f:
-            return json.load(f)
+    def get_processed_controls(self):
+        """Load and return processed controls data"""
+        try:
+            print(f"Loading controls from: {self.raw_data_path}")
+            with open(self.raw_data_path, 'r', encoding='utf-8') as f:
+                controls_data = json.load(f)
+            print(f"Successfully loaded {len(controls_data.get('controls', []))} controls")
+            return controls_data
+        except Exception as e:
+            print(f"Error loading controls: {str(e)}")
+            raise
 
     def get_controls_by_policy(self, policy_name: str) -> list:
         """Retrieve controls for specified policy"""

@@ -1,0 +1,78 @@
+.control-panel {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.multiselect {
+    width: 100%;
+    min-height: 150px;
+    margin: 10px 0;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.button-container button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#generateBtn {
+    background: #FA0F00;
+    color: white;
+}
+
+#exportBtn {
+    background: #444;
+    color: white;
+}
+
+.loading {
+    margin-top: 10px;
+    color: #666;
+    font-style: italic;
+}
+
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.mapping-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#markdownOutput table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+#markdownOutput th,
+#markdownOutput td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#markdownOutput th {
+    background: #f5f5f5;
+}
+
+#markdownOutput tr:nth-child(even) {
+    background: #fafafa;
+} 
