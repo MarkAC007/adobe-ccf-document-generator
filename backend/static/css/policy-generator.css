@@ -7,7 +7,7 @@
 }
 
 .left-panel {
-    width: 450px;
+    width: 350px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -18,15 +18,15 @@
 
 .right-panel {
     flex: 1;
-    margin-left: 470px;
+    margin-left: 370px;
     border-radius: 8px;
     padding: 40px;
     min-height: calc(100vh - 120px);
 }
 
 .section {
-    margin-bottom: 25px;
-    padding: 15px;
+    margin-bottom: 20px;
+    padding: 12px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -48,7 +48,7 @@ select {
 }
 
 .multiselect {
-    height: 200px;
+    height: 300px;
 }
 
 .button-container {
@@ -131,4 +131,58 @@ button {
     margin: 2em 0;
     border: none;
     border-top: 1px solid #dee2e6;
+}
+
+/* Mapping Table Styles */
+.mapping-table {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.mapping-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.mapping-table th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    z-index: 1;
+}
+
+.mapping-table td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    vertical-align: top;
+    color: #444;
+}
+
+.mapping-table .control-id {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.mapping-table .control-name {
+    min-width: 200px;
+}
+
+.mapping-table .framework-ref {
+    min-width: 120px;
+}
+
+.mapping-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.mapping-table tr:hover {
+    background-color: #f2f2f2;
 } 
