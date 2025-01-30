@@ -2,6 +2,7 @@ import logging
 from pathlib import Path
 from datetime import datetime
 from .data_processor import DataProcessor
+import json
 
 BACKEND_DIR = Path(__file__).parent.parent
 
@@ -62,6 +63,17 @@ class FrameworkMapper:
             print("Getting controls data from processor...")
             controls_data = self.data_processor.get_processed_controls()
             
+            # Get control guidance data for policy standards
+            guidance_path = Path(BACKEND_DIR) / 'data' / 'processed' / 'control_guidance.json'
+            with open(guidance_path, 'r', encoding='utf-8') as f:
+                guidance_data = json.load(f)
+            
+            # Create guidance lookup by ccf_id
+            guidance_lookup = {
+                control['ccf_id']: control['policy_standard']
+                for control in guidance_data['controls']
+            }
+            
             if not controls_data or 'controls' not in controls_data:
                 raise ValueError("Invalid controls data format")
             
@@ -83,19 +95,22 @@ class FrameworkMapper:
                 
                 if any(framework in framework_refs for framework in selected_frameworks):
                     control['framework_refs'] = framework_refs
+                    # Add policy standard from guidance
+                    control['policy_standard'] = guidance_lookup.get(control['ccf_id'], 'N/A')
                     mapped_controls.append(control)
             
             print(f"Found {len(mapped_controls)} controls with framework mappings")
             
-            # Generate markdown table
+            # Generate markdown table with policy standard column
             print("\nGenerating markdown table...")
-            table = "| Control ID | Description | " + " | ".join(self.get_friendly_name(f) for f in selected_frameworks) + " |\n"
-            table += "|" + "---|" * (len(selected_frameworks) + 2) + "\n"
+            table = "| Control ID | Control Name | Document Name | " + " | ".join(self.get_friendly_name(f) for f in selected_frameworks) + " |\n"
+            table += "|" + "---|" * (len(selected_frameworks) + 3) + "\n"
             
             for control in sorted(mapped_controls, key=lambda x: x['ccf_id']):
                 row = [
                     control['ccf_id'],
-                    control.get('control_name', '').split('\n')[0]
+                    control.get('control_name', '').split('\n')[0],
+                    control.get('policy_standard', 'N/A')
                 ]
                 
                 for framework in selected_frameworks:

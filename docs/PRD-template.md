@@ -191,44 +191,70 @@ Users need a way to quickly view and analyze control mappings across different f
 
 ```mermaid
 sequenceDiagram
-participant User
-participant UI as Framework Mapping UI
-participant API as /api/framework-mapping
-participant Controls as Controls Data
-participant DocGen as Document Generator
+    participant User
+    participant UI as Framework Mapping UI
+    participant API as /generate endpoint
+    participant Mapper as FrameworkMapper
+    participant Data as DataProcessor
+    participant DocGen as DocumentConverter
+    participant Files as Data Files
 
-Note over User,UI: Framework Selection
-User->>UI: Select Frameworks
-User->>UI: Click Generate
+    Note over User,UI: Framework Selection
+    User->>UI: Select Frameworks
+    User->>UI: Click Generate/Export
 
-Note over UI,API: Generate Mapping
-UI->>API: POST /api/framework-mapping
-Note right of UI: Payload: {selected_frameworks: [...]}
-API->>Controls: Get Controls Data
-Controls->>API: Return All Controls
-API->>API: Filter Controls by Selected Frameworks
-API->>API: Generate Framework Table
-API->>UI: Return JSON Response with Markdown
-UI->>UI: Parse with Marked.js
-UI->>User: Display Formatted Table
+    alt Markdown Generation
+        UI->>API: POST /generate
+        Note right of UI: Payload: selected_frameworks=["iso_27002", "fedramp_moderate"]
+        
+        API->>Mapper: generate_mapping()
+        
+        Note over Mapper,Files: Data Loading Phase
+        Mapper->>Files: Read controls_v2.json
+        Note right of Files: Contains control definitions, framework references
+        Files-->>Mapper: Raw Controls Data
+        
+        Mapper->>Data: get_processed_controls()
+        Note right of Data: Data Processing:
+        Note right of Data: 1. Clean framework refs
+        Note right of Data: 2. Format control data
+        Note right of Data: 3. Sort by ccf_id
+        Data-->>Mapper: Processed Controls
+        
+        Note over Mapper: Table Generation:
+        Note over Mapper: 1. Filter by frameworks
+        Note over Mapper: 2. Format markdown
+        Note over Mapper: 3. Add summary stats
+        
+        Mapper-->>API: markdown_content
+        Note right of API: Response: {
+        Note right of API: success: true,
+        Note right of API: content: markdown,
+        Note right of API: format: "md"
+        Note right of API: }
+        API-->>UI: JSON Response
+        UI->>UI: marked.parse(content)
 
-Note over User,DocGen: Export to Word
-User->>UI: Click "Export to Word"
-UI->>API: POST /api/framework-mapping
-Note right of UI: Payload: {selected_frameworks: [...], format: 'docx'}
-API->>Controls: Get Controls Data
-Controls->>API: Return All Controls
-API->>DocGen: Generate DOCX with Framework Table
-DocGen->>API: Return DOCX Content
-API->>UI: Return Base64 Encoded DOCX
-UI->>UI: Create Blob from Base64
-UI->>User: Trigger File Download
-
-Note over API: Data Processing
-rect rgb(200, 200, 240)
-Note right of API: For each control:
-Note right of API: 1. Check framework refs
-Note right of API: 2. Format references
-Note right of API: 3. Sort by Control ID
-end
+    else DOCX Export
+        UI->>API: POST /generate?format=docx
+        Note right of UI: Same payload + format param
+        API->>Mapper: generate_mapping()
+        Mapper->>Data: get_processed_controls()
+        Data-->>Mapper: controls_data
+        Mapper-->>API: markdown_content
+        
+        Note over API,DocGen: DOCX Conversion
+        API->>DocGen: markdown_to_docx()
+        Note right of DocGen: Uses pandoc for conversion
+        DocGen-->>API: docx_content
+        
+        Note right of API: Response: {
+        Note right of API: success: true,
+        Note right of API: content: base64,
+        Note right of API: format: "docx",
+        Note right of API: filename: "mapping_20250128.docx"
+        Note right of API: }
+        API-->>UI: JSON Response
+        UI->>UI: Create Blob & Download
+    end
 ```
