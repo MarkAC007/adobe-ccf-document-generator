@@ -1,3 +1,44 @@
+"""
+Data Processor Module
+====================
+
+Core data processing functionality for the CCF (Common Controls Framework) data conversion.
+This module provides the DataProcessor class which handles all CSV to JSON transformations
+for control framework data.
+
+Key Features:
+- CSV file reading with proper encoding and NA handling
+- Data cleaning and validation
+    - Text field cleaning (special characters, whitespace)
+    - Framework reference processing
+    - Audit artifact handling
+- JSON file generation with consistent structure
+- Control mapping creation
+- Evidence Reference Library (ERL) processing
+
+Main Class: DataProcessor
+------------------------
+Handles the conversion of CCF data from CSV to JSON format with data cleaning
+and validation. Supports multiple input files and creates structured JSON output.
+
+Key Methods:
+- convert_csv_to_json(): Main conversion method
+- clean_framework_references(): Handles reference field formatting
+- create_controls_mapping(): Generates framework reference mappings
+- create_erl_mapping(): Processes Evidence Reference Library
+- get_controls_by_policy(): Retrieves controls for specific policies
+- get_framework_mappings(): Gets framework mappings for specific controls
+
+Input/Output:
+- Reads from: data/raw/*.csv
+- Writes to: data/processed/*.json
+
+Dependencies:
+- pandas: For CSV processing and data manipulation
+- json: For JSON file handling
+- pathlib: For cross-platform path handling
+"""
+
 import pandas as pd
 import json
 import logging

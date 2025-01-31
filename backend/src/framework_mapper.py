@@ -1,3 +1,29 @@
+"""
+Framework Mapper Module
+======================
+
+Handles mapping between different control frameworks and generates comparison matrices.
+Core component for framework crosswalking and compliance mapping.
+
+Future Improvements:
+- Implement caching for framework mappings
+- Add versioning for framework definitions
+- Support custom framework definitions
+- Add mapping confidence scores
+- Implement bidirectional mapping validation
+- Add mapping visualization capabilities
+- Support partial mappings and notes
+
+Architecture Notes:
+- Could be split into:
+    - FrameworkDefinition (class for framework metadata)
+    - MappingEngine (core mapping logic)
+    - MappingValidator (validation rules)
+    - ReportGenerator (output formatting)
+- Add repository pattern for framework data
+- Implement observer pattern for mapping updates
+"""
+
 import logging
 from pathlib import Path
 from datetime import datetime

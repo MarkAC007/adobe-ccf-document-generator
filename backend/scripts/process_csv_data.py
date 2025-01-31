@@ -1,3 +1,31 @@
+"""
+Process CSV Data Script
+======================
+
+Main entry point for converting CCF (Common Controls Framework) CSV files to JSON format.
+This script coordinates the processing of control data files using the DataProcessor class.
+
+Input Files (in data/raw/):
+- controls_v2.csv: Main controls and framework mappings
+- control_guidance.csv: Control implementation guidance
+- erl.csv: Evidence Reference Library
+
+Output Files (in data/processed/):
+- controls_v2.json: Processed controls with framework mappings
+- control_guidance.json: Processed control guidance
+- controls_mapping.json: Framework reference mappings
+- erl.json: Processed Evidence Reference Library
+
+The script handles:
+- Field processing for reference fields (*_ref)
+- Special value handling ('X' values, empty fields)
+- Verification of output files
+- Path resolution relative to project root
+
+Dependencies:
+- backend/src/data_processor.py: Contains core DataProcessor class
+"""
+
 import sys
 from pathlib import Path
 

@@ -1,3 +1,57 @@
+"""
+Policy Generator Web API
+=======================
+
+Flask-based web API for the policy generator, providing HTTP endpoints for policy generation
+and template management. Serves as the interface between the frontend and the PolicyGenerator.
+
+Key Features:
+- RESTful API endpoints for policy generation
+- Template management (CRUD operations)
+- Framework mapping generation
+- Multi-format document generation (MD, DOCX)
+- Swagger/OpenAPI documentation
+- CORS and security headers
+
+Architecture Notes:
+- This module could be refactored into:
+    - Separate route modules (blueprints) for:
+        - Policy generation
+        - Template management
+        - Framework mapping
+    - Middleware module for security and CORS
+    - Service layer for business logic
+    - Error handling middleware
+
+API Endpoints:
+- /generate: Generate policy documents
+- /api/templates: Template management
+- /framework-mapping: Framework mapping generation
+- /api/docs: Swagger documentation
+
+Security Features:
+- Content Security Policy (CSP)
+- CORS configuration
+- Security headers
+- Input validation
+
+Dependencies:
+- Flask and extensions
+- PolicyGenerator from generate_policy_from_input.py
+- DocumentConverter for format conversion
+- FrameworkMapper for mapping generation
+
+Future Improvements:
+- Implement proper authentication
+- Add rate limiting
+- Improve error handling
+- Add request validation middleware
+- Implement caching
+- Add API versioning
+- Separate routes into blueprints
+- Add request/response logging
+"""
+
 import json
 import sys
 import os

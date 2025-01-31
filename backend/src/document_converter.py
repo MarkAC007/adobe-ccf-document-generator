@@ -1,3 +1,29 @@
+"""
+Document Converter Module
+========================
+
+Handles conversion between different document formats, currently supporting Markdown to DOCX
+conversion using pandoc.
+
+Future Improvements:
+- Add support for additional formats (PDF, HTML)
+- Implement template-based styling for DOCX output
+- Add configuration options for pandoc parameters
+- Create format-specific converter classes
+- Add document validation
+- Implement caching for repeated conversions
+- Add error recovery and retry mechanisms
+
+Architecture Notes:
+- Could be split into:
+    - BaseConverter (abstract class)
+    - MarkdownConverter
+    - DocxConverter
+    - PdfConverter
+- Add factory pattern for converter creation
+- Implement strategy pattern for different conversion options
+"""
+
 from pathlib import Path
 from typing import Optional
 import pypandoc

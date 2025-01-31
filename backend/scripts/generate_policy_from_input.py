@@ -1,3 +1,48 @@
+"""
+Policy Generator Input Script
+============================
+
+Core policy generation functionality that processes control data and generates policy documents.
+This module serves as the backend engine for both CLI and web-based policy generation.
+
+Key Features:
+- Policy document generation from control data
+- Framework reference mapping and tables
+- Evidence requirement processing
+- Multi-format output support (Markdown, DOCX)
+- Template-based document generation
+
+Architecture Notes:
+- This module could be refactored into smaller, more focused classes:
+    - ControlProcessor: Handle control data processing
+    - FrameworkMapper: Handle framework reference mapping
+    - DocumentFormatter: Handle document formatting and sections
+    - TemplateManager: Handle template loading and rendering
+
+Main Class: PolicyGenerator
+--------------------------
+Handles the end-to-end process of generating policy documents from control data.
+Currently contains multiple responsibilities that could be separated in future refactoring.
+
+Key Methods:
+- generate_policy(): Main entry point for policy generation
+- generate_policy_markdown(): Generates markdown content
+- _format_control_sections(): Formats individual control sections
+- _generate_framework_references_table(): Creates framework mapping tables
+
+Dependencies:
+- backend/src/templates.py: Template handling
+- backend/src/document_converter.py: Document format conversion
+- JSON data files from data_processor.py output
+
+Future Improvements:
+- Separate framework mapping logic
+- Implement template strategy pattern
+- Add policy version control
+- Improve error handling and validation
+- Add caching for frequently used data
+"""
+
 import json
 import argparse
 from typing import Dict, List
