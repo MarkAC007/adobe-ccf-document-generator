@@ -18,7 +18,7 @@ Key terms and definitions relevant to this policy.
 
 ${control_sections}
 
-## Compliance Requirements
+## Crosswalk: Common Controls to External Frameworks
 
 ${framework_references}
 
