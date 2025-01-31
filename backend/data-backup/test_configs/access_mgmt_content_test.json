@@ -1,0 +1,50 @@
+{
+  "test_name": "Access Management Policy Content Test",
+  "policy_standard": "Access Management Policy",
+  "selected_frameworks": [
+    "nist_cybersecurity",
+    "iso_27001",
+    "pci_dss_v4"
+  ],
+  "test_parameters": {
+    "include_implementation_guidance": true,
+    "include_test_procedures": false,
+    "include_policy_statements": true,
+    "debug_mode": true
+  },
+  "expected_controls": [
+    "AM-01",
+    "AM-02",
+    "AM-03"
+  ],
+  "expected_content": {
+    "policy_statements": {
+      "AM-01": "Organization maintains an inventory of information systems, which is reconciled on a periodic basis",
+      "AM-02": "Organization maintains an inventory of application assets, which is reconciled on a periodic basis",
+      "AM-03": "Organization reconciles network discovery scans against the established device"
+    },
+    "framework_mappings": {
+      "AM-01": {
+        "nist_cybersecurity": ["ID.AM-2", "ID.AM-1"],
+        "iso_27001": [],
+        "pci_dss_v4": ["12.5.1", "12.5.2", "12.5.2.1", "9.5.1.1"]
+      },
+      "AM-02": {
+        "nist_cybersecurity": ["ID.AM-2", "ID.AM-1"],
+        "iso_27001": [],
+        "pci_dss_v4": ["12.5.1", "12.5.2", "12.5.2.1", "9.5.1.1"]
+      },
+      "AM-03": {
+        "nist_cybersecurity": [],
+        "iso_27001": [],
+        "pci_dss_v4": ["11.2",
+        "11.2.1",
+        "11.2.2",
+        "11.3.1",
+        "11.3.1.3",
+        "11.4.5",
+        "11.4.6"]
+      }
+    }
+  }
+} 

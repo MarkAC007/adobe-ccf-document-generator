@@ -55,9 +55,9 @@ ISM-0336","8.1.1.1
 11.2.1.9
 18.1.3.12
 18.1.2.4",3.3,"12.5.1, 12.5.2, 12.5.2.1, 9.5.1.1",3.1.1,CC6.1
-AM-03,Asset Management,Inventory Reconciliation: ARP Table,Organization reconciles network discovery scans against the established device inventory on a quarterly basis; non-inventoried devices are assigned an owner.,  ,  , X , X ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , X ,  ,  ,,,"1.2
+AM-03,Asset Management,Inventory Reconciliation: ARP Table,Organization reconciles network discovery scans against the established device inventory on a quarterly basis; non-inventoried devices are assigned an owner.,  ,  , X , X ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , X ,  ,  ,,," 1.2
 1.3
-1.5", 8.1.10.2 ,,,,,,,,,,,,,,," 11.2, 11.2.1, 11.2.2, 11.3.1, 11.3.1.3, 11.4.5, 11.4.6 ",,
+1.5 ", 8.1.10.2 ,,,,,,,,,,,,,,," 11.2, 11.2.1, 11.2.2, 11.3.1, 11.3.1.3, 11.4.5, 11.4.6 ",,
 AM-04,Asset Management,Inventory Reconciliation: Logging,Organization reconciles the enterprise log repository against the established device inventory on a quarterly basis; non-inventoried devices are assigned an owner.,,,X,,,,,,,,,,,X,,,,,X,,,,,1.4,,,,,,,,,,,CM-08 (03),,,,,"12.5.1, 12.5.2, 12.5.2.1, 9.4.5, 9.4.5..1",,
 AM-05,Asset Management,Inventory Labels,Organization assets are labeled and have designated owners.,,X,X,X,,,X,,X,,,X,X,X,,X,X,X,X,X,X,,"AM-01
 AM-06",1.1,8.1.4.2,,,"8
@@ -966,7 +966,7 @@ PR.DS-5","COS-08
 CRY-01
 CRY-02
 OPS-14
-PI-01",3.10,"8.1.4.8
+PI-01",3.1,"8.1.4.8
 8.1.5.4
 8.2.4.5 (a)",,,"24
 
@@ -1488,7 +1488,7 @@ EM-09,Entity Management,Information Security Compliance Review,Information Secur
 15.1",,1.3.1,CC4.2
 EM-10,Entity Management,Common Controls Framework,"Organization maintains a Common Control Framework (CCF) that is used in the implementation of control measures as a risk mitigation strategy to support organization operations, technology infrastructure, and security management activities.",,,,,,,,,,,,,,,,,,,,,X,,,,,,,,,,,,,,,,,,,,,"CC5.1
 CC5.2"
-EM-11,Entity Management,Service Agreement,"When customers sign-up for Organizations product and services, the customer is required to acknowledge a service agreement which includes considerations for protecting security, availability, confidentiality and indicates the responsibilities of the users and organizations responsibilities and commitments.",,X,,,,,,,,,,,,,,,,,,,X,,"COM-01
+EM-11,Entity Management,Service Agreement,"When customers sign-up for Organization's product and services, the customer is required to acknowledge a service agreement which includes considerations for protecting security, availability, confidentiality and indicates the responsibilities of the users and organization's responsibilities and commitments.",,X,,,,,,,,,,,,,,,,,,,X,,"COM-01
 OIS-02
 OIS-03
 PI-02",,,,,,,,,,,,,,,,,,,"CC2.3
@@ -1881,9 +1881,9 @@ ISM-0428","9.2.1.1
 11.2.8.3
 11.2.8.4",,8.2.8,,
 IAM-17,Identity and Access Management,Session Limit,Information systems are configured to limit concurrent login sessions and the inactive user interface is not displayed when the session is terminated.,,X,,,,,,,,,,,,,,X,,,X,,,,PSS-06,,,,,,,,,,,,,,ISM-0853,,,8.2.8,,
-IAM-18,Identity and Access Management,Account Lockout: Cardholder Data Environments,"Users are locked out of information systems after 6 invalid attempts for a minimum of 30 minutes, or until an administrator enables the user ID.",,,X,X,,X,,,,,,X,X,X,,,X,,X,,,,,4.10,8.1.4.1,,Secure Configuration,,,,,,AC-07,AC-07,"AC-07
+IAM-18,Identity and Access Management,Account Lockout: Cardholder Data Environments,"Users are locked out of information systems after 6 invalid attempts for a minimum of 30 minutes, or until an administrator enables the user ID.",,,X,X,,X,,,,,,X,X,X,,,X,,X,,,,,4.1,8.1.4.1,,Secure Configuration,,,,,,AC-07,AC-07,"AC-07
 AC-02 (05)",,,9.4.2.9,,8.3.4,,
-IAM-19,Identity and Access Management,Account Lockout,"Users are locked out of information systems after multiple, consecutive invalid attempts within a defined period; accounts remain locked for a defined period.",,,X,,,,,,,,,,,X,,X,,,X,,,,,4.10,,,,,,,,,,,"AC-02 (05)
+IAM-19,Identity and Access Management,Account Lockout,"Users are locked out of information systems after multiple, consecutive invalid attempts within a defined period; accounts remain locked for a defined period.",,,X,,,,,,,,,,,X,,X,,,X,,,,,4.1,,,,,,,,,,,"AC-02 (05)
 AC-11",,ISM-1403,,,8.3.4,,
 IAM-20,Identity and Access Management,Login Banner,"Systems leveraged by the U.S. Federal Government present a login screen that displays the following language:
  users are accessing a U.S. Government information system
@@ -2447,7 +2447,7 @@ ISM-1430",,,1.2.7,,
 NO-07,Network Operations,Ingress and Egress Points: Fail Secure,"The information system fails securely in the event of an operational failure of a boundary protection device.
 ",,,,X,,,,,,,,,,X,,,,,X,,,,,,8.3.2.1,,,,,,,,,,"MA-06
 SC-07 (18)",,,,,1.4.1,,
-NO-08,Network Operations,Traffic Flow: Managed Proxy,Organization requires egress traffic initiated from within the Organization network to pass through a managed proxy.,,,X,,,,,,,,,,,X,,X,,,X,,,,,13.10,,,,,,,,,,,"SC-07 (04)
+NO-08,Network Operations,Traffic Flow: Managed Proxy,Organization requires egress traffic initiated from within the Organization network to pass through a managed proxy.,,,X,,,,,,,,,,,X,,X,,,X,,,,,13.1,,,,,,,,,,,"SC-07 (04)
 SC-07 (08)",,"ISM-0260
 ISM-0963
 ISM-0961
@@ -2845,7 +2845,7 @@ RM-03,Risk Management,Risk Assessment: HIPAA Criteria,"Organization's periodic r
  identify appropriate safeguards",,,,,,,,,,,,,,,X,,,,,,,,,,,,,,,,,,,,,"164.308(a)(1)(ii)(A)
 164.308(a)(1)(ii)(B)
 164.308(a)(8)",,,,,,
-RM-04,Risk Management,Continuous Monitoring,The design and operating effectiveness of internal controls are continuously evaluated against the established Common Controls Framework by Organization. Corrective actions related to identified deficiencies are tracked to resolution.,,X,,X,X,,X,X,X,,,X,X,X,X,X,X,X,X,X,X,,"COM-02
+RM-04,Risk Management,Continuous Monitoring,The design and operating effectiveness of internal controls are continuously evaluated against the established Common Controls Framework by Organization. Corrective actions related to identified deficiencies are tracked to resolution.,,X,,X,X,,X,X,X,,,X,X,X,X,X,X,X,X,X,,"COM-02
 COM-03",,8.1.10.6,"8.1(a)
 
 8.1(b)",,"2
@@ -3842,7 +3842,7 @@ CA-07","AU-04
 AU-11
 CA-07
 AU-06 (03)",,,12.4.2.3,,"10.5, 10.5.1,",1.4.1,
-SM-11,Systems Monitoring,Enterprise Antivirus Logging,"If applicable, Organization's managed enterprise antivirus deployments generate audit logs which are retained for 1 year with 90 days of data immediately available for analysis.",,,X,,,,X,,,,,,,,,X,,,X,,,,,8.10,,,,46,,,,,,,,,ISM-1672,,,"10.5, 10.5.1",,
+SM-11,Systems Monitoring,Enterprise Antivirus Logging,"If applicable, Organization's managed enterprise antivirus deployments generate audit logs which are retained for 1 year with 90 days of data immediately available for analysis.",,,X,,,,X,,,,,,,,,X,,,X,,,,,8.1,,,,46,,,,,,,,,ISM-1672,,,"10.5, 10.5.1",,
 SM-12,Systems Monitoring,Security Monitoring Alert Criteria,"Organization defines security monitoring alert criteria, how alert criteria will be flagged, and identifies authorized personnel for flagged system alerts.",X,X,X,X,X,,X,,,,,X,X,X,X,,X,X,X,,X,"DE.AE-5
 DE.CM-2","COS-01
 IDM-06
@@ -4397,7 +4397,7 @@ ISM-0612","7.2.2.4
 14.2.1.11
 18.2.3.5",,6.2.4,6.1.2,
 TA-09,Training and Awareness,Security Champion Training,"Service teams select a ""Security Champion"" to ensure security engagement responsibilities are assigned and tracked to completion; Security Champions receive training on how to execute responsibilities.",,,X,,,,,,X,,,,,,,,,,,,,,,14.9,,,,,,6.3,,,,,,,,,,,,
-TPM-01,Third-Party Management,Third-Party Assurance Review,"On a periodic basis, management reviews controls within third-party assurance reports to ensure that they meet organizational requirements; if control gaps are identified in the assurance reports, management takes action to address impact the disclosed gaps have on the organization.",X,X,X,X,X,,X,,X,,,X,X,X,X,X,X,X,X,X,X,"ID.SC-1
+TPM-01,Third-Party Management,Third-Party Assurance Review,"On a periodic basis, management reviews controls within third-party assurance reports to ensure that they meet organizational requirements; if control gaps are identified in the assurance reports, management takes action to address impact the disclosed gaps have on the organization.",X,X,X,X,X,,X,,X,,,X,X,X,X,X,X,X,X,X,"ID.SC-1
 ID.SC-3
 ID.SC-4","DEV-01 
 OIS-03
@@ -4641,7 +4641,7 @@ ISM-1737
 ISM-1637
 ISM-1638",,,12.8.1,"4.1.1
 4.2.1",
-TPM-13,Third-Party Management,Vendor Information Security Standard,Organization has documented a Vendor Information Security Standard that defines the responsibilities and governance requirements regarding vendor information security engagements. Contractual agreements are entered into with vendors who process or store Organization data that define information Security terms and service level agreements.,X,X,X,X,,,,X,X,,,,X,,X,X,X,X,X,X,X,"ID.BE-1
+TPM-13,Third-Party Management,Vendor Information Security Standard,Organization has documented a Vendor Information Security Standard that defines the responsibilities and governance requirements regarding vendor information security engagements. Contractual agreements are entered into with vendors who process or store Organization data that define information Security terms and service level agreements.,X,X,X,X,,,,X,X,,,,X,,X,X,X,X,X,X,"ID.BE-1
 ID.SC-3
 ID.SC-4","COM-01
 HR-06
@@ -4699,7 +4699,7 @@ ISM-1578","13.1.2.1
 2.2.1
 4.1.1","CC1.3
 C1.1"
-VM-01,Vulnerability Management,Vulnerability Scans,Organization conducts vulnerability scans against the production environment; scan tools are updated prior to running scans.,X,X,X,X,,X,X,,X,,,X,X,X,X,X,X,X,X,X,X,"DE.CM-8
+VM-01,Vulnerability Management,Vulnerability Scans,Organization conducts vulnerability scans against the production environment; scan tools are updated prior to running scans.,X,X,X,X,,X,X,,X,,,X,X,X,X,X,X,X,X,X,"DE.CM-8
 PR.IP-12
 ID.RA-1","COM-03
 COS-03
@@ -4783,13 +4783,12 @@ ISM-1698
 ISM-1699
 ISM-1700
 ISM-1701
-ISM-1702
 ISM-1752
 ISM-0109
 ISM-1228
 ISM-1616
 ISM-1755
-ISM-1756",,,12.10,,
+ISM-1756",,,12.1,,
 VM-04,Vulnerability Management,Vulnerability Scans: Trend Analysis,"Organization reviews vulnerability trends over time to include in risk assessments; high and moderate risk vulnerabilities are remediated in 30 and 90 days, respectively.",,,X,X,,,,,,,,X,X,X,,X,,,X,,,,,18.4,8.1.7.5,,,,,,,,RA-05,RA-05,RA-05,,"ISM-0298
 ISM-1643
 ISM-1690

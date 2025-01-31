@@ -2674,7 +2674,7 @@
       "PI-01"
     ],
     "cis_v8_ref": [
-      "3.10"
+      "3.1"
     ],
     "mlps_ref": [
       "8.1.4.8",
@@ -5579,7 +5579,7 @@
     "nist_cybersecurity_ref": [],
     "bsi_c5_ref": [],
     "cis_v8_ref": [
-      "4.10"
+      "4.1"
     ],
     "mlps_ref": [
       "8.1.4.1"
@@ -5619,7 +5619,7 @@
     "nist_cybersecurity_ref": [],
     "bsi_c5_ref": [],
     "cis_v8_ref": [
-      "4.10"
+      "4.1"
     ],
     "mlps_ref": [],
     "iso_22301_ref": [],
@@ -7507,7 +7507,7 @@
     "nist_cybersecurity_ref": [],
     "bsi_c5_ref": [],
     "cis_v8_ref": [
-      "13.10"
+      "13.1"
     ],
     "mlps_ref": [],
     "iso_22301_ref": [],
@@ -9017,21 +9017,20 @@
     "soc_2_ref": []
   },
   "RM-04": {
-    "nist_cybersecurity_ref": [],
-    "bsi_c5_ref": [
+    "nist_cybersecurity_ref": [
       "COM-02",
       "COM-03"
     ],
-    "cis_v8_ref": [],
-    "mlps_ref": [
+    "bsi_c5_ref": [],
+    "cis_v8_ref": [
       "8.1.10.6"
     ],
-    "iso_22301_ref": [
+    "mlps_ref": [
       "8.1(a)",
       "8.1(b)"
     ],
-    "cyber_essentials_uk_ref": [],
-    "ens_ref": [
+    "iso_22301_ref": [],
+    "cyber_essentials_uk_ref": [
       "2",
       "3",
       "5",
@@ -9039,16 +9038,20 @@
       "48",
       "49"
     ],
-    "iso_27001_ref": [
+    "ens_ref": [
       "9.1",
       "9.3",
       "10.1"
     ],
-    "iso_27002_ref": [
+    "iso_27001_ref": [
       "5.29"
     ],
+    "iso_27002_ref": [],
     "iso_27017_ref": [],
-    "iso_27018_ref": [],
+    "iso_27018_ref": [
+      "CA-05",
+      "CA-07"
+    ],
     "tx_ramp_L1_ref": [
       "CA-05",
       "CA-07"
@@ -9058,20 +9061,16 @@
       "CA-07"
     ],
     "fedramp_moderate_ref": [
-      "CA-05",
-      "CA-07"
-    ],
-    "hipaa_security_ref": [
       "164.308(a)(8)"
     ],
-    "irap_ref": [
+    "hipaa_security_ref": [
       "ISM-1700",
       "ISM-1701",
       "ISM-1702",
       "ISM-1752",
       "ISM-1703"
     ],
-    "ismap_ref": [
+    "irap_ref": [
       "3.1.4.2",
       "4.4.8.2",
       "4.4.8.3",
@@ -9095,12 +9094,12 @@
       "18.2.3.1",
       "18.2.3.2"
     ],
-    "mas_ref": [
+    "ismap_ref": [
       "3.2",
       "4.1",
       "15.1"
     ],
-    "pci_dss_v4_ref": [
+    "mas_ref": [
       "12.3",
       "12.3.1",
       "12.3.2",
@@ -9108,14 +9107,15 @@
       "12.3.4",
       "A3.3.3"
     ],
-    "kfsi_ref": [
+    "pci_dss_v4_ref": [
       "2.2.1"
     ],
-    "soc_2_ref": [
+    "kfsi_ref": [
       "CC2.1",
       "CC4.1",
       "CC4.2"
-    ]
+    ],
+    "soc_2_ref": []
   },
   "RM-05": {
     "nist_cybersecurity_ref": [],
@@ -11512,7 +11512,7 @@
     "nist_cybersecurity_ref": [],
     "bsi_c5_ref": [],
     "cis_v8_ref": [
-      "8.10"
+      "8.1"
     ],
     "mlps_ref": [],
     "iso_22301_ref": [],
@@ -13724,11 +13724,6 @@
   },
   "TPM-01": {
     "nist_cybersecurity_ref": [
-      "ID.SC-1",
-      "ID.SC-3",
-      "ID.SC-4"
-    ],
-    "bsi_c5_ref": [
       "DEV-01",
       "OIS-03",
       "OIS-07",
@@ -13739,60 +13734,60 @@
       "SSO-04",
       "SSO-05"
     ],
-    "cis_v8_ref": [
+    "bsi_c5_ref": [
       "15.5",
       "15.6"
     ],
-    "mlps_ref": [
+    "cis_v8_ref": [
       "8.1.9.10",
       "8.2.6.1",
       "8.2.6.2"
     ],
-    "iso_22301_ref": [
+    "mlps_ref": [
       "8.1",
       "8.6"
     ],
-    "cyber_essentials_uk_ref": [],
-    "ens_ref": [
+    "iso_22301_ref": [],
+    "cyber_essentials_uk_ref": [
       "41",
       "47",
       "48",
       "49"
     ],
-    "iso_27001_ref": [],
-    "iso_27002_ref": [
+    "ens_ref": [],
+    "iso_27001_ref": [
       "5.22"
     ],
+    "iso_27002_ref": [],
     "iso_27017_ref": [],
-    "iso_27018_ref": [],
-    "tx_ramp_L1_ref": [
+    "iso_27018_ref": [
       "PS-07",
       "SA-09"
     ],
-    "fedramp_tailored_ref": [
+    "tx_ramp_L1_ref": [
       "PS-07",
       "SA-09",
       "RA-03 (01)",
       "SR-10"
     ],
-    "fedramp_moderate_ref": [
+    "fedramp_tailored_ref": [
       "PS-07",
       "SA-09",
       "SA-09 (01)"
     ],
-    "hipaa_security_ref": [
+    "fedramp_moderate_ref": [
       "164.308(b)(2)",
       "164.310(a)(1)",
       "164.310(a)(2)(ii)"
     ],
-    "irap_ref": [
+    "hipaa_security_ref": [
       "ISM-0731",
       "ISM-1452",
       "ISM-1569",
       "ISM-0280",
       "ISM-0285"
     ],
-    "ismap_ref": [
+    "irap_ref": [
       "4.6.2.5",
       "6.1.1.12",
       "14.1.1.13",
@@ -13832,11 +13827,11 @@
       "15.2.2.2",
       "14.2.5.7"
     ],
-    "mas_ref": [
+    "ismap_ref": [
       "3.4",
       "6.4"
     ],
-    "pci_dss_v4_ref": [
+    "mas_ref": [
       "12.8",
       "12.8.1",
       "12.8.2",
@@ -13844,16 +13839,17 @@
       "12.8.4",
       "12.8.5"
     ],
-    "kfsi_ref": [
+    "pci_dss_v4_ref": [
       "4.1.1",
       "4.2.1"
     ],
-    "soc_2_ref": [
+    "kfsi_ref": [
       "CC3.2",
       "CC4.1",
       "CC6.4",
       "CC9.2"
-    ]
+    ],
+    "soc_2_ref": []
   },
   "TPM-02": {
     "nist_cybersecurity_ref": [],
@@ -14359,11 +14355,6 @@
   },
   "TPM-13": {
     "nist_cybersecurity_ref": [
-      "ID.BE-1",
-      "ID.SC-3",
-      "ID.SC-4"
-    ],
-    "bsi_c5_ref": [
       "COM-01",
       "HR-06",
       "OIS-02",
@@ -14372,41 +14363,41 @@
       "SSO-01",
       "DEV-02"
     ],
-    "cis_v8_ref": [
+    "bsi_c5_ref": [
       "15.2",
       "15.4"
     ],
-    "mlps_ref": [
+    "cis_v8_ref": [
       "8.1.9.3",
       "8.1.9.10",
       "8.1.10.14"
     ],
+    "mlps_ref": [],
     "iso_22301_ref": [],
     "cyber_essentials_uk_ref": [],
-    "ens_ref": [],
-    "iso_27001_ref": [
+    "ens_ref": [
       "7.3"
     ],
-    "iso_27002_ref": [
+    "iso_27001_ref": [
       "5.2",
       "5.23",
       "5.21"
     ],
+    "iso_27002_ref": [],
     "iso_27017_ref": [],
     "iso_27018_ref": [],
-    "tx_ramp_L1_ref": [],
-    "fedramp_tailored_ref": [
+    "tx_ramp_L1_ref": [
       "SR-01",
       "SR-02",
       "SR-02 (01)",
       "SR-03",
       "SR-05"
     ],
-    "fedramp_moderate_ref": [],
-    "hipaa_security_ref": [
+    "fedramp_tailored_ref": [],
+    "fedramp_moderate_ref": [
       "164.308(a)(1)(i)"
     ],
-    "irap_ref": [
+    "hipaa_security_ref": [
       "ISM-1568",
       "ISM-1632",
       "ISM-1571",
@@ -14416,7 +14407,7 @@
       "ISM-0285",
       "ISM-1578"
     ],
-    "ismap_ref": [
+    "irap_ref": [
       "13.1.2.1",
       "13.2.4.3",
       "14.2.7.1",
@@ -14445,29 +14436,25 @@
       "15.1.2.16",
       "15.1.2.18.PB"
     ],
-    "mas_ref": [
+    "ismap_ref": [
       "3.4"
     ],
-    "pci_dss_v4_ref": [
+    "mas_ref": [
       "12.8"
     ],
-    "kfsi_ref": [
+    "pci_dss_v4_ref": [
       "1.2.2",
       "2.2.1",
       "4.1.1"
     ],
-    "soc_2_ref": [
+    "kfsi_ref": [
       "CC1.3",
       "C1.1"
-    ]
+    ],
+    "soc_2_ref": []
   },
   "VM-01": {
     "nist_cybersecurity_ref": [
-      "DE.CM-8",
-      "PR.IP-12",
-      "ID.RA-1"
-    ],
-    "bsi_c5_ref": [
       "COM-03",
       "COS-03",
       "OPS-18",
@@ -14477,19 +14464,19 @@
       "PSS-09",
       "PSS-03"
     ],
-    "cis_v8_ref": [
+    "bsi_c5_ref": [
       "7.5",
       "7.6"
     ],
-    "mlps_ref": [
+    "cis_v8_ref": [
       "8.1.7.5",
       "8.1.10.5"
     ],
-    "iso_22301_ref": [],
-    "cyber_essentials_uk_ref": [
+    "mlps_ref": [],
+    "iso_22301_ref": [
       "Security Update Management"
     ],
-    "ens_ref": [
+    "cyber_essentials_uk_ref": [
       "4",
       "27",
       "28",
@@ -14498,12 +14485,18 @@
       "89",
       "90"
     ],
-    "iso_27001_ref": [],
-    "iso_27002_ref": [
+    "ens_ref": [],
+    "iso_27001_ref": [
       "8.8"
     ],
+    "iso_27002_ref": [],
     "iso_27017_ref": [],
-    "iso_27018_ref": [],
+    "iso_27018_ref": [
+      "CA-07",
+      "RA-05",
+      "SI-02",
+      "RA-05 (02)"
+    ],
     "tx_ramp_L1_ref": [
       "CA-07",
       "RA-05",
@@ -14514,21 +14507,15 @@
       "CA-07",
       "RA-05",
       "SI-02",
-      "RA-05 (02)"
-    ],
-    "fedramp_moderate_ref": [
-      "CA-07",
-      "RA-05",
-      "SI-02",
       "RA-05 (02)",
       "RA-05 (03)"
     ],
-    "hipaa_security_ref": [
+    "fedramp_moderate_ref": [
       "164.308(a)(1)(ii)(A)",
       "164.308(a)(1)(ii)(B)",
       "164.308(a)(8)"
     ],
-    "irap_ref": [
+    "hipaa_security_ref": [
       "ISM-1163",
       "ISM-1698",
       "ISM-1699",
@@ -14538,7 +14525,7 @@
       "ISM-1752",
       "ISM-1754"
     ],
-    "ismap_ref": [
+    "irap_ref": [
       "12.6.1.1",
       "12.6.1.2",
       "12.6.1.3",
@@ -14560,11 +14547,11 @@
       "18.2.3.3",
       "18.2.3.4"
     ],
-    "mas_ref": [
+    "ismap_ref": [
       "11.3",
       "13.1"
     ],
-    "pci_dss_v4_ref": [
+    "mas_ref": [
       "11.3",
       "11.3.1",
       "11.3.1.1",
@@ -14573,14 +14560,15 @@
       "11.3.2",
       "11.3.2.1"
     ],
-    "kfsi_ref": [
+    "pci_dss_v4_ref": [
       "3.3.1",
       "8.1.5"
     ],
-    "soc_2_ref": [
+    "kfsi_ref": [
       "CC3.2",
       "CC7.1"
-    ]
+    ],
+    "soc_2_ref": []
   },
   "VM-02": {
     "nist_cybersecurity_ref": [],
@@ -14654,7 +14642,6 @@
       "ISM-1699",
       "ISM-1700",
       "ISM-1701",
-      "ISM-1702",
       "ISM-1752",
       "ISM-0109",
       "ISM-1228",
@@ -14665,7 +14652,7 @@
     "ismap_ref": [],
     "mas_ref": [],
     "pci_dss_v4_ref": [
-      "12.10"
+      "12.1"
     ],
     "kfsi_ref": [],
     "soc_2_ref": []

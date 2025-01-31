@@ -1,0 +1,25 @@
+{
+    "policy_name": "Access Management Policy",
+    "version": "1.0",
+    "expected_controls": ["AM-01", "AM-02", "AM-03"],
+    "selected_frameworks": ["nist_cybersecurity", "pci_dss_v4"],
+    "expected_content": {
+        "policy_statements": {
+            "AM-01": "Organization maintains an inventory of information systems",
+            "AM-02": "Organization maintains an inventory of application assets",
+            "AM-03": "Organization reconciles network discovery scans"
+        },
+        "implementation_requirements": {
+            "AM-01": "1. Maintain current inventory\n2. Review quarterly\n3. Document changes",
+            "AM-02": "1. Document all applications\n2. Review monthly\n3. Track versions",
+            "AM-03": "1. Perform network scans\n2. Compare with inventory\n3. Assign ownership"
+        },
+        "framework_mappings": {
+            "AM-01": {
+                "nist_cybersecurity": ["ID.AM-1", "ID.AM-2"],
+                "pci_dss_v4": ["12.5.1", "12.5.2"]
+            }
+            // ... additional mappings ...
+        }
+    }
+}
