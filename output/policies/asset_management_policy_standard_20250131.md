@@ -377,7 +377,7 @@ Evidence Required:
 | E-AM-11 | Asset Management | Software Bill of Materials |
 
 
-## Compliance Requirements
+## Crosswalk: Common Controls to External Frameworks
 
 | Control ID | BSI C5 | CIS v8 | Cyber Essentials (UK) | ENS | FedRAMP Moderate | FedRAMP Tailored | HIPAA Security | IRAP | ISMAP | ISO 22301 | ISO 27001 | ISO 27002 | ISO 27017 | ISO 27018 | K-FSI | MAS | MLPS | NIST CSF | PCI DSS v4 | SOC 2 | TX-RAMP Level 1 |
 |:-----------|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
@@ -395,7 +395,7 @@ Evidence Required:
 | AM-12 | AM-03 | 4.2 | - | - | MA-03 (02) | SR-11, SR-11 (01) | - | ISM-0343, ISM-1418 | - | - | - | - | - | - | - | - | - | - | 2.2, 6.5.1 | - | - |
 | AM-13 | - | - | - | - | - | - | - | ISM-1730 | - | - | - | - | - | - | - | - | - | - | - | - | - |
 
-## Framework Reference Mapping
+## Crosswalk: External Frameworks to Common Controls
 | **Framework** | **Reference** | **Controls** |
 |:----------|:----------|:---------|
 | BSI C5 | AM-01 | AM-01, AM-02, AM-05 |
