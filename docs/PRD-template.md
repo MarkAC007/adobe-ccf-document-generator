@@ -163,7 +163,7 @@ Users need a way to quickly view and analyze control mappings across different f
 
 3. **Data Processing**
    - Control filtering by framework
-   - Framework reference mapping
+   - Crosswalk: External Frameworks to Common Controls
    - Table generation logic
    - Format conversion (markdown/docx)
 

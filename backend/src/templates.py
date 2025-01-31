@@ -28,11 +28,11 @@ This policy applies to all systems and data.
 
 ${control_sections}
 
-## Compliance Requirements
+## Crosswalk: Common Controls to External Frameworks
 
 ${framework_references}
 
-## Framework Reference Mapping
+## Crosswalk: External Frameworks to Common Controls
 | **Framework** | **Reference** | **Controls** |
 |:----------|:----------|:---------|
 ${reverse_framework_references}
@@ -79,11 +79,11 @@ This policy applies to:
 
 ${control_sections}
 
-## Compliance Requirements
+## Crosswalk: Common Controls to External Frameworks
 
 ${framework_references}
 
-## Framework Reference Mapping
+## Crosswalk: External Frameworks to Common Controls
 | **Framework** | **Reference** | **Controls** |
 |:----------|:----------|:---------|
 ${reverse_framework_references}
