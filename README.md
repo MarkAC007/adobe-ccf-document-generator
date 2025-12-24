@@ -1,9 +1,13 @@
-![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/MarkAC007/adobe-ccf-document-generator?utm_source=oss&utm_medium=github&utm_campaign=MarkAC007%2Fadobe-ccf-document-generator&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
-
 # Adobe CCF Policy Generator
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/ci.yml?branch=main&label=CI&logo=github)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/ci.yml)
+[![Docker Build](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/docker-publish.yml?branch=main&label=Docker&logo=docker)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/docker-publish.yml)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/markac007/adobe-ccf-policy-generator)](https://hub.docker.com/r/markac007/adobe-ccf-policy-generator)
+[![Docker Image Size](https://img.shields.io/docker/image-size/markac007/adobe-ccf-policy-generator/latest)](https://hub.docker.com/r/markac007/adobe-ccf-policy-generator)
+[![GitHub Release](https://img.shields.io/github/v/release/MarkAC007/adobe-ccf-document-generator)](https://github.com/MarkAC007/adobe-ccf-document-generator/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Last Commit](https://img.shields.io/github/last-commit/MarkAC007/adobe-ccf-document-generator)](https://github.com/MarkAC007/adobe-ccf-document-generator/commits/main)
 
 🚀 **Try it out:** [Live Demo](https://adobe-ccf-demo.compliancegenie.io/)
 
