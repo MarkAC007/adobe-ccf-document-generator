@@ -8,7 +8,7 @@
 [![CodeQL](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/codeql.yml?branch=main&label=CodeQL&logo=github)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/codeql.yml)
 [![Semgrep](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/semgrep.yml?branch=main&label=Semgrep&logo=semgrep)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/semgrep.yml)
 [![Gitleaks](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/gitleaks.yml?branch=main&label=Gitleaks&logo=git)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/gitleaks.yml)
-[![Socket Security](https://socket.dev/api/badge/npm/package/adobe-ccf-document-generator)](https://socket.dev)
+[![License Check](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/license-check.yml?branch=main&label=Licenses&logo=github)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/license-check.yml)
 
 <!-- Tech Stack -->
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
