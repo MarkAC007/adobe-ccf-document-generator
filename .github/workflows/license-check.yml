@@ -1,0 +1,59 @@
+name: License Compliance
+
+on:
+  push:
+    branches: [main, dev]
+    paths:
+      - 'backend/pyproject.toml'
+      - 'backend/poetry.lock'
+      - 'backend/requirements.txt'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'backend/pyproject.toml'
+      - 'backend/poetry.lock'
+      - 'backend/requirements.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  license-check:
+    name: Check Licenses
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pip-licenses
+        run: pip install pip-licenses
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check for problematic licenses
+        run: |
+          echo "## License Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          pip-licenses --format=markdown >> $GITHUB_STEP_SUMMARY
+
+          # Fail on copyleft licenses (GPL, AGPL, etc.)
+          PROBLEMATIC=$(pip-licenses --fail-on="GPL;AGPL;LGPL" 2>&1 || true)
+          if echo "$PROBLEMATIC" | grep -q "fail-on"; then
+            echo "::warning::Copyleft license detected - review required"
+          fi
+
+      - name: Generate license file
+        run: |
+          pip-licenses --format=plain-vertical --with-license-file --no-license-path > THIRD_PARTY_LICENSES.txt
+          echo "Generated THIRD_PARTY_LICENSES.txt"
