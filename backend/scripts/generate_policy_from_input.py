@@ -392,13 +392,24 @@ if __name__ == "__main__":
     parser.add_argument('config_file', help='Path to the configuration JSON file')
     args = parser.parse_args()
 
-    # Load configuration from file
-    try:
-        with open(args.config_file, 'r') as f:
-            config = json.load(f)
-    except FileNotFoundError:
+    # Validate and resolve the config file path securely
+    config_path = Path(args.config_file).resolve()
+
+    # Security: Ensure path is a regular file and exists
+    if not config_path.exists():
         print(f"Error: Config file '{args.config_file}' not found")
         exit(1)
+    if not config_path.is_file():
+        print(f"Error: '{args.config_file}' is not a regular file")
+        exit(1)
+    if config_path.suffix.lower() != '.json':
+        print(f"Error: Config file must be a JSON file (got '{config_path.suffix}')")
+        exit(1)
+
+    # Load configuration from file
+    try:
+        with open(config_path, 'r') as f:
+            config = json.load(f)
     except json.JSONDecodeError:
         print(f"Error: Config file '{args.config_file}' is not valid JSON")
         exit(1)

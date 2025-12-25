@@ -14,8 +14,12 @@ from flask_cors import CORS
 from flask_swagger_ui import get_swaggerui_blueprint
 from src.templates import PolicyTemplate
 from scripts.generate_policy_from_input import PolicyGenerator
-from jinja2 import Template
+from string import Template
 from src.document_converter import DocumentConverter
+import logging
+
+# Configure secure logging (no stack traces to users)
+logger = logging.getLogger(__name__)
 import tempfile
 from pathlib import Path
 from src.framework_mapper import FrameworkMapper
@@ -134,24 +138,24 @@ def root():
     try:
         return send_from_directory(app.static_folder, 'index.html')
     except Exception as e:
-        print(f"Error serving index.html: {str(e)}")
-        return f"Error: {str(e)}", 500
+        logger.error(f"Error serving index.html: {str(e)}")
+        return "An error occurred while loading the page", 500
 
 @app.route('/framework-mapping')
 def framework_mapping():
     try:
         return send_from_directory(app.static_folder, 'framework-mapping.html')
     except Exception as e:
-        print(f"Error serving framework-mapping.html: {str(e)}")
-        return f"Error: {str(e)}", 500
+        logger.error(f"Error serving framework-mapping.html: {str(e)}")
+        return "An error occurred while loading the page", 500
 
 @app.route('/template-editor')
 def serve_template_editor():
     try:
         return send_from_directory(app.static_folder, 'template_editor.html')
     except Exception as e:
-        print(f"Error serving template_editor.html: {str(e)}")
-        return f"Error: {str(e)}", 500
+        logger.error(f"Error serving template_editor.html: {str(e)}")
+        return "An error occurred while loading the page", 500
 
 @app.route('/generate', methods=['POST'])
 def generate_policy_endpoint():
@@ -217,11 +221,8 @@ def generate_policy_endpoint():
                         "format": "md"
                     })
             except Exception as e:
-                print(f"\n=== Error in Framework Mapping ===")
-                print(f"Error type: {type(e)}")
-                print(f"Error message: {str(e)}")
-                print(f"Error location: {e.__traceback__.tb_frame.f_code.co_filename}:{e.__traceback__.tb_lineno}")
-                return jsonify({"error": str(e)})
+                logger.error(f"Error in Framework Mapping: {type(e).__name__}: {str(e)}", exc_info=True)
+                return jsonify({"error": "An error occurred during framework mapping. Please check your input and try again."})
         
         # Handle regular policy generation
         if output_format not in ['md', 'docx']:
@@ -230,11 +231,8 @@ def generate_policy_endpoint():
         result = generate_policy_from_web_config(config_data, output_format)
         return jsonify(result)
     except Exception as e:
-        print(f"\n=== Error in Generate Endpoint ===")
-        print(f"Error type: {type(e)}")
-        print(f"Error message: {str(e)}")
-        print(f"Error location: {e.__traceback__.tb_frame.f_code.co_filename}:{e.__traceback__.tb_lineno}")
-        return jsonify({"error": str(e)})
+        logger.error(f"Error in Generate Endpoint: {type(e).__name__}: {str(e)}", exc_info=True)
+        return jsonify({"error": "An error occurred during policy generation. Please check your input and try again."})
 
 @app.route('/templates', methods=['GET'])
 def get_templates():
