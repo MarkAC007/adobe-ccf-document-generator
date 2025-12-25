@@ -1,13 +1,26 @@
 # Adobe CCF Policy Generator
 
+<!-- Build & Deploy -->
 [![CI](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/ci.yml?branch=main&label=CI&logo=github)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/ci.yml)
 [![Docker Build](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/docker-publish.yml?branch=main&label=Docker&logo=docker)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/docker-publish.yml)
+
+<!-- Security -->
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/codeql.yml?branch=main&label=CodeQL&logo=github)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/codeql.yml)
+[![Semgrep](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/semgrep.yml?branch=main&label=Semgrep&logo=semgrep)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/semgrep.yml)
+[![Gitleaks](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/gitleaks.yml?branch=main&label=Gitleaks&logo=git)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/gitleaks.yml)
+[![Socket Security](https://socket.dev/api/badge/npm/package/adobe-ccf-document-generator)](https://socket.dev)
+
+<!-- Tech Stack -->
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/markac007/adobe-ccf-policy-generator)](https://hub.docker.com/r/markac007/adobe-ccf-policy-generator)
 [![Docker Image Size](https://img.shields.io/docker/image-size/markac007/adobe-ccf-policy-generator/latest)](https://hub.docker.com/r/markac007/adobe-ccf-policy-generator)
+
+<!-- Project Info -->
 [![GitHub Release](https://img.shields.io/github/v/release/MarkAC007/adobe-ccf-document-generator)](https://github.com/MarkAC007/adobe-ccf-document-generator/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Last Commit](https://img.shields.io/github/last-commit/MarkAC007/adobe-ccf-document-generator)](https://github.com/MarkAC007/adobe-ccf-document-generator/commits/main)
+[![Open Issues](https://img.shields.io/github/issues/MarkAC007/adobe-ccf-document-generator)](https://github.com/MarkAC007/adobe-ccf-document-generator/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/MarkAC007/adobe-ccf-document-generator/pulls)
 
 🚀 **Try it out:** [Live Demo](https://adobe-ccf-demo.compliancegenie.io/)
 

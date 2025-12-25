@@ -3,6 +3,7 @@ name = "document-generator"
 version = "0.1.0"
 description = "Document generation testing framework"
 authors = ["Your Name <your.email@example.com>"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.9"

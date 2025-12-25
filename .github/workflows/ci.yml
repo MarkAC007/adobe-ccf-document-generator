@@ -63,6 +63,12 @@ jobs:
         run: poetry run pytest tests/ -v --cov=src --cov-report=xml --cov-report=term-missing
         continue-on-error: true
 
+      - name: Check coverage threshold
+        if: matrix.python-version == '3.12'
+        run: |
+          poetry run coverage report --fail-under=50 || echo "::warning::Coverage below 50% threshold"
+        continue-on-error: true
+
       - name: Upload coverage reports
         if: matrix.python-version == '3.11'
         uses: actions/upload-artifact@v4
