@@ -375,21 +375,4 @@ def serve_swagger_spec():
     return send_from_directory(BACKEND_DIR, 'openapi.yaml')
 
 if __name__ == "__main__":
-    import socket
-    # Try to bind to port 5000, with SO_REUSEADDR to handle port conflicts
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    
-    try:
-        sock.bind(('0.0.0.0', 5000))
-        sock.close()
-        app.run(host='0.0.0.0', port=5000, debug=True)
-    except OSError as e:
-        print(f"Port 5000 is in use. Error: {e}")
-        print("Please disable AirPlay Receiver in System Settings > General > AirDrop & AirPlay")
-        print("Or the server will attempt to use port 5001...")
-        try:
-            app.run(host='0.0.0.0', port=5001, debug=True)
-        except Exception as e2:
-            print(f"Failed to start on port 5001: {e2}")
-            raise
+    app.run(host='0.0.0.0', port=5000)
