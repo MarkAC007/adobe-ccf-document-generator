@@ -1,4 +1,5 @@
 # Adobe CCF Policy Generator
+[\![Release](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/auto-release.yml/badge.svg)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/auto-release.yml)
 
 <!-- Build & Deploy -->
 [![CI](https://img.shields.io/github/actions/workflow/status/MarkAC007/adobe-ccf-document-generator/ci.yml?branch=main&label=CI&logo=github)](https://github.com/MarkAC007/adobe-ccf-document-generator/actions/workflows/ci.yml)
