@@ -1,0 +1,203 @@
+# Auto Release Workflow
+# Automatically creates releases on PR merge to main
+#
+# Features:
+# - Triggers on PR merge (not manual tag push)
+# - Version bump based on PR labels (major/minor/patch) or conventional commits
+# - Categorized release notes with emojis
+# - Works with branch protection (tags merge commit, doesn't push to main)
+#
+# Prerequisites:
+# - Create labels: major, minor, patch (use /oss labels or gh label create)
+# - Uses git tags for version tracking (not package.json)
+#
+# Usage: Copy to .github/workflows/auto-release.yml
+
+name: Auto Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  release:
+    name: Create Release
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Get latest tag version
+        id: latest_tag
+        run: |
+          # Get latest tag, default to v0.0.0 if none exists
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          VERSION="${LATEST_TAG#v}"
+          echo "tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Latest tag: $LATEST_TAG (version: $VERSION)"
+
+      - name: Determine version bump
+        id: bump_type
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          PR_LABELS="${{ join(github.event.pull_request.labels.*.name, ',') }}"
+
+          # Check labels first (explicit control)
+          if [[ "$PR_LABELS" == *"major"* ]] || [[ "$PR_LABELS" == *"breaking"* ]]; then
+            echo "bump=major" >> $GITHUB_OUTPUT
+            echo "Bump type: MAJOR (from label)"
+          elif [[ "$PR_LABELS" == *"minor"* ]] || [[ "$PR_LABELS" == *"feature"* ]]; then
+            echo "bump=minor" >> $GITHUB_OUTPUT
+            echo "Bump type: MINOR (from label)"
+          elif [[ "$PR_LABELS" == *"patch"* ]] || [[ "$PR_LABELS" == *"fix"* ]]; then
+            echo "bump=patch" >> $GITHUB_OUTPUT
+            echo "Bump type: PATCH (from label)"
+          # Fall back to conventional commit in PR title
+          elif [[ "$PR_TITLE" =~ ^feat!:|^BREAKING ]]; then
+            echo "bump=major" >> $GITHUB_OUTPUT
+            echo "Bump type: MAJOR (breaking change in title)"
+          elif [[ "$PR_TITLE" =~ ^feat:|^feat\( ]]; then
+            echo "bump=minor" >> $GITHUB_OUTPUT
+            echo "Bump type: MINOR (feature in title)"
+          else
+            echo "bump=patch" >> $GITHUB_OUTPUT
+            echo "Bump type: PATCH (default)"
+          fi
+
+      - name: Calculate new version
+        id: new_version
+        run: |
+          CURRENT="${{ steps.latest_tag.outputs.version }}"
+          BUMP="${{ steps.bump_type.outputs.bump }}"
+
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
+
+          case "$BUMP" in
+            major)
+              NEW_VERSION="$((MAJOR + 1)).0.0"
+              ;;
+            minor)
+              NEW_VERSION="${MAJOR}.$((MINOR + 1)).0"
+              ;;
+            patch)
+              NEW_VERSION="${MAJOR}.${MINOR}.$((PATCH + 1))"
+              ;;
+          esac
+
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "New version: v$NEW_VERSION"
+
+      - name: Create and push tag
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.version }}"
+          git tag -a "v${NEW_VERSION}" -m "Release v${NEW_VERSION}"
+          git push origin "v${NEW_VERSION}"
+
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.version }}"
+          PREVIOUS_TAG="${{ steps.latest_tag.outputs.tag }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          PR_URL="${{ github.event.pull_request.html_url }}"
+          PR_AUTHOR="${{ github.event.pull_request.user.login }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+
+          # Categorize commits since last release
+          FEATURES=""
+          FIXES=""
+          DOCS=""
+          CHORES=""
+          OTHER=""
+
+          if [ "$PREVIOUS_TAG" != "v0.0.0" ]; then
+            while IFS= read -r line; do
+              COMMIT_MSG="$line"
+              if [[ "$COMMIT_MSG" =~ ^feat ]]; then
+                FEATURES="${FEATURES}- ${COMMIT_MSG}"$'\n'
+              elif [[ "$COMMIT_MSG" =~ ^fix ]]; then
+                FIXES="${FIXES}- ${COMMIT_MSG}"$'\n'
+              elif [[ "$COMMIT_MSG" =~ ^docs ]]; then
+                DOCS="${DOCS}- ${COMMIT_MSG}"$'\n'
+              elif [[ "$COMMIT_MSG" =~ ^chore ]] && [[ ! "$COMMIT_MSG" =~ ^chore\(release\) ]]; then
+                CHORES="${CHORES}- ${COMMIT_MSG}"$'\n'
+              elif [[ ! "$COMMIT_MSG" =~ ^Merge ]] && [[ ! "$COMMIT_MSG" =~ ^chore\(release\) ]]; then
+                OTHER="${OTHER}- ${COMMIT_MSG}"$'\n'
+              fi
+            done < <(git log ${PREVIOUS_TAG}..HEAD --pretty=format:"%s" --no-merges)
+          fi
+
+          # Build release notes
+          cat > release_notes.md << 'RELEASE_EOF'
+          ## What's Changed
+          RELEASE_EOF
+          echo "" >> release_notes.md
+          echo "**PR #${PR_NUMBER}:** ${PR_TITLE}" >> release_notes.md
+
+          if [ -n "$FEATURES" ]; then
+            printf "\n### 🚀 Features\n%s" "$FEATURES" >> release_notes.md
+          fi
+
+          if [ -n "$FIXES" ]; then
+            printf "\n### 🐛 Bug Fixes\n%s" "$FIXES" >> release_notes.md
+          fi
+
+          if [ -n "$DOCS" ]; then
+            printf "\n### 📚 Documentation\n%s" "$DOCS" >> release_notes.md
+          fi
+
+          if [ -n "$CHORES" ]; then
+            printf "\n### 🔧 Maintenance\n%s" "$CHORES" >> release_notes.md
+          fi
+
+          if [ -n "$OTHER" ]; then
+            printf "\n### 📦 Other Changes\n%s" "$OTHER" >> release_notes.md
+          fi
+
+          # Add footer
+          echo "" >> release_notes.md
+          echo "---" >> release_notes.md
+          echo "**Merged by:** @${PR_AUTHOR}" >> release_notes.md
+
+          if [ "$PREVIOUS_TAG" != "v0.0.0" ]; then
+            echo "**Full Changelog:** https://github.com/${{ github.repository }}/compare/${PREVIOUS_TAG}...v${NEW_VERSION}" >> release_notes.md
+          fi
+
+          echo "--- Release Notes ---"
+          cat release_notes.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.new_version.outputs.version }}
+          name: v${{ steps.new_version.outputs.version }}
+          body_path: release_notes.md
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "## 🎉 Release Created" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Previous Version | ${{ steps.latest_tag.outputs.tag }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| New Version | v${{ steps.new_version.outputs.version }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Bump Type | ${{ steps.bump_type.outputs.bump }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| PR | #${{ github.event.pull_request.number }} |" >> $GITHUB_STEP_SUMMARY
